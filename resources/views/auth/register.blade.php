@@ -110,12 +110,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="checkbox">
-                    <input id="checkbox1" type="checkbox">
-                    <label class="text-muted" for="checkbox1">Agree with <span>Privacy Policy                   </span></label>
-                  </div>
-                </div>
-                <div class="form-group">
                   <button class="btn btn-primary btn-block" type="submit">Create Account</button>
                 </div>
                 <div class="login-social-title">                
