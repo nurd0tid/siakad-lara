@@ -236,6 +236,65 @@
                     <h6>Applications </h6>
                   </div>
                 </li>
+                <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                      data-feather="grid"></i><span>Data Master</span></a>
+                  <ul class="nav-submenu menu-content">
+                    <li><a href="http://">Kurikulum</a></li>
+                    <li><a href="http://">Tahun Akademik</a></li>
+                    <li><a href="http://">Gedung</a></li>
+                    <li><a href="http://">Ruangan</a></li>
+                    <li><a href="http://">Golongan</a></li>
+                    <li><a href="http://">Ptk</a></li>
+                    <li><a href="http://">Jurusan</a></li>
+                    <li><a href="http://">Kelas</a></li>
+                    <li><a href="http://">Kepegawaian</a></li>
+                    <li><a href="http://">Identitas Sekolah</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                      data-feather="users"></i><span>Data Pengguna</span></a>
+                  <ul class="nav-submenu menu-content">
+                    <li><a href="http://">Siswa</a></li>
+                    <li><a href="http://">Guru</a></li>
+                    <li><a href="http://">Kepala Sekolah</a></li>
+                    <li><a href="http://">Admin</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                      data-feather="book"></i><span>Data Akademik</span></a>
+                  <ul class="nav-submenu menu-content">
+                    <li><a href="http://">Kelompok Mapel</a></li>
+                    <li><a href="http://">Mata Pelajaran</a></li>
+                    <li><a href="http://">Jadwal Pelajaran</a></li>
+                    <li><a href="http://">Bahan & Tugas</a></li>
+                    <li><a href="http://">Kompetensi Dasar</a></li>
+                    <li><a href="http://">Penilaian Diri</a></li>
+                    <li><a href="http://">Rentang Nilai</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                      data-feather="calendar"></i><span>Data Absensi</span></a>
+                  <ul class="nav-submenu menu-content">
+                    <li><a href="http://">Absensi Guru</a></li>
+                    <li><a href="http://">Absensi Siswa</a></li>
+                    <li><a href="http://">Rekap Absensi</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                      data-feather="file-text"></i><span>Laporan Nilai Siswa</span></a>
+                  <ul class="nav-submenu menu-content">
+                    <li><a href="http://">Nilai UTS</a></li>
+                    <li><a href="http://">Nilai Raport</a></li>
+                    <li><a href="http://">Capaian Belajar</a></li>
+                    <li><a href="http://">Extrakulikuler</a></li>
+                    <li><a href="http://">Presentasi</a></li>
+                    <li><a href="http://">Raport UTS</a></li>
+                    <li><a href="http://">Cetak Raport</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown"><a class="nav-link menu" href="javascript:void(0)"><i
+                      data-feather="book-open"></i><span>Jurnal KBM</span></a>
+                </li>
               </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
