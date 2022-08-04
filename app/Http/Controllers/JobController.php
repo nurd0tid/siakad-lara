@@ -12,23 +12,39 @@ class JobController extends Controller
    *
    * @return void
    */
-
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
   /**
    * Show the application dashboard.
    *
    * @return \Illuminate\Contracts\Support\Renderable
    */
-  private $result = array();
+  // private $myarray = array();
 
   public function index()
   {
     $client = new Client();
-    $url =  'https://www.loker.id/cari-lowongan-kerja';
-    $crawler = $client->request('GET', $url);
+    $url =  'https://glints.com/id/lowongan-kerja?page=1';
+    $page = $client->request('GET', $url);
 
-    echo $crawler->filter('.media-body')->text();
-    // echo "<pre>";
-    // print_r($crawler);
-    // return view('job');
+    $myarray = array();
+    $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
+      $filtered = [
+        'img' => $item->filter('img')->attr('src'),
+        'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
+        'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
+        'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
+        'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
+        'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
+        // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17')->text(),
+      ];
+      array_push($myarray, $filtered);
+    });
+
+    $data['data'] = array_slice($myarray, 0, 6);
+    // dd($data);
+    return view('job', $data);
   }
 }

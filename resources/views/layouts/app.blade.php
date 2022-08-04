@@ -300,7 +300,7 @@
                     <h6>Miscellaneous </h6>
                   </div>
                 </li>
-                <li class="dropdown"><a class="nav-link menu" href="javascript:void(0)"><i
+                <li class="dropdown"><a class="nav-link menu" href="{{ route('job') }}"><i
                       data-feather="pocket"></i><span>Job Search</span></a>
                 </li>
               </ul>
