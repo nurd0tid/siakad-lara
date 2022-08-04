@@ -39,6 +39,24 @@
       </div>
     </div>
     <div class="container-fluid">
+      <div class="row g-3 mb-3">
+        <div class="col-xl-5">
+          <div class="faq-form">
+            <input class="form-control" type="text" placeholder="Cari Lowongan"><i class="search-icon"
+              data-feather="search"></i>
+          </div>
+        </div>
+        <div class="col-xl-5">
+          <div class="faq-form">
+            <input class="form-control" type="text" placeholder="Tambahkan Negara atau Kota"><i class="search-icon"
+              data-feather="map-pin"></i>
+          </div>
+        </div>
+        <div class="col-xl-2">
+          <button class="btn btn-pill btn-light" type="button"><i class="fa fa-spin fa-circle-o-notch"></i> Go
+            Search</button>
+        </div>
+      </div>
       <div class="row">
         @foreach ($data as $key)
           <div class="col-md-6">
@@ -70,6 +88,17 @@
             </div>
           </div>
         @endforeach
+      </div>
+      <div class="job-pagination">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination pagination-primary">
+            <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
     <!-- Container-fluid Ends-->
