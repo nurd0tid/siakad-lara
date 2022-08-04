@@ -81,8 +81,15 @@
                   <p><i class="fa fa-map-marker"></i> {{ $key['lokasi'] }}</p>
                   <p><i class="fa fa-dollar"></i> {{ $key['gaji'] }}</p>
                   <p><i class="fa fa-suitcase"></i> {{ $key['pengalaman'] }}</p>
-                  <h5><span class="badge badge-primary"><i class="fa fa-check-square-o"></i>
-                      sd</span></h5>
+                  <div class="row">
+                    <div class="col-4">
+                      <h6><span class="badge badge-primary"><i class="fa fa-check-square-o"></i>
+                          Actively Hiring</span></h6>
+                    </div>
+                    <div class="col-7">
+                      <span class="txt-success"><i class="fa fa-clock-o"></i> Diperbaharui 12 jam yang lalu.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
