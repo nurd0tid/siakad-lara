@@ -67,7 +67,15 @@
                   </div>
                   <div class="media mt-3"><img class="img-40 img-fluid m-r-20" src="{{ $key['img'] }}" alt="">
                     <div class="media-body">
-                      <h6 class="f-w-600"><a href="job-details.html">{{ $key['title'] }}</a></h6>
+                      <div class="row">
+                        <div class="col-sm-11">
+                          <h6 class="f-w-600"><a href="job-details.html">{{ $key['title'] }}</a>
+                          </h6>
+                        </div>
+                        <div class="col-sm-1">
+                          <a href="{{ $key['link'] }}"><i data-feather="bookmark"></i></a>
+                        </div>
+                      </div>
                       <p>{{ $key['perusahaan'] }}</p>
                       <ul class="rating">
                         <li><i class="fa fa-star font-warning"></i></li>
@@ -80,7 +88,12 @@
                   </div>
                   <p><i class="fa fa-map-marker"></i> {{ $key['lokasi'] }}</p>
                   <p><i class="fa fa-dollar"></i> {{ $key['gaji'] }}</p>
-                  <p><i class="fa fa-suitcase"></i> {{ $key['pengalaman'] }}</p>
+                  @if ($key['pengalaman'] == null)
+                    <br>
+                    <p class="mt-4"></p>
+                  @else
+                    <p><i class="fa fa-suitcase"></i> {{ $key['pengalaman'] }}</p>
+                  @endif
                   <div class="row">
                     <div class="col-4">
                       <h6><span class="badge badge-primary"><i class="fa fa-check-square-o"></i>
@@ -100,8 +113,8 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-primary">
             <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
+            <li class="page-item active"><a class="page-link" href="{{ route('job-search') }}">1</a></li>
+            <li class="page-item"><a class="page-link" href="{{ route('job-search') }}">2</a></li>
             <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
             <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
           </ul>
