@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/job',  [App\Http\Controllers\JobController::class, 'index'])->name('job');
 Route::get('/job-page/{id?}',  [App\Http\Controllers\JobController::class, 'pagination'])->name('job-page');
+Route::get('/job-search/{keyword?}/{location?}',  [App\Http\Controllers\JobController::class, 'search'])->name('job-search');
