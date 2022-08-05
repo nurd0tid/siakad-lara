@@ -47,12 +47,15 @@ class JobController extends Controller
       array_push($myarray, $filtered);
     });
 
+    // echo "<pre>";
+    // print_r($page);
+
     $data['data'] = array_slice($myarray, 0, 6);
     // return $data;
     return view('job', $data);
   }
 
-  public function pagination($id)
+  public function pagination($id = null)
   {
     $client = new Client();
 
@@ -64,6 +67,7 @@ class JobController extends Controller
     $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
       $filtered = [
         'img' => $item->filter('img')->attr('src'),
+        'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
         // 'status' => $item->filter('.CheckMarkHotJobBadgesc__CheckMarkHotJobBadgeContainer-sc-9hcb5a-0')->text(),
         'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
         'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),

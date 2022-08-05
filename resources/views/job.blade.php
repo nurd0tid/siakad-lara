@@ -63,6 +63,9 @@
             <div class="card">
               <div class="job-search">
                 <div class="card-body">
+                  {{-- @if ($key['status'] == null)
+                  @else
+                  @endif --}}
                   <div class="ribbon ribbon-bookmark ribbon-right ribbon-secondary">HOT JOB <i class="fa fa-leaf"></i>
                   </div>
                   <div class="media mt-3"><img class="img-40 img-fluid m-r-20" src="{{ $key['img'] }}" alt="">
@@ -73,7 +76,7 @@
                           </h6>
                         </div>
                         <div class="col-sm-1">
-                          <a href="{{ $key['link'] }}"><i data-feather="bookmark"></i></a>
+                          <a href="https://glints.com{{ $key['link'] }}"><i data-feather="bookmark"></i></a>
                         </div>
                       </div>
                       <p>{{ $key['perusahaan'] }}</p>
@@ -105,11 +108,15 @@
       <div class="job-pagination">
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-primary">
-            <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-            <li class="page-item active"><a class="page-link" href="{{ route('job-search') }}">1</a></li>
-            <li class="page-item"><a class="page-link" href="{{ route('job-search') }}">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:history.back()">
+                << </a>
+            </li>
+            @for ($id = 1; $id <= 5; $id++)
+              <li class="page-item"><a class="page-link"
+                  href="{{ route('job-page') }}/{{ $id }}">{{ $id }}</a>
+              </li>
+            @endfor
+            <li class="page-item"><a class="page-link" href="{{ route('job-page') }}/{{ $id++ }}">>></a></li>
           </ul>
         </nav>
       </div>
