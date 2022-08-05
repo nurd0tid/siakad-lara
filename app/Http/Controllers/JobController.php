@@ -34,26 +34,23 @@ class JobController extends Controller
     $url =  'https://glints.com/id/opportunities/jobs/explore?keyword=' . $keyword . '&country=ID&locationName=' . $location . '$page=' . $id;
     $page = $client->request('GET', $url);
 
-    $myarray = array();
-    $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
+    $myArr = [];
+    $page->filter('.dLzoMG')->each(function ($item) use (&$myArr) {
       $filtered = [
         'img' => $item->filter('img')->attr('src'),
-        'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
-        // 'status' => $item->filter('.CheckMarkHotJobBadgesc__CheckMarkHotJobBadgeContainer-sc-9hcb5a-0')->text(),
-        'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
-        'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
-        'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
-        'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
-        'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
+        'link' => $item->filter('.hvpJwO a')->attr('href'),
+        'title' => $item->filter('.bVuGlP')->text(),
+        'perusahaan' => $item->filter('.iOneCq')->text(),
+        'lokasi' => $item->filter('.ikxvyY')->eq(0)->text(),
+        'gaji' => $item->filter('.ikxvyY')->eq(1)->text(),
+        'pengalaman' => $item->filter('.ikxvyY')->eq(2)->text(),
+        // 'status' => $item->filter('div > .fQGOBV > span')->text(),
         // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17')->text(),
       ];
-      array_push($myarray, $filtered);
+      array_push($myArr, $filtered);
     });
 
-    // echo "<pre>";
-    // print_r($page);
-
-    $data['data'] = array_slice($myarray, 0, 20);
+    $data['data'] = array_slice($myArr, 0, 20);
     // return $data;
     return view('job', $data);
   }

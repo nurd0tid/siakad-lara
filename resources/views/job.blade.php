@@ -49,7 +49,7 @@
         </div>
         <div class="col-xl-5">
           <div class="faq-form">
-            <input class="form-control" type="text" name="location" placeholder="Tambahkan Negara atau Kota"><i
+            <input class="form-control" type="text" name="location" placeholder="Tambahkan Negara"><i
               class="search-icon" data-feather="map-pin"></i>
           </div>
         </div>
@@ -68,7 +68,11 @@
                   <img src="{{ asset('assets/images/job-search.gif') }}" alt="job-search">
                 </center>
                 <center>
-                  <i class="icofont icofont-ui-rate-add txt-success m-r-10"></i> Cari Lowongan Terlebih Dahulu.
+                  <h5>
+                    <b>
+                      <i class="fa fa-spin fa-spinner"></i> Maaf, tidak ada lowongan ditemukan.
+                    </b>
+                  </h5>
                 </center>
               </div>
             </div>
