@@ -12,8 +12,8 @@
   <meta name="keywords"
     content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
   <meta name="author" content="pixelstrap">
-  <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
-  <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
   <title>SIAKAD - Media Informatika</title>
   <!-- Google font-->
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,15 +26,15 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/icofont.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/themify.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/flag-icon.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/feather-icon.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-  <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
-  <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/fontawesome.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icofont.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themify.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flag-icon.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/feather-icon.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+  <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
   @stack('css')
 </head>
 
@@ -52,10 +52,10 @@
     <div class="page-main-header">
       <div class="main-header-right row m-0">
         <div class="main-header-left">
-          <div class="logo-wrapper"><a href="/home"><img class="img-fluid" src="../assets/images/logo/logo.png"
-                alt=""></a></div>
+          <div class="logo-wrapper"><a href="/home"><img class="img-fluid"
+                src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a></div>
           <div class="dark-logo-wrapper"><a href="/home"><img class="img-fluid"
-                src="../assets/images/logo/dark-logo.png" alt=""></a></div>
+                src="{{ asset('assets/images/logo/dark-logo.png') }}" alt=""></a></div>
           <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center"
               id="sidebar-toggle"></i></div>
         </div>
@@ -144,8 +144,8 @@
             <li class="onhover-dropdown"><i data-feather="message-square"></i>
               <ul class="chat-dropdown onhover-show-div">
                 <li>
-                  <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/4.jpg"
-                      alt="">
+                  <div class="media"><img class="img-fluid rounded-circle me-3"
+                      src="{{ asset('assets/images/user/4.jpg') }}" alt="">
                     <div class="media-body"><span>Ain Chavez</span>
                       <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
                     </div>
@@ -153,8 +153,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg"
-                      alt="">
+                  <div class="media"><img class="img-fluid rounded-circle me-3"
+                      src="{{ asset('assets/images/user/1.jpg') }}" alt="">
                     <div class="media-body"><span>Erica Hughes</span>
                       <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
                     </div>
@@ -162,8 +162,8 @@
                   </div>
                 </li>
                 <li>
-                  <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/2.jpg"
-                      alt="">
+                  <div class="media"><img class="img-fluid rounded-circle me-3"
+                      src="{{ asset('assets/images/user/2.jpg') }}" alt="">
                     <div class="media-body"><span>Kori Thomas</span>
                       <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
                     </div>
@@ -197,7 +197,7 @@
       <header class="main-nav">
         <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i
               data-feather="settings"></i></a><img class="img-90 rounded-circle"
-            src="../assets/images/dashboard/1.png" alt="">
+            src="{{ asset('assets/images/dashboard/1.png') }}" alt="">
           <div class="badge-bottom"><span class="badge badge-primary">New</span></div><a href="user-profile.html">
             <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h6>
           </a>
@@ -300,7 +300,7 @@
                     <h6>Miscellaneous </h6>
                   </div>
                 </li>
-                <li class="dropdown"><a class="nav-link menu" href="{{ route('job') }}"><i
+                <li class="dropdown"><a class="nav-link menu" href="{{ route('job-search') }}"><i
                       data-feather="pocket"></i><span>Job Search</span></a>
                 </li>
               </ul>
@@ -327,14 +327,14 @@
       </footer>
     </div>
   </div>
-  <script src="../assets/js/jquery-3.5.1.min.js"></script>
-  <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-  <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-  <script src="../assets/js/sidebar-menu.js"></script>
-  <script src="../assets/js/config.js"></script>
-  <script src="../assets/js/bootstrap/popper.min.js"></script>
-  <script src="../assets/js/bootstrap/bootstrap.min.js"></script>
-  <script src="../assets/js/script.js"></script>
+  <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/icons/feather-icon/feather.min.js') }}"></script>
+  <script src="{{ asset('assets/js/icons/feather-icon/feather-icon.js') }}"></script>
+  <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
+  <script src="{{ asset('assets/js/config.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/script.js') }}"></script>
   @stack('scripts')
 </body>
 

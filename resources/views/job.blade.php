@@ -5,11 +5,11 @@
       <div class="page-header">
         <div class="row">
           <div class="col-sm-6">
-            <h3>List View</h3>
+            <h3>Job Searching</h3>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item">Job Search</li>
-              <li class="breadcrumb-item active">List View</li>
+              <li class="breadcrumb-item">Miscellaneous</li>
+              <li class="breadcrumb-item active">Job Searching</li>
             </ol>
           </div>
           <div class="col-sm-6">
@@ -41,71 +41,88 @@
     <div class="container-fluid">
       <div class="row g-3 mb-3">
         <div class="col-xl-5">
-          <div class="faq-form">
-            <input class="form-control" type="text" placeholder="Cari Lowongan"><i class="search-icon"
-              data-feather="search"></i>
-          </div>
+          <form action="{{ route('job-search') }}" method="get">
+            <div class="faq-form">
+              <input class="form-control" type="text" name="keyword" placeholder="Cari Lowongan"><i class="search-icon"
+                data-feather="search"></i>
+            </div>
         </div>
         <div class="col-xl-5">
           <div class="faq-form">
-            <input class="form-control" type="text" placeholder="Tambahkan Negara atau Kota"><i class="search-icon"
-              data-feather="map-pin"></i>
+            <input class="form-control" type="text" name="location" placeholder="Tambahkan Negara atau Kota"><i
+              class="search-icon" data-feather="map-pin"></i>
           </div>
         </div>
         <div class="col-xl-2">
-          <button class="btn btn-pill btn-light" type="button"><i class="fa fa-spin fa-circle-o-notch"></i> Go
+          <button class="btn btn-pill btn-light" type="submit"><i class="fa fa-spin fa-circle-o-notch"></i> Go
             Search</button>
         </div>
+        </form>
       </div>
       <div class="row">
-        @foreach ($data as $key)
-          <div class="col-md-6">
+        @if ($data == null)
+          <div class="col-sm-12">
             <div class="card">
-              <div class="job-search">
-                <div class="card-body">
-                  {{-- @if ($key['status'] == null)
+              <div class="card-body">
+                <center>
+                  <img src="{{ asset('assets/images/job-search.gif') }}" alt="job-search">
+                </center>
+                <center>
+                  <i class="icofont icofont-ui-rate-add txt-success m-r-10"></i> Cari Lowongan Terlebih Dahulu.
+                </center>
+              </div>
+            </div>
+          </div>
+        @else
+          @foreach ($data as $key)
+            <div class="col-md-6">
+              <div class="card">
+                <div class="job-search">
+                  <div class="card-body">
+                    {{-- @if ($key['status'] == null)
                   @else
                   @endif --}}
-                  <div class="ribbon ribbon-bookmark ribbon-right ribbon-secondary">HOT JOB <i class="fa fa-leaf"></i>
-                  </div>
-                  <div class="media mt-3"><img class="img-40 img-fluid m-r-20" src="{{ $key['img'] }}" alt="">
-                    <div class="media-body">
-                      <div class="row">
-                        <div class="col-sm-11">
-                          <h6 class="f-w-600"><a href="https://glints.com{{ $key['link'] }}">{{ $key['title'] }}</a>
-                          </h6>
+                    <div class="ribbon ribbon-bookmark ribbon-right ribbon-secondary">HOT JOB <i class="fa fa-leaf"></i>
+                    </div>
+                    <div class="media mt-3"><img class="img-40 img-fluid m-r-20" src="{{ $key['img'] }}" alt="">
+                      <div class="media-body">
+                        <div class="row">
+                          <div class="col-sm-11">
+                            <h6 class="f-w-600"><a href="https://glints.com{{ $key['link'] }}">{{ $key['title'] }}</a>
+                            </h6>
+                          </div>
+                          <div class="col-sm-1">
+                            <a href="https://glints.com{{ $key['link'] }}"><i data-feather="bookmark"></i></a>
+                          </div>
                         </div>
-                        <div class="col-sm-1">
-                          <a href="https://glints.com{{ $key['link'] }}"><i data-feather="bookmark"></i></a>
-                        </div>
+                        <p>{{ $key['perusahaan'] }}</p>
                       </div>
-                      <p>{{ $key['perusahaan'] }}</p>
                     </div>
-                  </div>
-                  <p><i class="fa fa-map-marker"></i> {{ $key['lokasi'] }}</p>
-                  <p><i class="fa fa-dollar"></i> {{ $key['gaji'] }}</p>
-                  @if ($key['pengalaman'] == null)
-                    <br>
-                    <p class="mt-4"></p>
-                  @else
-                    <p><i class="fa fa-suitcase"></i> {{ $key['pengalaman'] }}</p>
-                  @endif
-                  <div class="row">
-                    <div class="col-4">
-                      <h6><span class="badge badge-primary"><i class="fa fa-check-square-o"></i>
-                          Actively Hiring</span></h6>
-                    </div>
-                    <div class="col-7">
-                      <span class="txt-success"><i class="fa fa-clock-o"></i> Diperbaharui 12 jam yang lalu.</span>
+                    <p><i class="fa fa-map-marker"></i> {{ $key['lokasi'] }}</p>
+                    <p><i class="fa fa-dollar"></i> {{ $key['gaji'] }}</p>
+                    @if ($key['pengalaman'] == null)
+                      <br>
+                      <p class="mt-4"></p>
+                    @else
+                      <p><i class="fa fa-suitcase"></i> {{ $key['pengalaman'] }}</p>
+                    @endif
+                    <div class="row">
+                      <div class="col-4">
+                        <h6><span class="badge badge-primary"><i class="fa fa-check-square-o"></i>
+                            Actively Hiring</span></h6>
+                      </div>
+                      <div class="col-7">
+                        <span class="txt-success"><i class="fa fa-clock-o"></i> Diperbaharui 12 jam yang lalu.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        @endforeach
+          @endforeach
+        @endif
       </div>
-      <div class="job-pagination">
+      {{-- <div class="job-pagination">
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-primary">
             <li class="page-item"><a class="page-link" href="javascript:history.back()">
@@ -119,7 +136,7 @@
             <li class="page-item"><a class="page-link" href="{{ route('job-page') }}/{{ $id++ }}">>></a></li>
           </ul>
         </nav>
-      </div>
+      </div> --}}
     </div>
     <!-- Container-fluid Ends-->
   </div>

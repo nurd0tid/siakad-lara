@@ -23,13 +23,16 @@ class JobController extends Controller
    */
   // private $myarray = array();
 
-  public function index()
+  public function index(Request $request)
   {
     $client = new Client();
 
-    $url =  'https://glints.com/id/lowongan-kerja';
-    $page = $client->request('GET', $url);
+    $keyword = $request->input('keyword');
+    $location = $request->input('location');
+    $id = $request->input('id');
 
+    $url =  'https://glints.com/id/opportunities/jobs/explore?keyword=' . $keyword . '&country=ID&locationName=' . $location . '$page=' . $id;
+    $page = $client->request('GET', $url);
 
     $myarray = array();
     $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
@@ -55,72 +58,70 @@ class JobController extends Controller
     return view('job', $data);
   }
 
-  public function pagination($id = null)
-  {
-    $client = new Client();
+  // public function pagination($id = null)
+  // {
+  //   $client = new Client();
 
-    $url =  'https://glints.com/id/lowongan-kerja?page=' . $id;
-    $page = $client->request('GET', $url);
-
-
-    $myarray = array();
-    $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
-      $filtered = [
-        'img' => $item->filter('img')->attr('src'),
-        'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
-        // 'status' => $item->filter('div > .CheckMarkHotJobBadgesc__CheckMarkHotJobBadgeContainer-sc-9hcb5a-0 .fQGOBV > span')->text(),
-        'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
-        'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
-        'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
-        'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
-        'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
-        // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17'),
-      ];
-      array_push($myarray, $filtered);
-    });
-
-    // $crawler =  $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->text();
-
-    // echo $crawler;
-    // echo "<pre>";
-    // print_r($page);
-
-    $data['data'] = array_slice($myarray, 0, 20);
-    // return $data;
-    return view('job', $data);
-  }
-
-  public function search($keyword = null, $location = null,)
-  {
-    $client = new Client();
-
-    $url =  'https://glints.com/id/opportunities/jobs/explore?keyword=' . $keyword . '&country=ID&locationName=' . $location;
-    $page = $client->request('GET', $url);
+  //   $url =  'https://glints.com/id/lowongan-kerja?page=' . $id;
+  //   $page = $client->request('GET', $url);
 
 
-    $myarray = array();
-    $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
-      $filtered = [
-        'img' => $item->filter('img')->attr('src'),
-        'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
-        // 'status' => $item->filter('div > .CheckMarkHotJobBadgesc__CheckMarkHotJobBadgeContainer-sc-9hcb5a-0 .fQGOBV > span')->text(),
-        'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
-        'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
-        'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
-        'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
-        'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
-        // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17'),
-      ];
-      array_push($myarray, $filtered);
-    });
+  //   $myarray = array();
+  //   $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
+  //     $filtered = [
+  //       'img' => $item->filter('img')->attr('src'),
+  //       'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
+  //       // 'status' => $item->filter('.jFiAED .gCeImT')->text(),
+  //       'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
+  //       'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
+  //       'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
+  //       'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
+  //       'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
+  //       // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17'),
+  //     ];
+  //     array_push($myarray, $filtered);
+  //   });
 
-    // $crawler =  $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->text();
+  //   // $crawler =  $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->html();
+  //   // echo "<pre>";
+  //   // print_r($page);
 
-    // echo $crawler;
-    // echo "<pre>";
-    // print_r($page);
+  //   $data['data'] = array_slice($myarray, 0, 20);
+  //   // return $data;
+  //   return view('job', $data);
+  // }
 
-    $data['data'] = array_slice($myarray, 0, 20);
-    return $data;
-  }
+  // public function search($keyword = null, $location = null,)
+  // {
+  //   $client = new Client();
+
+  //   $url =  'https://glints.com/id/opportunities/jobs/explore?keyword=' . $keyword . '&country=ID&locationName=' . $location;
+  //   $page = $client->request('GET', $url);
+
+
+  //   $myarray = array();
+  //   $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->each(function ($item) use (&$myarray, $page) {
+  //     $filtered = [
+  //       'img' => $item->filter('img')->attr('src'),
+  //       'link' => $item->filter('.CompactOpportunityCardsc__CardAnchorWrapper-sc-1y4v110-18')->attr('href'),
+  //       // 'status' => $item->filter('div > .CheckMarkHotJobBadgesc__CheckMarkHotJobBadgeContainer-sc-9hcb5a-0 .fQGOBV > span')->text(),
+  //       'title' => $item->filter('.CompactOpportunityCardsc__JobTitle-sc-1y4v110-7')->text(),
+  //       'perusahaan' => $item->filter('.CompactOpportunityCardsc__CompanyLink-sc-1y4v110-8')->text(),
+  //       'lokasi' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(0)->text(),
+  //       'gaji' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(1)->text(),
+  //       'pengalaman' => $item->filter('.CompactOpportunityCardsc__OpportunityInfo-sc-1y4v110-13')->eq(2)->text(),
+  //       // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17'),
+  //     ];
+  //     array_push($myarray, $filtered);
+  //   });
+
+  //   // $crawler =  $page->filter('.JobCardsc__JobcardContainer-sc-1f9hdu8-0')->text();
+
+  //   // echo $crawler;
+  //   // echo "<pre>";
+  //   // print_r($page);
+
+  //   $data['data'] = array_slice($myarray, 0, 20);
+  //   return $data;
+  // }
 }
