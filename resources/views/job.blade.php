@@ -69,7 +69,7 @@
                     <div class="media-body">
                       <div class="row">
                         <div class="col-sm-11">
-                          <h6 class="f-w-600"><a href="job-details.html">{{ $key['title'] }}</a>
+                          <h6 class="f-w-600"><a href="https://glints.com{{ $key['link'] }}">{{ $key['title'] }}</a>
                           </h6>
                         </div>
                         <div class="col-sm-1">
@@ -77,13 +77,6 @@
                         </div>
                       </div>
                       <p>{{ $key['perusahaan'] }}</p>
-                      <ul class="rating">
-                        <li><i class="fa fa-star font-warning"></i></li>
-                        <li><i class="fa fa-star font-warning"></i></li>
-                        <li><i class="fa fa-star font-warning"></i></li>
-                        <li><i class="fa fa-star font-warning"></i></li>
-                        <li><i class="fa fa-star font-warning"></i></li>
-                      </ul>
                     </div>
                   </div>
                   <p><i class="fa fa-map-marker"></i> {{ $key['lokasi'] }}</p>
