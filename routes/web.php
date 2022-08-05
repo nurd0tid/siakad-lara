@@ -20,11 +20,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/job',  [App\Http\Controllers\JobController::class, 'index'])->name('job');
-// Route::get('/job', function () {
-//     $crawler = Goutte::request('GET', 'https://duckduckgo.com/html/?q=Laravel');
-//     $crawler->filter('.result__title .result__a')->each(function ($node) {
-//         return $node->text();
-//     });
-//     // return view('welcome');
-// });
+Route::get('/job/{id}',  [App\Http\Controllers\JobController::class, 'index'])->name('job');
