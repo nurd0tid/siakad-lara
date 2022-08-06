@@ -1363,13 +1363,13 @@ a:hover {
 /*======= Background-color css end  ======= */
 /*======= Font-color css starts  ======= */
 .txt-primary {
-  color: #24695c !important; }
+  color: #007bff !important; }
 
 .txt-secondary {
   color: #ba895d !important; }
 
 .txt-success {
-  color: #1b4c43 !important; }
+  color: #24695c !important; }
 
 .txt-danger {
   color: #d22d3d !important; }
