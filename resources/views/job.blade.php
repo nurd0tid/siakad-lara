@@ -125,8 +125,7 @@
             </div>
           @endforeach
         @endif
-      </div>
-      {{-- <div class="job-pagination">
+        {{-- <div class="job-pagination">
         <nav aria-label="Page navigation example">
           <ul class="pagination pagination-primary">
             <li class="page-item"><a class="page-link" href="javascript:history.back()">
@@ -141,6 +140,7 @@
           </ul>
         </nav>
       </div> --}}
+      </div>
     </div>
     <!-- Container-fluid Ends-->
   </div>
