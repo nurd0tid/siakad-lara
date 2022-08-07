@@ -21,3 +21,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');
+Route::get('/zoom', [\App\Http\Controllers\ZoomController::class, 'index'])->name('zoom');
+Route::get('/zoom/create', [\App\Http\Controllers\ZoomController::class, 'create'])->name('zoom/create');
+Route::post('/zoom/save', [\App\Http\Controllers\ZoomController::class, 'save'])->name('zoom/save');

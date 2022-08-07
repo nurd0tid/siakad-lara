@@ -11,6 +11,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
+        "macsidigital/laravel-zoom": "^5.0",
         "weidner/goutte": "^2.2",
         "yoeunes/toastr": "^2.0"
     },
