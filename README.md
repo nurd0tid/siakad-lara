@@ -7,57 +7,71 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## SIAKAD - Lara
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Website SISTEM Informasi Akademik berbasis **LARAVEL 9** sebelumnya saya sudah buat juga yang versi nodejs + react, cuma belum lengkap, silahkan kalian lihat juga jika ingin belajar, fitur sama saja nantinya yang hanya berbeda dalam penggunaan teknologi bahasa yang saya gunakan, yang dibuat sedemikian rupa, untuk saya belajar, dan ini semua open source, bisa kalian kembangkan kembali, fitur sementara yang sudah saya kerjakan, yaitu:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Job Search ( Scraping website Glints ).
+- Zoom Meeting.
+- Authentication ( Register, Login, Verify Email, Forgot Password )
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+SIAKAD masih dalam **tahap pengembangan**, karena ini basicnya untuk saya mempelajari hal baru, update terbaru, baik itu php framework dan js framework.
 
-## Learning Laravel
+## Instalasi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Untuk dapat kalian gunakan SIAKAD - LARA ini silahkan kalian ketikan perintah dibawah ini.
+```sh
+$ composer install
+```
+```sh
+$ composer update
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Setting Enviroment
 
-## Laravel Sponsors
+Berikut kalian setting terlebih dahulu, seperti yang saya sudah jelaskan diatas, bahwa fitur di SIAKAD ini ada Zoom Meeting dan Authentication menggunakan verify email dimana dibutuhkan sebuah **SMTP** untuk dapat mengirim sebuah email, beserta membuat zoom meeting maka ikuti langkah nya.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Untuk SMTP belajar kalian silahkan gunakan [mailtrap](https://mailtrap.io/) agar mempunyai API KEY 
+- Untuk mendapatkan akses API KEY Zoom, silahkan kalian registrasi / login zoom, lalu kebagian menu **Advance** - **App Marketplace** - **Build JWT** kemudian akan muncul API KEY beserta SECRET KEY dan untuk Library saya menggunakan [MacsiDigital](https://github.com/MacsiDigital/laravel-zoom) silahkan baca karena dokumentasinya yang cukup lengkap.
 
-### Premium Partners
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=YOUR_USERNAME
+MAIL_PASSWORD=YOUR_PASSWORD
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="no-reply@youremail.sch.id"
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Kemudian kalian letakkan dan buat env api key untuk zoom, letakkan paling bawah agar tidak bingung
+```env
+ZOOM_CLIENT_KEY="YOUR_API_KEY"
+ZOOM_CLIENT_SECRET="YOUR_SECRET_KEY"
+```
 
-## Contributing
+### Migration
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Setelah kalian selesai semua setting, silahkan kalian migration menggunakan perintah dibawah ini di terminal kalian.
 
-## Code of Conduct
+```sh
+$ php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Running
 
-## Security Vulnerabilities
+Kemudian kalian jalankan perintah dibawah ini untuk menjalankan program di local project kalian.
+```sh
+$ npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tambah terminal lagi untuk menjalankan artisan serve
+```sh
+$ php artisan serve
+```
+
+Silahkan kalian akses url projectnya sesuai local kalian, kemudian registrasi user baru dan jangan lupa verif email terlebih dahulu, email nanti dikirim ke mailtrap sesuai arahan saya sebelumnya, jika kalian nantinya ingin gunakan di online, silahkan gunakan smtp dari penyedia hosting.
 
 ## License
 
