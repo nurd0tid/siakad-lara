@@ -44,30 +44,38 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Zero Configuration</h5><span>DataTables has most features enabled by default, so all you need to do to use
-              it with your own tables is to call the construction
-              function:<code>$().DataTable();</code>.</span><span>Searching, ordering and paging goodness will be
-              immediately added to the table, as shown in this example.</span>
+            <a href="{{ route('zoom/create') }}" class="btn btn-primary">Add Meetings</a>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="display" id="basic-1">
                 <thead>
                   <tr style="text-align: center">
-                    {{-- <th>No</th> --}}
+                    <th>No</th>
                     <th>Topic</th>
                     <th>Start Time</th>
                     <th>Duration</th>
                     <th>Link</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($data as $zoom)
-                    <tr>
+                    <tr style="text-align: center">
+                      <td>{{ $loop->iteration }}</td>
                       <td>{{ $zoom['topic'] }}</td>
                       <td>{{ $zoom['start_time'] }}</td>
-                      <td>{{ $zoom['duration'] }}</td>
-                      <td>{{ $zoom['join_url'] }}</td>
+                      @if ($zoom['duration'] < 30)
+                        <td><span class="span badge rounded-pill pill-badge-secondary">{{ $zoom['duration'] }}</span></td>
+                      @else
+                        <td><span class="span badge rounded-pill pill-badge-primary">{{ $zoom['duration'] }}</span></td>
+                      @endif
+                      <td style="width: 200px"><a href="{{ $zoom['join_url'] }}"
+                          class="txt-primary">{{ $zoom['join_url'] }}</a></td>
+                      <td>
+                        <a href="http://" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
+                        <a href="http://" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                      </td>
                     </tr>
                   @endforeach
                 </tbody>

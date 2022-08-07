@@ -10,7 +10,7 @@ class ZoomController extends Controller
 {
   public function index()
   {
-    $meeting = Zoom::user()->find('devapps@gmailwe.com')->meetings()->where('status', 'active')->get()->toArray();
+    $meeting = Zoom::user()->find('devapps@gmailwe.com')->meetings()->where('type', 'scheduled')->get()->toArray();
     // return $meeting;
     return view('zoom.index', $meeting);
   }
