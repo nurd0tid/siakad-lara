@@ -45,7 +45,7 @@
           <div class="card-header pb-0">
             <h5>Add Meeting Zoom</h5>
           </div>
-          <form class="form theme-form" method="POST" action="{{ route('zoom/create') }}">
+          <form class="form theme-form" method="POST" action="{{ route('zoom/save') }}">
             @csrf
             <div class="card-body">
               <div class="row">

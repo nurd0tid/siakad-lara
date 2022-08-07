@@ -339,7 +339,7 @@
   <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
   <script src="{{ asset('assets/js/script.js') }}"></script>
-  @stack('scripts')
+  @stack('js')
 </body>
 
 </html>
