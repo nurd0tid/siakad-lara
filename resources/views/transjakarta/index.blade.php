@@ -49,7 +49,7 @@
         <div class="col-xl-6">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Map at a specified location</h5><span>Display a map at a specified location and zoom level.</span>
+              <h5>Rute TransJakarta</h5><span>Jalur TransJakarta di Jakarta.</span>
             </div>
             <div class="card-body">
 
@@ -59,7 +59,7 @@
         <div class="col-xl-6">
           <div class="card">
             <div class="card-header pb-0">
-              <h5>Rute TransJakarta</h5><span>Peta wilayah cakupan TransJakarta.</span>
+              <h5>Map TransJakarta</h5><span>Peta wilayah cakupan TransJakarta.</span>
             </div>
             <div class="card-body">
               <div class="map-js-height" id="map"></div>
