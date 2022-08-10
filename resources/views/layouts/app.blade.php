@@ -304,9 +304,6 @@
                       data-feather="video"></i><span>Zoom
                       Meeting</span></a>
                 </li>
-                <li class="dropdown"><a class="nav-link menu" href="{{ route('transjakarta') }}"><i
-                      data-feather="map"></i><span>TransJakarta</span></a>
-                </li>
                 <li class="dropdown"><a class="nav-link menu" href="{{ route('job-search') }}"><i
                       data-feather="pocket"></i><span>Job Search</span></a>
                 </li>
