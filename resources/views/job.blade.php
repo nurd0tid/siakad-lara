@@ -125,21 +125,6 @@
             </div>
           @endforeach
         @endif
-        {{-- <div class="job-pagination">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-primary">
-            <li class="page-item"><a class="page-link" href="javascript:history.back()">
-                << </a>
-            </li>
-            @for ($id = 1; $id <= 5; $id++)
-              <li class="page-item"><a class="page-link"
-                  href="{{ route('job-page') }}/{{ $id }}">{{ $id }}</a>
-              </li>
-            @endfor
-            <li class="page-item"><a class="page-link" href="{{ route('job-page') }}/{{ $id++ }}">>></a></li>
-          </ul>
-        </nav>
-      </div> --}}
       </div>
     </div>
     <!-- Container-fluid Ends-->
