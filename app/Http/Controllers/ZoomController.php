@@ -12,12 +12,12 @@ class ZoomController extends Controller
   {
     $meeting = Zoom::user()->find('devapps@gmailwe.com')->meetings()->where('type', 'scheduled')->get()->toArray();
     // return $meeting;
-    return view('zoom.index', $meeting);
+    return view('dashboard.zoom.index', $meeting);
   }
 
   public function create()
   {
-    return view('zoom.create');
+    return view('dashboard.zoom.create');
   }
 
   public function save(Request $request)

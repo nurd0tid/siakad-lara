@@ -52,6 +52,6 @@ class JobController extends Controller
 
     $data['data'] = array_slice($myArr, 0, 20);
     // return $data;
-    return view('jobSearch.job', $data);
+    return view('dashboard.jobSearch.job', $data);
   }
 }
