@@ -21,7 +21,6 @@ class JobController extends Controller
    *
    * @return \Illuminate\Contracts\Support\Renderable
    */
-  // private $myarray = array();
 
   public function index(Request $request)
   {
@@ -44,8 +43,6 @@ class JobController extends Controller
         'lokasi' => $item->filter('.ikxvyY')->eq(0)->text(),
         'gaji' => $item->filter('.ikxvyY')->eq(1)->text(),
         'pengalaman' => $item->filter('.ikxvyY')->eq(2)->text(),
-        // 'status' => $item->filter('div > .fQGOBV > span')->text(),
-        // 'activity' => $item->filter('.CompactOpportunityCardsc__OpportunityMeta-sc-1y4v110-14 > .CompactOpportunityCardsc__UpdatedAtMessage-sc-1y4v110-17')->text(),
       ];
       array_push($myArr, $filtered);
     });
