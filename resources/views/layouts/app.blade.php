@@ -228,7 +228,7 @@
                     <h6>General </h6>
                   </div>
                 </li>
-                <li class="dropdown"><a class="nav-link menu" href="{{ route('dashboard') }}"><i
+                <li class="dropdown"><a class="nav-link menu" href="{{ route('home') }}"><i
                       data-feather="home"></i><span>Dashboard</span></a>
                 </li>
                 <li class="sidebar-main-title">
