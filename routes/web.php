@@ -24,3 +24,5 @@ Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])
 Route::get('/zoom', [\App\Http\Controllers\ZoomController::class, 'index'])->name('zoom');
 Route::get('/zoom/create', [\App\Http\Controllers\ZoomController::class, 'create'])->name('zoom/create');
 Route::post('/zoom/save', [\App\Http\Controllers\ZoomController::class, 'save'])->name('zoom/save');
+
+Route::get('/identitas', [\App\Http\Controllers\IdentitasController::class, 'index'])->name('identitas');

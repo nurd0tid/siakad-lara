@@ -248,7 +248,7 @@
                     <li><a href="http://">Jurusan</a></li>
                     <li><a href="http://">Kelas</a></li>
                     <li><a href="http://">Kepegawaian</a></li>
-                    <li><a href="http://">Identitas Sekolah</a></li>
+                    <li><a href="{{ route('identitas') }}">Identitas Sekolah</a></li>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
