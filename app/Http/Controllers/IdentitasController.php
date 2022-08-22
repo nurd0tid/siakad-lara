@@ -26,4 +26,3 @@ class IdentitasController extends Controller
     return view('dashboard.master.identitas.index');
   }
 }
-s
