@@ -26,3 +26,4 @@ Route::get('/zoom/create', [\App\Http\Controllers\ZoomController::class, 'create
 Route::post('/zoom/save', [\App\Http\Controllers\ZoomController::class, 'save'])->name('zoom/save');
 
 Route::get('/identitas', [\App\Http\Controllers\IdentitasController::class, 'index'])->name('identitas');
+Route::get('/kurikulum', [\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum');

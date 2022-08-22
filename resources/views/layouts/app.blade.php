@@ -239,7 +239,7 @@
                 <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
                       data-feather="grid"></i><span>Data Master</span></a>
                   <ul class="nav-submenu menu-content">
-                    <li><a href="http://">Kurikulum</a></li>
+                    <li><a href="{{ route('kurikulum') }}">Kurikulum</a></li>
                     <li><a href="http://">Tahun Akademik</a></li>
                     <li><a href="http://">Gedung</a></li>
                     <li><a href="http://">Ruangan</a></li>
