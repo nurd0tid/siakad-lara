@@ -25,4 +25,9 @@ class KurikulumController extends Controller
   {
     return view('dashboard.master.kurikulum.index');
   }
+
+  public function add()
+  {
+    return view('dashboard.master.kurikulum.add');
+  }
 }

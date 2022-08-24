@@ -45,7 +45,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <a href="" class="btn btn-primary">Add Kurikulum</a>
+            <a href="{{ route('kurikulum/add') }}" class="btn btn-primary">Add Kurikulum</a>
           </div>
           <div class="card-body">
             <div class="table-responsive">
