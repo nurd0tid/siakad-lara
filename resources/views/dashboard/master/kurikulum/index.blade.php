@@ -45,7 +45,9 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <a href="{{ route('kurikulum/add') }}" class="btn btn-primary">Add Kurikulum</a>
+            {{-- <a href="{{ route('kurikulum/add') }}" class="btn btn-primary">Add Kurikulum</a> --}}
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
+              data-bs-target="#addKurikulum">Add Kurikulum</button>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -90,4 +92,5 @@
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
   @endPushOnce
+  @include('dashboard.master.kurikulum.add')
 @endsection

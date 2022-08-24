@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('kurikulum', function (Blueprint $table) {
             $table->id('id_kurikulum');
             $table->string('nm_kurikulum');
-            $table->string('stts_kurikulum');
+            $table->enum('stts_kurikulum', ['active', 'non active']);
         });
     }
 
