@@ -61,24 +61,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @foreach ($data as $zoom)
+                  @foreach ($data as $a)
                     <tr style="text-align: center">
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $zoom['topic'] }}</td>
-                      <td>{{ $zoom['start_time'] }}</td>
-                      @if ($zoom['duration'] < 30)
-                        <td><span class="span badge rounded-pill pill-badge-secondary">{{ $zoom['duration'] }}</span></td>
+                      <td>{{ $a['nm_kurikulum'] }}</td>
+                      @if ($a['stts_kurikulum'] == 'active')
+                        <td>
+                          <span class="span badge rounded-pill pill-badge-secondary">
+                            Active
+                          </span>
+                        </td>
                       @else
-                        <td><span class="span badge rounded-pill pill-badge-primary">{{ $zoom['duration'] }}</span></td>
+                        <td>
+                          <span class="span badge rounded-pill pill-badge-primary">
+                            Non Active
+                          </span>
+                        </td>
                       @endif
-                      <td style="width: 200px"><a href="{{ $zoom['join_url'] }}"
-                          class="txt-primary">{{ $zoom['join_url'] }}</a></td>
                       <td>
                         <a href="http://" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
                         <a href="http://" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
-                  @endforeach --}}
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -91,6 +96,13 @@
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script>
+      @if (session()->has('success'))
+        toastr.success('{{ session('success') }}', 'Wohoooo!');
+      @else
+        toastr.error('{{ session('error') }}', 'Whoops!');
+      @endif
+    </script>
   @endPushOnce
   @include('dashboard.master.kurikulum.add')
 @endsection

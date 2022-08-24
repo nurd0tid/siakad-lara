@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_kurikulum');
             $table->string('nm_kurikulum');
             $table->enum('stts_kurikulum', ['active', 'non active']);
+            $table->timestamps();
         });
     }
 

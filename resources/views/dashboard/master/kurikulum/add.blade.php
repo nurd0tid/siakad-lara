@@ -7,21 +7,26 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="needs-validation" novalidate="">
+        <form action="{{ route('kurikulum/save') }}" class="needs-validation" novalidate="" method="POST">
+          @csrf
           <div>
             <div class="col-md-12">
               <label class="form-label" for="validationCustom01">Nama Kurikulum</label>
-              <input class="form-control" id="validationCustom01" type="text" required="">
-              <div class="valid-feedback">Looks good!</div>
+              <input class="form-control" id="validationCustom01" type="text" name="nm_kurikulum" required>
+              @error('nm_kurikulum')
+                <div class="valid-feedback">{{ $message }}</div>
+              @enderror
             </div>
             <div class="col">
               <div class="form-group m-t-15 m-checkbox-inline mb-0">
                 <label class="form-label" for="validationCustom01">Status</label>
                 <label class="d-block" for="chk-ani1">
-                  <input class="checkbox_animated" id="chk-ani1" type="checkbox" value="active">Active
+                  <input class="checkbox_animated" id="chk-ani1" type="checkbox" value="active"
+                    name="stts_kurikulum">Active
                 </label>
                 <label class="d-block" for="chk-ani2">
-                  <input class="checkbox_animated" id="chk-ani2" type="checkbox" value="non active">Non Active
+                  <input class="checkbox_animated" id="chk-ani2" type="checkbox" value="non active"
+                    name="stts_kurikulum">Non Active
                 </label>
               </div>
             </div>

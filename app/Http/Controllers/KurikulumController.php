@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kurikulum;
 use Illuminate\Http\Request;
 
 class KurikulumController extends Controller
@@ -23,11 +24,31 @@ class KurikulumController extends Controller
    */
   public function index()
   {
-    return view('dashboard.master.kurikulum.index');
+    $data = Kurikulum::all();
+    return view('dashboard.master.kurikulum.index', compact('data'));
+    // dd($data);
   }
 
   public function add()
   {
     return view('dashboard.master.kurikulum.add');
+  }
+
+  public function store(Request $request)
+  {
+    //validate form
+    $this->validate($request, [
+      'nm_kurikulum'     => 'required',
+      'stts_kurikulum'   => 'required'
+    ]);
+
+    //create post
+    Kurikulum::create([
+      'nm_kurikulum'     => $request->nm_kurikulum,
+      'stts_kurikulum'   => $request->stts_kurikulum
+    ]);
+
+    //redirect to index
+    return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Ditambahkan!']);
   }
 }
