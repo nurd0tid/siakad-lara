@@ -83,7 +83,7 @@
                         <form method="POST" action="kurikulum/delete/{{ $a['id_kurikulum'] }}">
                           @csrf
                           <a class="btn btn-primary btn-xs" data-bs-toggle="modal" data-original-title="test"
-                            data-bs-target="#addKurikulum"><i class="fa fa-edit"></i></a>
+                            data-bs-target="#editKurikulum"><i class="fa fa-edit"></i></a>
                           <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
                           <a type="submit" class="btn btn-danger btn-xs show_confirm"><i class="fa fa-trash"></i></a>
                         </form>
@@ -137,5 +137,6 @@
       @endif
     </script>
     @include('dashboard.master.kurikulum.add')
+    @include('dashboard.master.kurikulum.edit')
   @endPushOnce
 @endsection

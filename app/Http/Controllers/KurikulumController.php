@@ -29,11 +29,6 @@ class KurikulumController extends Controller
     // dd($data);
   }
 
-  public function add()
-  {
-    return view('dashboard.master.kurikulum.add');
-  }
-
   public function store(Request $request)
   {
     //validate form
