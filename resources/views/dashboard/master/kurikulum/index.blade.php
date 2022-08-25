@@ -105,26 +105,31 @@
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-    {{-- <script src="../assets/js/sweet-alert/app.js"></script>
-    <script src="../assets/js/tooltip-init.js"></script> --}}
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
-      $('.show_confirm').click(function(event) {
+      $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
-        // var name = $(this).data("name");
-        event.preventDefault();
+        e.preventDefault();
         swal({
-            title: `Are you sure you want to delete this record?`,
-            text: "If you delete this, it will be gone forever.",
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
+              swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                // timer: 3000
+              });
               form.submit();
+            } else {
+              swal("Your imaginary file is safe!", {
+                icon: "info"
+              });
             }
-          });
+          })
       });
     </script>
     <script>
@@ -134,6 +139,6 @@
         toastr.error('{{ session('error') }}', 'Whoops!');
       @endif
     </script>
+    @include('dashboard.master.kurikulum.add')
   @endPushOnce
-  @include('dashboard.master.kurikulum.add')
 @endsection
