@@ -68,13 +68,13 @@
                       <td>{{ $a['nm_kurikulum'] }}</td>
                       @if ($a['stts_kurikulum'] == 'active')
                         <td>
-                          <span class="span badge rounded-pill pill-badge-secondary">
+                          <span class="span badge rounded-pill pill-badge-success">
                             Active
                           </span>
                         </td>
                       @else
                         <td>
-                          <span class="span badge rounded-pill pill-badge-primary">
+                          <span class="span badge rounded-pill pill-badge-danger">
                             Non Active
                           </span>
                         </td>

@@ -1,6 +1,6 @@
 <div class="modal fade" id="addKurikulum" tabindex="-1" role="dialog" aria-labelledby="addKurikulumLabel"
   aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="addKurikulumLabel">Add Kurikulum</h5>
@@ -32,8 +32,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" type="button" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-secondary" type="submit">Save</button>
+            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" type="submit">Save</button>
           </div>
         </form>
       </div>
