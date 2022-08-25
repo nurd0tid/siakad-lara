@@ -2,6 +2,7 @@
 @section('content')
   @pushOnce('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
   @endPushOnce
   <div class="page-body">
     <div class="container-fluid">
@@ -79,10 +80,16 @@
                         </td>
                       @endif
                       <td>
-                        <a href="/kurikulum/edit/{{ $a['id_kurikulum'] }}" class="btn btn-primary btn-xs"><i
+                        <form method="POST" action="kurikulum/delete/{{ $a['id_kurikulum'] }}">
+                          @csrf
+                          <input name="_method" type="hidden" class="btn btn-primary btn-xs" value="DELETE">
+                          <button type="submit" class="btn btn-danger btn-xs show_confirm" data-toggle="tooltip"
+                            title='Delete'><i class="fa fa-trash"></i></button>
+                        </form>
+                        {{-- <a href="/kurikulum/edit/{{ $a['id_kurikulum'] }}" class="btn btn-primary btn-xs"><i
                             class="fa fa-edit"></i></a>
                         <a href="/kurikulum/delete/{{ $a['id_kurikulum'] }}" class="btn btn-danger btn-xs"><i
-                            class="fa fa-trash"></i></a>
+                            class="fa fa-trash"></i></a> --}}
                       </td>
                     </tr>
                   @endforeach
@@ -97,7 +104,29 @@
   @pushOnce('js')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+    {{-- <script src="../assets/js/sweet-alert/app.js"></script>
+    <script src="../assets/js/tooltip-init.js"></script> --}}
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script type="text/javascript">
+      $('.show_confirm').click(function(event) {
+        var form = $(this).closest("form");
+        // var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+            title: `Are you sure you want to delete this record?`,
+            text: "If you delete this, it will be gone forever.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+    </script>
     <script>
       @if (session()->has('success'))
         toastr.success('{{ session('success') }}', 'Wohoooo!');

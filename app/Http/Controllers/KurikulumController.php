@@ -52,12 +52,10 @@ class KurikulumController extends Controller
     return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Ditambahkan!']);
   }
 
-  public function destroy(Kurikulum $kurikulum)
+  public function destroy($id)
   {
-    //delete post
-    $kurikulum->delete();
+    Kurikulum::find($id)->delete();
 
-    //redirect to index
     return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Dihapus!']);
   }
 }
