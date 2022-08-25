@@ -79,8 +79,10 @@
                         </td>
                       @endif
                       <td>
-                        <a href="http://" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a>
-                        <a href="http://" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                        <a href="/kurikulum/edit/{{ $a['id_kurikulum'] }}" class="btn btn-primary btn-xs"><i
+                            class="fa fa-edit"></i></a>
+                        <a href="/kurikulum/delete/{{ $a['id_kurikulum'] }}" class="btn btn-danger btn-xs"><i
+                            class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                   @endforeach
