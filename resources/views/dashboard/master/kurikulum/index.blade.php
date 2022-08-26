@@ -66,7 +66,7 @@
                     <tr style="text-align: center">
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $a['nm_kurikulum'] }}</td>
-                      @if ($a['stts_kurikulum'] == 'active')
+                      @if ($a['stts_kurikulum'] == 'Active')
                         <td>
                           <span class="span badge rounded-pill pill-badge-success">
                             Active
