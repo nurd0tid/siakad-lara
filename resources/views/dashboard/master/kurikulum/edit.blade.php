@@ -25,13 +25,12 @@
                 <div class="form-group m-t-15 m-checkbox-inline mb-0">
                   <label class="form-label" for="validationCustom01">Status</label>
                   <label class="d-block" for="chk-ani1">
-                    <input class="checkbox_animated" id="chk-ani1"
-                      {{ $a->stts_kurikulum == 'active' ? 'checked' : '' }} type="checkbox" value="active"
-                      name="stts_kurikulum">Active
+                    <input class="radio_animated" id="chk-ani1" {{ $a->stts_kurikulum == 'active' ? 'checked' : '' }}
+                      type="radio" value="active" name="stts_kurikulum">Active
                   </label>
                   <label class="d-block" for="chk-ani2">
-                    <input class="checkbox_animated" id="chk-ani2"
-                      {{ $a->stts_kurikulum == 'non active' ? 'checked' : '' }} type="checkbox" value="non active"
+                    <input class="radio_animated" id="chk-ani2"
+                      {{ $a->stts_kurikulum == 'non active' ? 'checked' : '' }} type="radio" value="non active"
                       name="stts_kurikulum">Non Active
                   </label>
                 </div>
