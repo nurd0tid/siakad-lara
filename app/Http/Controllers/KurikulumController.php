@@ -47,6 +47,27 @@ class KurikulumController extends Controller
     return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Ditambahkan!']);
   }
 
+  public function edit($id)
+  {
+    $data = Kurikulum::find($id);
+    return view('dashboard.master.kurikulum.edit', compact('data'));
+  }
+
+  public function update(Request $request, $id)
+  {
+    //validate form
+    $this->validate($request, [
+      'nm_kurikulum'     => 'required',
+      'stts_kurikulum'   => 'required'
+    ]);
+
+    $data = Kurikulum::find($id);
+    $data->nm_kurikulum = $request->nm_kurikulum;
+    $data->stts_kurikulum = $request->stts_kurikulum;
+    $data->save();
+    return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Diupdate!']);
+  }
+
   public function destroy($id)
   {
     Kurikulum::find($id)->delete();

@@ -32,4 +32,6 @@ Route::get('/identitas', [\App\Http\Controllers\IdentitasController::class, 'ind
 Route::get('/kurikulum', [\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum');
 Route::get('/kurikulum/add', [\App\Http\Controllers\KurikulumController::class, 'add'])->name('kurikulum/add');
 Route::post('/kurikulum/save', [\App\Http\Controllers\KurikulumController::class, 'store'])->name('kurikulum/save');
+Route::get('/kurikulum/edit/{id}', [\App\Http\Controllers\KurikulumController::class, 'edit'])->name('kurikulum/edit');
+Route::put('/kurikulum/update/{id}', [\App\Http\Controllers\KurikulumController::class, 'update'])->name('kurikulum/update');
 Route::delete('/kurikulum/delete/{id}', [\App\Http\Controllers\KurikulumController::class, 'destroy'])->name('kurikulum/delete');
