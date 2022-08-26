@@ -25,7 +25,7 @@
                     name="stts_kurikulum">Active
                 </label>
                 <label class="d-block" for="chk-ani2">
-                  <input class="radio_animated" id="chk-ani2" type="radio" value="Non active"
+                  <input class="radio_animated" id="chk-ani2" type="radio" value="Non Active"
                     name="stts_kurikulum">Non Active
                 </label>
               </div>

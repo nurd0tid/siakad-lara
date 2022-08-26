@@ -30,7 +30,7 @@
                   </label>
                   <label class="d-block" for="chk-ani2">
                     <input class="radio_animated" id="chk-ani2"
-                      {{ $a->stts_kurikulum == 'Non active' ? 'checked' : '' }} type="radio" value="Non active"
+                      {{ $a->stts_kurikulum == 'Non Active' ? 'checked' : '' }} type="radio" value="Non Active"
                       name="stts_kurikulum">Non Active
                   </label>
                 </div>
