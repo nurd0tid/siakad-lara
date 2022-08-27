@@ -9,11 +9,11 @@
       <div class="page-header">
         <div class="row">
           <div class="col-sm-6">
-            <h3>Kurikulum</h3>
+            <h3>Tahun Akademik</h3>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.html">Applications</a></li>
               <li class="breadcrumb-item">Data Master</li>
-              <li class="breadcrumb-item active">Kurikulum</li>
+              <li class="breadcrumb-item active">Tahun Akademik</li>
             </ol>
           </div>
           <div class="col-sm-6">
@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-header">
             <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
-              data-bs-target="#addKurikulum">Add Kurikulum</button>
+              data-bs-target="#addThnAkademik">Add Tahun Akademik</button>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -55,7 +55,9 @@
                 <thead>
                   <tr style="text-align: center">
                     <th style="width: 55px">No</th>
-                    <th>Nama Kurikulum</th>
+                    <th>Kode Tahun</th>
+                    <th>Nama Tahun</th>
+                    <th>Keterangan</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -64,8 +66,10 @@
                   @foreach ($data as $a)
                     <tr style="text-align: center">
                       <td>{{ $loop->iteration }}</td>
-                      <td>{{ $a['nm_kurikulum'] }}</td>
-                      @if ($a['stts_kurikulum'] == 'Active')
+                      <td>{{ $a['kd_tahun'] }}</td>
+                      <td>{{ $a['nm_tahun'] }}</td>
+                      <td>{{ $a['ket_tahun'] }}</td>
+                      @if ($a['stts_tahun'] == 'Active')
                         <td>
                           <span class="span badge rounded badge-success">
                             Active
@@ -79,10 +83,11 @@
                         </td>
                       @endif
                       <td>
-                        <form method="POST" action="kurikulum/delete/{{ $a['id_kurikulum'] }}">
+                        <form method="POST" action="thnakademik/delete/{{ $a['id_tahun'] }}">
                           @csrf
-                          <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_kurikulum }}"><i
-                              class="fa fa-edit"></i></a>
+                          <a href="/thnakademik/edit/{{ $a['id_tahun'] }}" class="btn btn-primary btn-xs"
+                            data-bs-toggle="modal" data-original-title="test"
+                            data-bs-target="#editThnAkademik{{ $a['id_tahun'] }}"><i class="fa fa-edit"></i></a>
                           <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
                           <a type="submit" class="btn btn-danger btn-xs show_confirm"><i class="fa fa-trash"></i></a>
                         </form>
@@ -98,12 +103,9 @@
     </div>
   </div>
   @pushOnce('js')
-    @include('dashboard.master.kurikulum.add')
-    @include('dashboard.master.kurikulum.edit')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-    <script src="../assets/js/form-validation-custom.js"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
@@ -138,27 +140,7 @@
         toastr.error('{{ session('error') }}', 'Whoops!');
       @endif
     </script>
-    <script>
-      $(document).ready(function() {
-        //edit data
-        $('.edit').on("click", function() {
-          var id = $(this).attr('data-bs-id');
-          // var radio = $('input[name="stts_kurikulum"]:checked').val();
-          $.ajax({
-            url: "/kurikulum/edit/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function(data) {
-              $('#id_kurikulum').val(data.id_kurikulum);
-              $('#nm_kurikulum').val(data.nm_kurikulum);
-              // $('.radio_animated input:radio[value="' + data.stts_kurikulum + '"]').prop('checked', true);
-              $("input:radio[name=stts_kurikulum][value=" + data.stts_kurikulum + "]").prop('checked', true);
-              $('#editKurikulum').modal('show');
-            }
-          });
-        });
-
-      });
-    </script>
+    @include('dashboard.master.thnakademik.add')
+    @include('dashboard.master.thnakademik.edit')
   @endPushOnce
 @endsection
