@@ -143,7 +143,6 @@
         //edit data
         $('.edit').on("click", function() {
           var id = $(this).attr('data-bs-id');
-          // var radio = $('input[name="stts_kurikulum"]:checked').val();
           $.ajax({
             url: "/kurikulum/edit/" + id,
             type: "GET",
