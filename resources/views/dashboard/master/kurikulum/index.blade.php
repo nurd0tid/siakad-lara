@@ -79,7 +79,7 @@
                         </td>
                       @endif
                       <td>
-                        <form method="POST" action="kurikulum/update/{{ $a['id_kurikulum'] }}">
+                        <form method="POST" action="kurikulum/delete/{{ $a['id_kurikulum'] }}">
                           @csrf
                           <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_kurikulum }}"><i
                               class="fa fa-edit"></i></a>
