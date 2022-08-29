@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GedungController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\ThnAkademikController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,14 @@ Route::controller(ThnAkademikController::class)->prefix('thnakademik')->group(fu
     Route::get('edit/{id}', 'edit')->name('thnakademik/edit');
     Route::put('update/{id}', 'update')->name('thnakademik/update');
     Route::delete('delete/{id}', 'destroy')->name('thnakademik/delete');
+});
+
+Route::controller(GedungController::class)->prefix('gedung')->group(function () {
+    Route::get('', 'index')->name('gedung');
+    Route::post('save', 'store')->name('gedung/save');
+    Route::get('edit/{id}', 'edit')->name('gedung/edit');
+    Route::put('update/{id}', 'update')->name('gedung/update');
+    Route::delete('delete/{id}', 'destroy')->name('gedung/delete');
 });
 
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');

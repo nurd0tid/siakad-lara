@@ -14,7 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('gedungs', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_gedung');
+            $table->string('kd_gedung')->unique();
+            $table->string('nm_gedung');
+            $table->string('jml_lantai');
+            $table->string('p_gedung');
+            $table->string('t_gedung');
+            $table->string('l_gedung');
+            $table->string('ket_gedung');
+            $table->string('stts_gedung');
             $table->timestamps();
         });
     }
