@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\ThnAkademikController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,14 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::controller(KurikulumController::class)->prefix('kurikulum')->group(function () {
+    Route::get('', 'index')->name('kurikulum');
+    Route::post('save', 'store')->name('kurikulum/save');
+    Route::get('edit/{id}', 'edit')->name('kurikulum/edit');
+    Route::post('update/{id}', 'update')->name('kurikulum/update');
+    Route::delete('delete/{id}', 'destroy')->name('kurikulum/delete');
+});
+
 Route::controller(ThnAkademikController::class)->prefix('thnakademik')->group(function () {
     Route::get('', 'index')->name('thnakademik');
     Route::post('save', 'store')->name('thnakademik/save');
@@ -37,9 +46,3 @@ Route::get('/zoom/create', [\App\Http\Controllers\ZoomController::class, 'create
 Route::post('/zoom/save', [\App\Http\Controllers\ZoomController::class, 'save'])->name('zoom/save');
 
 Route::get('/identitas', [\App\Http\Controllers\IdentitasController::class, 'index'])->name('identitas');
-
-Route::get('/kurikulum', [\App\Http\Controllers\KurikulumController::class, 'index'])->name('kurikulum');
-Route::post('/kurikulum/save', [\App\Http\Controllers\KurikulumController::class, 'store'])->name('kurikulum/save');
-Route::get('/kurikulum/edit/{id}', [\App\Http\Controllers\KurikulumController::class, 'edit'])->name('kurikulum/edit');
-Route::post('/kurikulum/update/{id}', [\App\Http\Controllers\KurikulumController::class, 'update'])->name('kurikulum/update');
-Route::delete('/kurikulum/delete/{id}', [\App\Http\Controllers\KurikulumController::class, 'destroy'])->name('kurikulum/delete');
