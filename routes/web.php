@@ -27,7 +27,7 @@ Route::controller(KurikulumController::class)->prefix('kurikulum')->group(functi
     Route::get('', 'index')->name('kurikulum');
     Route::post('save', 'store')->name('kurikulum/save');
     Route::get('edit/{id}', 'edit')->name('kurikulum/edit');
-    Route::post('update/{id}', 'update')->name('kurikulum/update');
+    Route::put('update/{id}', 'update')->name('kurikulum/update');
     Route::delete('delete/{id}', 'destroy')->name('kurikulum/delete');
 });
 
@@ -35,7 +35,7 @@ Route::controller(ThnAkademikController::class)->prefix('thnakademik')->group(fu
     Route::get('', 'index')->name('thnakademik');
     Route::post('save', 'store')->name('thnakademik/save');
     Route::get('edit/{id}', 'edit')->name('thnakademik/edit');
-    Route::post('update/{id}', 'update')->name('thnakademik/update');
+    Route::put('update/{id}', 'update')->name('thnakademik/update');
     Route::delete('delete/{id}', 'destroy')->name('thnakademik/delete');
 });
 

@@ -170,7 +170,7 @@
           var ket_tahun = $("#ket_tahun").val();
           var stts_tahun = $('input:radio[name=stts_tahun]:checked').val();
           $.ajax({
-            type: "POST",
+            type: "PUT",
             data: $('#dataThnAkademik').serialize(),
             url: '/thnakademik/update/' + id_tahun,
             dataType: "json",

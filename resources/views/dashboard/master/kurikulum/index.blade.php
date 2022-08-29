@@ -163,7 +163,7 @@
           var nm_kurikulum = $("#nm_kurikulum").val();
           var radio_value = $('input:radio[name=stts_kurikulum]:checked').val();
           $.ajax({
-            type: "POST",
+            type: "PUT",
             data: $('#dataKurikulum').serialize(),
             url: '/kurikulum/update/' + id_kurikulum,
             dataType: "json",
