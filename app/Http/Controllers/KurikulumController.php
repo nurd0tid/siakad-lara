@@ -46,15 +46,15 @@ class KurikulumController extends Controller
     public function update(Request $request, $id)
     {
         //validate form
-        $this->validate($request, [
-            'nm_kurikulum'     => 'required',
-            'stts_kurikulum'   => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'nm_kurikulum'     => 'required',
+        //     'stts_kurikulum'   => 'required'
+        // ]);
 
         $data = Kurikulum::find($id);
         $data->nm_kurikulum = $request->nm_kurikulum;
         $data->stts_kurikulum = $request->stts_kurikulum;
-        $data->save();
+        $data->update();
         return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Diupdate!']);
     }
 

@@ -79,7 +79,7 @@
                         </td>
                       @endif
                       <td>
-                        <form method="POST" action="kurikulum/delete/{{ $a['id_kurikulum'] }}">
+                        <form method="POST" action="kurikulum/update/{{ $a['id_kurikulum'] }}">
                           @csrf
                           <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_kurikulum }}"><i
                               class="fa fa-edit"></i></a>
@@ -140,8 +140,8 @@
     </script>
     <script>
       $(document).ready(function() {
-        //edit data
-        $('.edit').on("click", function() {
+        $('.edit').on("click", function(e) {
+          e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
             url: "/kurikulum/edit/" + id,
@@ -150,10 +150,36 @@
             success: function(data) {
               $('#id_kurikulum').val(data.id_kurikulum);
               $('#nm_kurikulum').val(data.nm_kurikulum);
-              // $('.radio_animated input:radio[value="' + data.stts_kurikulum + '"]').prop('checked', true);
-              $("input:radio[name=stts_kurikulum][value=" + data.stts_kurikulum + "]").prop('checked', true);
+              $('.radio_animated').val(data.stts_kurikulum);
               $('#editKurikulum').modal('show');
             }
+          });
+        });
+
+        $('#update').on("click", function(e) {
+          e.preventDefault()
+          var id_kurikulum = $("#id_kurikulum").val();
+          var nm_kurikulum = $("#nm_kurikulum").val();
+          var stts_kurikulum = $(".radio_animated").val();
+          $.ajax({
+            type: "POST",
+            data: {
+              id_kurikulum: id_kurikulum,
+              nm_kurikulum: nm_kurikulum,
+              stts_kurikulum: stts_kurikulum
+            },
+            url: '/kurikulum/update/' + id_kurikulum,
+            dataType: "JSON",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+              if (data.success == true) { // if true (1)
+                setTimeout(function() { // wait for 5 secs(2)
+                  location.reload(); // then reload the page.(3)
+                }, 5000);
+              }
+            },
           });
         });
 

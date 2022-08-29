@@ -7,9 +7,8 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="kurikulum/update/{{ $a['id_kurikulum'] }}" class="needs-validation" novalidate="" method="POST">
+        <form id="dataKurikulum" class="needs-validation" novalidate="" method="POST">
           @csrf
-          @method('PUT')
           <div>
             <input class="form-control" id="id_kurikulum" type="hidden" name="id_kurikulum">
             <div class="col-md-12">
@@ -35,7 +34,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" id="update" type="submit">Save Changes</button>
           </div>
         </form>
       </div>
