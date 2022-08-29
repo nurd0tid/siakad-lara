@@ -85,9 +85,8 @@
                       <td>
                         <form method="POST" action="thnakademik/delete/{{ $a['id_tahun'] }}">
                           @csrf
-                          <a href="/thnakademik/edit/{{ $a['id_tahun'] }}" class="btn btn-primary btn-xs"
-                            data-bs-toggle="modal" data-original-title="test"
-                            data-bs-target="#editThnAkademik_{{ $a['id_tahun'] }}"><i class="fa fa-edit"></i></a>
+                          <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_tahun }}"><i
+                              class="fa fa-edit"></i></a>
                           <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
                           <a type="submit" class="btn btn-danger btn-xs show_confirm"><i class="fa fa-trash"></i></a>
                         </form>
@@ -103,9 +102,12 @@
     </div>
   </div>
   @pushOnce('js')
+    @include('dashboard.master.thnakademik.add')
+    @include('dashboard.master.thnakademik.edit')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
@@ -140,7 +142,45 @@
         toastr.error('{{ session('error') }}', 'Whoops!');
       @endif
     </script>
-    @include('dashboard.master.thnakademik.add')
-    @include('dashboard.master.thnakademik.edit')
+    <script>
+      $(document).ready(function() {
+        $('.edit').on("click", function(e) {
+          e.preventDefault()
+          var id = $(this).attr('data-bs-id');
+          $.ajax({
+            url: "/thnakademik/edit/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+              $('#id_tahun').val(data.id_tahun);
+              $('#kd_tahun').val(data.kd_tahun);
+              $('#nm_tahun').val(data.nm_tahun);
+              $('#ket_tahun').val(data.ket_tahun);
+              $('input[name="stts_tahun"][value="' + data.stts_tahun + '"]').prop('checked', true);
+              $('#editThnAkademik').modal('show');
+            }
+          });
+        });
+
+        $('#update').on("click", function(e) {
+          e.preventDefault()
+          var id_tahun = $("#id_tahun").val();
+          var kd_tahun = $("#kd_tahun").val();
+          var nm_tahun = $("#nm_tahun").val();
+          var ket_tahun = $("#ket_tahun").val();
+          var stts_tahun = $('input:radio[name=stts_tahun]:checked').val();
+          $.ajax({
+            type: "POST",
+            data: $('#dataThnAkademik').serialize(),
+            url: '/thnakademik/update/' + id_tahun,
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+          window.location.reload();
+        });
+      });
+    </script>
   @endPushOnce
 @endsection

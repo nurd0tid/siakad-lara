@@ -43,25 +43,25 @@ class ThnAkademikController extends Controller
     public function edit($id)
     {
         $data = ThnAkademik::find($id);
-        return view('dashboard.master.thnakademik.edit', compact('data'));
+        return json_encode($data);
     }
 
     public function update(Request $request, $id)
     {
         //validate form
-        $this->validate($request, [
-            'kd_tahun'     => 'required|unique:thn_akademiks|min:4',
-            'nm_tahun'     => 'required',
-            'ket_tahun'    => 'required|max:9',
-            'stts_tahun'   => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'kd_tahun'     => 'required|unique:thn_akademiks|min:4',
+        //     'nm_tahun'     => 'required',
+        //     'ket_tahun'    => 'required|max:9',
+        //     'stts_tahun'   => 'required'
+        // ]);
 
         $data = ThnAkademik::find($id);
         $data->kd_tahun = $request->kd_tahun;
         $data->nm_tahun = $request->nm_tahun;
         $data->ket_tahun = $request->ket_tahun;
         $data->stts_tahun = $request->stts_tahun;
-        $data->save();
+        $data->update();
         return redirect()->route('thnakademik')->with(['success' => 'Data Berhasil Diupdate!']);
     }
 

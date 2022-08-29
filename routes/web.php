@@ -35,7 +35,7 @@ Route::controller(ThnAkademikController::class)->prefix('thnakademik')->group(fu
     Route::get('', 'index')->name('thnakademik');
     Route::post('save', 'store')->name('thnakademik/save');
     Route::get('edit/{id}', 'edit')->name('thnakademik/edit');
-    Route::put('update/{id}', 'update')->name('thnakademik/update');
+    Route::post('update/{id}', 'update')->name('thnakademik/update');
     Route::delete('delete/{id}', 'destroy')->name('thnakademik/delete');
 });
 
