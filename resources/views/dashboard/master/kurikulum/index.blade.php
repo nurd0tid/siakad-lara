@@ -103,7 +103,7 @@
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-    <script src="../assets/js/form-validation-custom.js"></script>
+    <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
@@ -150,8 +150,9 @@
             success: function(data) {
               $('#id_kurikulum').val(data.id_kurikulum);
               $('#nm_kurikulum').val(data.nm_kurikulum);
-              $('.radio_animated').val(data.stts_kurikulum);
+              $('input[name="stts_kurikulum"][value="' + data.stts_kurikulum + '"]').prop('checked', true);
               $('#editKurikulum').modal('show');
+              console.log(data.stts_kurikulum)
             }
           });
         });
@@ -160,29 +161,18 @@
           e.preventDefault()
           var id_kurikulum = $("#id_kurikulum").val();
           var nm_kurikulum = $("#nm_kurikulum").val();
-          var stts_kurikulum = $(".radio_animated").val();
+          var radio_value = $('input:radio[name=stts_kurikulum]:checked').val();
           $.ajax({
             type: "POST",
-            data: {
-              id_kurikulum: id_kurikulum,
-              nm_kurikulum: nm_kurikulum,
-              stts_kurikulum: stts_kurikulum
-            },
+            data: $('#dataKurikulum').serialize(),
             url: '/kurikulum/update/' + id_kurikulum,
-            dataType: "JSON",
+            dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function(data) {
-              if (data.success == true) { // if true (1)
-                setTimeout(function() { // wait for 5 secs(2)
-                  location.reload(); // then reload the page.(3)
-                }, 5000);
-              }
-            },
           });
+          window.location.reload();
         });
-
       });
     </script>
   @endPushOnce

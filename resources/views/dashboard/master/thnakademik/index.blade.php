@@ -87,7 +87,7 @@
                           @csrf
                           <a href="/thnakademik/edit/{{ $a['id_tahun'] }}" class="btn btn-primary btn-xs"
                             data-bs-toggle="modal" data-original-title="test"
-                            data-bs-target="#editThnAkademik{{ $a['id_tahun'] }}"><i class="fa fa-edit"></i></a>
+                            data-bs-target="#editThnAkademik_{{ $a['id_tahun'] }}"><i class="fa fa-edit"></i></a>
                           <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
                           <a type="submit" class="btn btn-danger btn-xs show_confirm"><i class="fa fa-trash"></i></a>
                         </form>
