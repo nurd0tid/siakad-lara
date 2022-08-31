@@ -156,7 +156,7 @@
               $('#kd_tahun').val(data.kd_tahun);
               $('#nm_tahun').val(data.nm_tahun);
               $('#ket_tahun').val(data.ket_tahun);
-              $('input[name="stts_tahun"][value="' + data.stts_tahun + '"]').prop('checked', true);
+              $('input[id="stts_tahun"][value="' + data.stts_tahun + '"]').prop('checked', true);
               $('#editThnAkademik').modal('show');
             }
           });

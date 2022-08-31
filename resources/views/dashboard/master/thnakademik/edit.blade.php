@@ -34,12 +34,12 @@
             </div>
             <div class="col">
               <div class="form-group m-t-15 m-checkbox-inline mb-0">
-                <label class="form-label" for="validationCustom01">Status</label>
-                <label class="d-block" for="chk-ani1">
-                  <input class="radio_animated" id="chk-ani1" type="radio" value="Active" name="stts_tahun">Active
+                <label class="form-label">Status</label>
+                <label class="d-block">
+                  <input class="radio_animated" id="stts_tahun" type="radio" value="Active" name="stts_tahun">Active
                 </label>
-                <label class="d-block" for="chk-ani2">
-                  <input class="radio_animated" id="chk-ani2" type="radio" value="Non Active" name="stts_tahun">Non
+                <label class="d-block">
+                  <input class="radio_animated" id="stts_tahun" type="radio" value="Non Active" name="stts_tahun">Non
                   Active
                 </label>
               </div>

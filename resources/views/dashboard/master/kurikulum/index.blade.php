@@ -150,7 +150,7 @@
             success: function(data) {
               $('#id_kurikulum').val(data.id_kurikulum);
               $('#nm_kurikulum').val(data.nm_kurikulum);
-              $('input[name="stts_kurikulum"][value="' + data.stts_kurikulum + '"]').prop('checked', true);
+              $('input[id="stts_kurikulum"][value="' + data.stts_kurikulum + '"]').prop('checked', true);
               $('#editKurikulum').modal('show');
               console.log(data.stts_kurikulum)
             }

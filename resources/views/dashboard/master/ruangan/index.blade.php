@@ -189,8 +189,7 @@
             dataType: "json",
             success: function(data) {
               $('#id_ruangan').val(data['item'][0].id_ruangan);
-              $('#kd_ruangan').val(data['item'][0].kd_ruangan);
-              $('#kd_gedung').empty();
+              $('#kd_ruangan').val(data['item'][0].kd_ruangan);;
               $.each(data['option'], function(key, value) {
                 $('#kd_gedung').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
                   '</option>');
@@ -203,7 +202,7 @@
               $('#kps_belajar').val(data['item'][0].kps_belajar);
               $('#kps_ujian').val(data['item'][0].kps_ujian);
               $('#ket_ruangan').val(data['item'][0].ket_ruangan);
-              $('input[name="stts_ruangan"][value="' + data['item'][0].stts_ruangan + '"]').prop('checked',
+              $('input[id="stts_ruangan"][value="' + data['item'][0].stts_ruangan + '"]').prop('checked',
                 true);
               $('#editRuangan').modal('show');
             }

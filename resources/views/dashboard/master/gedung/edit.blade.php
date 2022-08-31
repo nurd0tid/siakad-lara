@@ -65,11 +65,12 @@
               <div class="col-md-6">
                 <div class="form-group m-t-15 m-checkbox-inline mb-0">
                   <label class="form-label">Status</label>
-                  <label class="d-block" for="chk-ani1">
-                    <input class="radio_animated" id="chk-ani1" type="radio" value="Active" name="stts_gedung">Active
+                  <label class="d-block">
+                    <input class="radio_animated" id="stts_gedung" type="radio" value="Active"
+                      name="stts_gedung">Active
                   </label>
-                  <label class="d-block" for="chk-ani2">
-                    <input class="radio_animated" id="chk-ani2" type="radio" value="Non Active"
+                  <label class="d-block">
+                    <input class="radio_animated" id="stts_gedung" type="radio" value="Non Active"
                       name="stts_gedung">Non
                     Active
                   </label>

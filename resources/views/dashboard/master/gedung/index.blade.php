@@ -168,7 +168,7 @@
               $('#t_gedung').val(data.t_gedung);
               $('#l_gedung').val(data.l_gedung);
               $('#ket_gedung').val(data.ket_gedung);
-              $('input[name="stts_gedung"][value="' + data.stts_gedung + '"]').prop('checked', true);
+              $('input[id="stts_gedung"][value="' + data.stts_gedung + '"]').prop('checked', true);
               $('#editGedung').modal('show');
             }
           });
