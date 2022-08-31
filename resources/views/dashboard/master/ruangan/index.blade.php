@@ -190,41 +190,40 @@
             success: function(data) {
               $('#id_ruangan').val(data['item'][0].id_ruangan);
               $('#kd_ruangan').val(data['item'][0].kd_ruangan);
-              // $('#kd_gedung').val(data['item'][0].kd_gedung);
+              $('#kd_gedung').empty();
+              $.each(data['option'], function(key, value) {
+                $('#kd_gedung').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
+                  '</option>');
+                if (data['item'][0].kd_gedung == value.kd_gedung) {
+                  $('#kd_gedung').append('<option value="' + value.kd_gedung +
+                    '" selected>' + value.nm_gedung + '</option>').trigger('change');
+                }
+              });
               $('#nm_ruangan').val(data['item'][0].nm_ruangan);
               $('#kps_belajar').val(data['item'][0].kps_belajar);
               $('#kps_ujian').val(data['item'][0].kps_ujian);
               $('#ket_ruangan').val(data['item'][0].ket_ruangan);
               $('input[name="stts_ruangan"][value="' + data['item'][0].stts_ruangan + '"]').prop('checked',
                 true);
-              // console.log(data['item'][0].id_ruangan);
               $('#editRuangan').modal('show');
             }
           });
         });
 
-        // $('#update').on("click", function(e) {
-        //   e.preventDefault()
-        //   var id_gedung = $("#id_gedung").val();
-        //   var kd_gedung = $("#kd_gedung").val();
-        //   var nm_gedung = $("#nm_gedung").val();
-        //   var jml_lantai = $("#jml_lantai").val();
-        //   var p_gedung = $("#p_gedung").val();
-        //   var t_gedung = $("#t_gedung").val();
-        //   var l_gedung = $("#l_gedung").val();
-        //   var ket_gedung = $("#ket_gedung").val();
-        //   var stt_gedung = $('input:radio[name=stts_gedung]:checked').val();
-        //   $.ajax({
-        //     type: "PUT",
-        //     data: $('#dataGedung').serialize(),
-        //     url: '/gedung/update/' + id_gedung,
-        //     dataType: "json",
-        //     headers: {
-        //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     },
-        //   });
-        //   window.location.reload();
-        // });
+        $('#update').on("click", function(e) {
+          e.preventDefault()
+          var id_ruangan = $("#id_ruangan").val();
+          $.ajax({
+            type: "PUT",
+            data: $('#dataRuangan').serialize(),
+            url: 'ruangan/update/' + id_ruangan,
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+          window.location.reload();
+        });
       });
     </script>
   @endPushOnce

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 
 class RuanganController extends Controller
@@ -20,7 +21,6 @@ class RuanganController extends Controller
             ->select('ruangans.*', 'gedungs.nm_gedung')
             ->get();
         return view('dashboard.master.ruangan.index', compact('data'));
-        // dd($data);
     }
 
     public function add()
@@ -30,8 +30,6 @@ class RuanganController extends Controller
             'nm_gedung'
         ])->get();
         return response()->json($data);
-        // return view('dashboard.master.ruangan.add', compact('data'));
-        // dd($data);
     }
 
     public function store(Request $request)
@@ -63,17 +61,6 @@ class RuanganController extends Controller
 
     public function edit($id)
     {
-        // $data = [
-        //     $item = DB::table('ruangans')
-        //         ->join('gedungs', 'ruangans.kd_gedung', '=', 'gedungs.kd_gedung')
-        //         ->where('id_ruangan', '=', $id)
-        //         ->select('ruangans.*', 'gedungs.nm_gedung')->get(),
-        //     $item1 = DB::table('gedungs')
-        //         ->select([
-        //             'kd_gedung',
-        //             'nm_gedung'
-        //         ])->get()
-        // ];
         $data['item'] = DB::table('ruangans')
             ->join('gedungs', 'ruangans.kd_gedung', '=', 'gedungs.kd_gedung')
             ->where('id_ruangan', '=', $id)
@@ -83,10 +70,37 @@ class RuanganController extends Controller
                 'kd_gedung',
                 'nm_gedung'
             ])->get();
-        // $data = DB::table('ruangans')
-        //     ->join('gedungs', 'ruangans.kd_gedung', '=', 'gedungs.kd_gedung')
-        //     ->where('id_ruangan', '=', $id)
-        //     ->select('ruangans.*', 'gedungs.nm_gedung')->get();
         return response()->json($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $this->validate($request, [
+        //     'kd_ruangan' => 'required|unique:ruangans',
+        //     'kd_gedung' => 'required',
+        //     'nm_ruangan' => 'required',
+        //     'kps_belajar' => 'required',
+        //     'kps_ujian' => 'required',
+        //     'ket_ruangan' => 'required',
+        //     'stts_ruangan' => 'required'
+        // ]);
+
+        //create post
+        $data = Ruangan::find($id);
+        $data->kd_ruangan = $request->kd_ruangan;
+        $data->kd_gedung = $request->kd_gedung;
+        $data->nm_ruangan = $request->nm_ruangan;
+        $data->kps_belajar = $request->kps_belajar;
+        $data->kps_ujian = $request->kps_ujian;
+        $data->ket_ruangan = $request->ket_ruangan;
+        $data->stts_ruangan = $request->stts_ruangan;
+        $data->update();
+        return redirect()->route('ruangan')->with(['success' => 'Data Berhasil Diupdate!']);
+    }
+
+    public function destroy($id)
+    {
+        Ruangan::find($id)->delete();
+        return redirect()->route('ruangan')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
