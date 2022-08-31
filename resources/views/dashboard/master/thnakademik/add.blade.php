@@ -54,7 +54,3 @@
     </div>
   </div>
 </div>
-@pushOnce('js')
-  <script src="../assets/js/form-validation-custom.js"></script>
-  <script src="../assets/js/tooltip-init.js"></script>
-@endPushOnce
