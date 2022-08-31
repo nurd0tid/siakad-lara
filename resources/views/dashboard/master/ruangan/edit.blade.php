@@ -12,43 +12,43 @@
             <input type="hidden" id="id_ruangan" name="id_ruangan">
             <div class="row g-2">
               <div class="col-md-6">
-                <label class="form-label" for="kd_ruangan">Kode Ruangan</label>
+                <label class="form-label">Kode Ruangan</label>
                 <input class="form-control" id="kd_ruangan" type="text" name="kd_ruangan" required>
                 @error('kd_ruangan')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="kd_gedung">Nama Gedung</label>
-                <select class="form-select" id="kd_gedung" name="kd_gedung" required="">
+                <label class="form-label">Nama Gedung</label>
+                <select class="form-select" id="kd_gedung" type="text" name="kd_gedung" required="">
                 </select>
                 @error('kd_gedung')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="nm_ruangan">Nama Ruangan</label>
+                <label class="form-label">Nama Ruangan</label>
                 <input class="form-control" id="nm_ruangan" type="text" name="nm_ruangan" required>
                 @error('nm_ruangan')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="kps_belajar">Kapasitas Belajar</label>
+                <label class="form-label">Kapasitas Belajar</label>
                 <input class="form-control" id="kps_belajar" type="text" name="kps_belajar" required>
                 @error('kps_belajar')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="kps_ujian">Kapasitas Ujian</label>
+                <label class="form-label">Kapasitas Ujian</label>
                 <input class="form-control" id="kps_ujian" type="text" name="kps_ujian" required>
                 @error('kps_ujian')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label" for="ket_ruangan">Keterangan</label>
+                <label class="form-label">Keterangan</label>
                 <input class="form-control" id="ket_ruangan" type="text" name="ket_ruangan" required>
                 @error('ket_ruangan')
                   <div class="valid-feedback">{{ $message }}</div>

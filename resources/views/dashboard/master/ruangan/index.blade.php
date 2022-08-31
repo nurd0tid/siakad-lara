@@ -46,7 +46,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <button class="btn btn-primary add" type="button" data-bs-toggle="modal" data-original-title="test">Add
+            <button class="btn btn-primary add" type="button">Add
               Ruangan</button>
           </div>
           <div class="card-body">
@@ -153,12 +153,12 @@
         $('.add').on("click", function(e) {
           e.preventDefault()
           $.ajax({
-            url: "/ruangan/add",
+            url: "ruangan/add",
             type: "GET",
             dataType: "json",
             success: function(data) {
               $.each(data, function(i, value) {
-                $('#kd_gedung').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
+                $('#option').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
                   '</option>');
               });
               $('#addRuangan').modal('show');
@@ -166,7 +166,7 @@
           });
         });
 
-        $('.save').on("click", function(e) {
+        $('#save').on("click", function(e) {
           e.preventDefault()
           $.ajax({
             type: "POST",
@@ -189,6 +189,7 @@
             dataType: "json",
             success: function(data) {
               $('#id_ruangan').val(data['item'][0].id_ruangan);
+              $('#kd_ruangan').val(data['item'][0].kd_ruangan);
               // $('#kd_gedung').val(data['item'][0].kd_gedung);
               $('#nm_ruangan').val(data['item'][0].nm_ruangan);
               $('#kps_belajar').val(data['item'][0].kps_belajar);
