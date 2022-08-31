@@ -243,7 +243,7 @@
                     <li><a href="{{ route('thnakademik') }}">Tahun Akademik</a></li>
                     <li><a href="{{ route('gedung') }}">Gedung</a></li>
                     <li><a href="{{ route('ruangan') }}">Ruangan</a></li>
-                    <li><a href="http://">Golongan</a></li>
+                    <li><a href="{{ route('golongan') }}">Golongan</a></li>
                     <li><a href="http://">Ptk</a></li>
                     <li><a href="http://">Jurusan</a></li>
                     <li><a href="http://">Kelas</a></li>
