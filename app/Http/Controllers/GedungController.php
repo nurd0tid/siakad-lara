@@ -51,7 +51,7 @@ class GedungController extends Controller
     public function edit($id)
     {
         $data = Gedung::find($id);
-        return json_encode($data);
+        return response()->json($data);
     }
 
     public function update(Request $request, $id)

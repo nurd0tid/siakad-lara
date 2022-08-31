@@ -160,8 +160,6 @@
         $('#update').on("click", function(e) {
           e.preventDefault()
           var id_kurikulum = $("#id_kurikulum").val();
-          var nm_kurikulum = $("#nm_kurikulum").val();
-          var radio_value = $('input:radio[name=stts_kurikulum]:checked').val();
           $.ajax({
             type: "PUT",
             data: $('#dataKurikulum').serialize(),

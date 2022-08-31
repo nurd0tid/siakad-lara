@@ -177,14 +177,6 @@
         $('#update').on("click", function(e) {
           e.preventDefault()
           var id_gedung = $("#id_gedung").val();
-          var kd_gedung = $("#kd_gedung").val();
-          var nm_gedung = $("#nm_gedung").val();
-          var jml_lantai = $("#jml_lantai").val();
-          var p_gedung = $("#p_gedung").val();
-          var t_gedung = $("#t_gedung").val();
-          var l_gedung = $("#l_gedung").val();
-          var ket_gedung = $("#ket_gedung").val();
-          var stt_gedung = $('input:radio[name=stts_gedung]:checked').val();
           $.ajax({
             type: "PUT",
             data: $('#dataGedung').serialize(),

@@ -165,10 +165,6 @@
         $('#update').on("click", function(e) {
           e.preventDefault()
           var id_tahun = $("#id_tahun").val();
-          var kd_tahun = $("#kd_tahun").val();
-          var nm_tahun = $("#nm_tahun").val();
-          var ket_tahun = $("#ket_tahun").val();
-          var stts_tahun = $('input:radio[name=stts_tahun]:checked').val();
           $.ajax({
             type: "PUT",
             data: $('#dataThnAkademik').serialize(),

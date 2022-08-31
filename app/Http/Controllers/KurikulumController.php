@@ -40,7 +40,7 @@ class KurikulumController extends Controller
     public function edit($id)
     {
         $data = Kurikulum::find($id);
-        return json_encode($data);
+        return response()->json($data);
     }
 
     public function update(Request $request, $id)
