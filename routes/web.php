@@ -3,6 +3,7 @@
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\KurikulumController;
+use App\Http\Controllers\PtkController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ThnAkademikController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,14 @@ Route::controller(GolonganController::class)->prefix('golongan')->group(function
     Route::get('edit/{id}', 'edit')->name('golongan/edit');
     Route::put('update/{id}', 'update')->name('golongan/update');
     Route::delete('delete/{id}', 'destroy')->name('golongan/delete');
+});
+
+Route::controller(PtkController::class)->prefix('ptk')->group(function () {
+    Route::get('', 'index')->name('ptk');
+    Route::post('save', 'store')->name('ptk/save');
+    Route::get('edit/{id}', 'edit')->name('ptk/edit');
+    Route::put('update/{id}', 'update')->name('ptk/update');
+    Route::delete('delete/{id}', 'destroy')->name('ptk/delete');
 });
 
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');
