@@ -6,7 +6,7 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="needs-validation" action="{{ route('jurusan/save') }}" novalidate="" method="POST">
+        <form class="needs-validation" id="saveJurusan">
           @csrf
           <div>
             <div class="row g-2">
@@ -83,7 +83,7 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-primary" id="save" type="submit">Save</button>
           </div>
         </form>
       </div>

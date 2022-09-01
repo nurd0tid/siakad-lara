@@ -15,7 +15,7 @@ class Jurusan extends Model
         'bidang_keahlian',
         'kptsi_umum',
         'kptsi_khusus',
-        'pejabat',
+        'nip',
         'jabatan',
         'ket_jurusan',
         'stts_jurusan'

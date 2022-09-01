@@ -137,6 +137,7 @@
     </script>
     <script>
       $(document).ready(function() {
+        $(".js-example-basic-single").select2();
         $('.add').on("click", function(e) {
           e.preventDefault()
           $.ajax({
@@ -144,7 +145,6 @@
             type: "GET",
             dataType: "json",
             success: function(data) {
-              $(".js-example-basic-single").select2();
               $.each(data, function(i, value) {
                 $('#option').append('<option value=' + value.nip + '>' + value.nm_guru +
                   '</option>');
@@ -153,6 +153,21 @@
             }
           });
         });
+
+        $('#save').on("click", function(e) {
+          e.preventDefault()
+          $.ajax({
+            type: "POST",
+            data: $('#saveJurusan').serialize(),
+            url: 'jurusan/save',
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+          window.location.reload();
+        });
+
         // $('.edit').on("click", function(e) {
         //   e.preventDefault()
         //   var id = $(this).attr('data-bs-id');
