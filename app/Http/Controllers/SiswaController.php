@@ -21,8 +21,6 @@ class SiswaController extends Controller
             ->select('siswas.*', 'jurusans.nm_jurusan')->get();
         if (request()->ajax()) {
             return datatables()->of($data)
-                // ->addColumn('action', 'companies.action')
-                // ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
         }
