@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('bidang_keahlian');
             $table->string('kptsi_umum');
             $table->string('kptsi_khusus');
-            $table->string('pejabat');
+            $table->string('nip');
             $table->string('jabatan');
             $table->string('ket_jurusan');
             $table->string('stts_jurusan');

@@ -255,8 +255,9 @@
                       data-feather="users"></i><span>Data Pengguna</span></a>
                   <ul class="nav-submenu menu-content">
                     <li><a href="{{ route('siswa') }}">Siswa</a></li>
-                    <li><a href="http://">Guru</a></li>
-                    <li><a href="http://">Kepala Sekolah</a></li>
+                    <li><a href="{{ route('guru') }}">Guru</a></li>
+                    <li><a href="http://">Kepala
+                        Sekolah</a></li>
                     <li><a href="http://">Admin</a></li>
                   </ul>
                 </li>

@@ -46,9 +46,10 @@
                 @enderror
               </div>
               <div class="col-md-6">
-                <label class="form-label">Pejabat</label>
-                <input class="form-control" type="text" name="pejabat" required>
-                @error('pejabat')
+                <label class="form-label">Nama Guru</label>
+                <select class="js-example-basic-single col-sm-12" id="option" name="nip" required="">
+                </select>
+                @error('nip')
                   <div class="valid-feedback">{{ $message }}</div>
                 @enderror
               </div>

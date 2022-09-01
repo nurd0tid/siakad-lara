@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jurusan;
+use Illuminate\Support\Facades\DB;
 
 class JurusanController extends Controller
 {
@@ -16,6 +17,15 @@ class JurusanController extends Controller
     {
         $data = Jurusan::all();
         return view('dashboard.master.jurusan.index', compact('data'));
+    }
+
+    public function add()
+    {
+        $data = DB::table('gurus')->select([
+            'nip',
+            'nm_guru'
+        ])->get();
+        return response()->json($data);
     }
 
     public function store(Request $request)

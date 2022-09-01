@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PtkController;
@@ -80,6 +81,7 @@ Route::controller(PtkController::class)->prefix('ptk')->group(function () {
 
 Route::controller(JurusanController::class)->prefix('jurusan')->group(function () {
     Route::get('', 'index')->name('jurusan');
+    Route::get('add', 'add')->name('jurusan/add');
     Route::post('save', 'store')->name('jurusan/save');
     Route::get('edit/{id}', 'edit')->name('jurusan/edit');
     Route::put('update/{id}', 'update')->name('jurusan/update');
@@ -92,6 +94,14 @@ Route::controller(SiswaController::class)->prefix('siswa')->group(function () {
     Route::get('edit/{id}', 'edit')->name('siswa/edit');
     Route::put('update/{id}', 'update')->name('siswa/update');
     Route::delete('delete/{id}', 'destroy')->name('siswa/delete');
+});
+
+Route::controller(GuruController::class)->prefix('guru')->group(function () {
+    Route::get('', 'index')->name('guru');
+    Route::post('save', 'store')->name('guru/save');
+    Route::get('edit/{id}', 'edit')->name('guru/edit');
+    Route::put('update/{id}', 'update')->name('guru/update');
+    Route::delete('delete/{id}', 'destroy')->name('guru/delete');
 });
 
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');

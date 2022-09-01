@@ -3,6 +3,7 @@
   @pushOnce('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
   @endPushOnce
   <div class="page-body">
     <div class="container-fluid">
@@ -46,8 +47,7 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
-              data-bs-target="#addJurusan">Add Jurusan</button>
+            <button class="btn btn-primary add" type="button">Add Jurusan</button>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -101,6 +101,7 @@
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
@@ -134,39 +135,55 @@
         toastr.error('{{ session('error') }}', 'Whoops!');
       @endif
     </script>
-    {{-- <script>
+    <script>
       $(document).ready(function() {
-        $('.edit').on("click", function(e) {
+        $('.add').on("click", function(e) {
           e.preventDefault()
-          var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "ptk/edit/" + id,
+            url: "jurusan/add",
             type: "GET",
-            dataType: "JSON",
+            dataType: "json",
             success: function(data) {
-              $('#id_ptk').val(data.id_ptk);
-              $('#nm_ptk').val(data.nm_ptk);
-              $('#ket_ptk').val(data.ket_ptk);
-              $('#editPtk').modal('show');
+              $(".js-example-basic-single").select2();
+              $.each(data, function(i, value) {
+                $('#option').append('<option value=' + value.nip + '>' + value.nm_guru +
+                  '</option>');
+              });
+              $('#addJurusan').modal('show');
             }
           });
         });
+        // $('.edit').on("click", function(e) {
+        //   e.preventDefault()
+        //   var id = $(this).attr('data-bs-id');
+        //   $.ajax({
+        //     url: "ptk/edit/" + id,
+        //     type: "GET",
+        //     dataType: "JSON",
+        //     success: function(data) {
+        //       $('#id_ptk').val(data.id_ptk);
+        //       $('#nm_ptk').val(data.nm_ptk);
+        //       $('#ket_ptk').val(data.ket_ptk);
+        //       $('#editPtk').modal('show');
+        //     }
+        //   });
+        // });
 
-        $('#update').on("click", function(e) {
-          e.preventDefault()
-          var id_ptk = $("#id_ptk").val();
-          $.ajax({
-            type: "PUT",
-            data: $('#dataPtk').serialize(),
-            url: 'ptk/update/' + id_ptk,
-            dataType: "json",
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-          });
-          window.location.reload();
-        });
+        // $('#update').on("click", function(e) {
+        //   e.preventDefault()
+        //   var id_ptk = $("#id_ptk").val();
+        //   $.ajax({
+        //     type: "PUT",
+        //     data: $('#dataPtk').serialize(),
+        //     url: 'ptk/update/' + id_ptk,
+        //     dataType: "json",
+        //     headers: {
+        //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     },
+        //   });
+        //   window.location.reload();
+        // });
       });
-    </script> --}}
+    </script>
   @endPushOnce
 @endsection
