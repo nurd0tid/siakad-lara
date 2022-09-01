@@ -51,8 +51,8 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
-              data-bs-target="#addGedung">Add Gedung</button>
+            {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
+              data-bs-target="#addGedung">Add Gedung</button> --}}
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -64,7 +64,7 @@
                     <th>Nama Siswa</th>
                     <th>Angkatan</th>
                     <th>Jurusan</th>
-                    <th style="width: 77px;">Action</th>
+                    <th style="width: 120px;">Action</th>
                   </tr>
                 </thead>
               </table>
@@ -148,7 +148,8 @@
             },
             {
               render: function(data, type, row) {
-                var html = '<a href="" class="btn btn-primary btn-xs m-r-5"><i class="fa fa-edit"></i></a>'
+                var html = '<a href="" class="btn btn-info btn-xs m-r-5"><i class="fa fa-eye"></i></a>'
+                html += '<a href="" class="btn btn-primary btn-xs m-r-5"><i class="fa fa-edit"></i></a>'
                 html += '<a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>'
                 return html
               }
