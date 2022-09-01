@@ -254,7 +254,7 @@
                 <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
                       data-feather="users"></i><span>Data Pengguna</span></a>
                   <ul class="nav-submenu menu-content">
-                    <li><a href="http://">Siswa</a></li>
+                    <li><a href="{{ route('siswa') }}">Siswa</a></li>
                     <li><a href="http://">Guru</a></li>
                     <li><a href="http://">Kepala Sekolah</a></li>
                     <li><a href="http://">Admin</a></li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PtkController;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\ThnAkademikController;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +84,14 @@ Route::controller(JurusanController::class)->prefix('jurusan')->group(function (
     Route::get('edit/{id}', 'edit')->name('jurusan/edit');
     Route::put('update/{id}', 'update')->name('jurusan/update');
     Route::delete('delete/{id}', 'destroy')->name('jurusan/delete');
+});
+
+Route::controller(SiswaController::class)->prefix('siswa')->group(function () {
+    Route::get('', 'index')->name('siswa');
+    Route::post('save', 'store')->name('siswa/save');
+    Route::get('edit/{id}', 'edit')->name('siswa/edit');
+    Route::put('update/{id}', 'update')->name('siswa/update');
+    Route::delete('delete/{id}', 'destroy')->name('siswa/delete');
 });
 
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');
