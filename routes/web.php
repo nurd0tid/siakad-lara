@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GedungController;
 use App\Http\Controllers\GolonganController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PtkController;
 use App\Http\Controllers\RuanganController;
@@ -74,6 +75,14 @@ Route::controller(PtkController::class)->prefix('ptk')->group(function () {
     Route::get('edit/{id}', 'edit')->name('ptk/edit');
     Route::put('update/{id}', 'update')->name('ptk/update');
     Route::delete('delete/{id}', 'destroy')->name('ptk/delete');
+});
+
+Route::controller(JurusanController::class)->prefix('jurusan')->group(function () {
+    Route::get('', 'index')->name('jurusan');
+    Route::post('save', 'store')->name('jurusan/save');
+    Route::get('edit/{id}', 'edit')->name('jurusan/edit');
+    Route::put('update/{id}', 'update')->name('jurusan/update');
+    Route::delete('delete/{id}', 'destroy')->name('jurusan/delete');
 });
 
 Route::get('/job-search',  [App\Http\Controllers\JobController::class, 'index'])->name('job-search');

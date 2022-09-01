@@ -245,7 +245,7 @@
                     <li><a href="{{ route('ruangan') }}">Ruangan</a></li>
                     <li><a href="{{ route('golongan') }}">Golongan</a></li>
                     <li><a href="{{ route('ptk') }}">Jenis PTK</a></li>
-                    <li><a href="http://">Jurusan</a></li>
+                    <li><a href="{{ route('jurusan') }}">Jurusan</a></li>
                     <li><a href="http://">Kelas</a></li>
                     <li><a href="http://">Kepegawaian</a></li>
                     <li><a href="{{ route('identitas') }}">Identitas Sekolah</a></li>
