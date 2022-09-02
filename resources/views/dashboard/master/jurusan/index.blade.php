@@ -95,7 +95,7 @@
   </div>
   @pushOnce('js')
     @include('dashboard.master.jurusan.add')
-    {{-- @include('dashboard.master.ptk.edit') --}}
+    @include('dashboard.master.jurusan.edit')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -168,36 +168,52 @@
           window.location.reload();
         });
 
-        // $('.edit').on("click", function(e) {
-        //   e.preventDefault()
-        //   var id = $(this).attr('data-bs-id');
-        //   $.ajax({
-        //     url: "ptk/edit/" + id,
-        //     type: "GET",
-        //     dataType: "JSON",
-        //     success: function(data) {
-        //       $('#id_ptk').val(data.id_ptk);
-        //       $('#nm_ptk').val(data.nm_ptk);
-        //       $('#ket_ptk').val(data.ket_ptk);
-        //       $('#editPtk').modal('show');
-        //     }
-        //   });
-        // });
+        $('.edit').on("click", function(e) {
+          e.preventDefault()
+          $(".js-example-basic-single").select2();
+          var id = $(this).attr('data-bs-id');
+          $.ajax({
+            url: "jurusan/edit/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+              $('#id_jurusan').val(data['item'][0].id_jurusan);
+              $('#kd_jurusan').val(data['item'][0].kd_jurusan);
+              $('#nm_jurusan').val(data['item'][0].nm_jurusan);
+              $('#bidang_keahlian').val(data['item'][0].bidang_keahlian);
+              $('#kptsi_umum').val(data['item'][0].kptsi_umum);
+              $('#kptsi_khusus').val(data['item'][0].kptsi_khusus);
+              $.each(data['option'], function(key, value) {
+                $('#nip').append('<option value=' + value.nip + '>' + value.nm_guru +
+                  '</option>');
+                if (data['item'][0].nip == value.nip) {
+                  $('#nip').append('<option value="' + value.nip +
+                    '" selected>' + value.nm_guru + '</option>').trigger('change');
+                }
+              });
+              $('#jabatan').val(data['item'][0].jabatan);
+              $('#ket_jurusan').val(data['item'][0].ket_jurusan);
+              $('input[id="stts_jurusan"][value="' + data['item'][0].stts_jurusan + '"]').prop('checked',
+                true);
+              $('#editJurusan').modal('show');
+            }
+          });
+        });
 
-        // $('#update').on("click", function(e) {
-        //   e.preventDefault()
-        //   var id_ptk = $("#id_ptk").val();
-        //   $.ajax({
-        //     type: "PUT",
-        //     data: $('#dataPtk').serialize(),
-        //     url: 'ptk/update/' + id_ptk,
-        //     dataType: "json",
-        //     headers: {
-        //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     },
-        //   });
-        //   window.location.reload();
-        // });
+        $('#update').on("click", function(e) {
+          e.preventDefault()
+          var id_jurusan = $("#id_jurusan").val();
+          $.ajax({
+            type: "PUT",
+            data: $('#dataJurusan').serialize(),
+            url: 'jurusan/update/' + id_jurusan,
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+          window.location.reload();
+        });
       });
     </script>
   @endPushOnce

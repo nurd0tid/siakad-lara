@@ -59,4 +59,52 @@ class JurusanController extends Controller
         //redirect to index
         return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
+
+    public function edit($id)
+    {
+        $data['item'] = DB::table('jurusans')
+            ->join('gurus', 'jurusans.nip', '=', 'gurus.nip')
+            ->where('id_jurusan', '=', $id)
+            ->select('jurusans.*', 'gurus.nm_guru')->get();
+        $data['option'] =  DB::table('gurus')
+            ->select([
+                'nip',
+                'nm_guru'
+            ])->get();
+        return response()->json($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $this->validate($request, [
+        //     'kd_jurusan'     => 'required|unique:jurusans',
+        //     'nm_jurusan'   => 'required',
+        //     'bidang_keahlian'   => 'required',
+        //     'kptsi_umum'   => 'required',
+        //     'kptsi_khusus'   => 'required',
+        //     'nip'   => 'required',
+        //     'jabatan'   => 'required',
+        //     'ket_jurusan'   => 'required',
+        //     'stts_jurusan'   => 'required',
+        // ]);
+
+        $data = Jurusan::find($id);
+        $data->kd_jurusan       = $request->kd_jurusan;
+        $data->nm_jurusan       = $request->nm_jurusan;
+        $data->bidang_keahlian  = $request->bidang_keahlian;
+        $data->kptsi_umum       = $request->kptsi_umum;
+        $data->kptsi_khusus     = $request->kptsi_khusus;
+        $data->nip              = $request->nip;
+        $data->jabatan          = $request->jabatan;
+        $data->ket_jurusan      = $request->ket_jurusan;
+        $data->stts_jurusan     = $request->stts_jurusan;
+        $data->update();
+        return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Diupdate!']);
+    }
+
+    public function destroy($id)
+    {
+        Jurusan::find($id)->delete();
+        return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 }
