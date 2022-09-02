@@ -75,7 +75,7 @@
                       <td>
                         <form method="POST" action="jurusan/delete/{{ $a['id_jurusan'] }}">
                           @csrf
-                          <a type="button" class="btn btn-info btn-xs edit" data-bs-id="{{ $a->id_jurusan }}"><i
+                          <a type="button" class="btn btn-info btn-xs detail" data-bs-id="{{ $a->id_jurusan }}"><i
                               class="fa fa-eye"></i></a>
                           <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_jurusan }}"><i
                               class="fa fa-edit"></i></a>
@@ -96,6 +96,7 @@
   @pushOnce('js')
     @include('dashboard.master.jurusan.add')
     @include('dashboard.master.jurusan.edit')
+    @include('dashboard.master.jurusan.detail')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -138,6 +139,7 @@
     <script>
       $(document).ready(function() {
         $(".js-example-basic-single").select2();
+
         $('.add').on("click", function(e) {
           e.preventDefault()
           $.ajax({
@@ -169,8 +171,7 @@
         });
 
         $('.edit').on("click", function(e) {
-          e.preventDefault()
-          $(".js-example-basic-single").select2();
+          e.preventDefault();
           var id = $(this).attr('data-bs-id');
           $.ajax({
             url: "jurusan/edit/" + id,
@@ -213,6 +214,33 @@
             },
           });
           window.location.reload();
+        });
+
+        $('.detail').on("click", function(e) {
+          e.preventDefault();
+          var id = $(this).attr('data-bs-id');
+          $.ajax({
+            url: "jurusan/detail/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+              $('#a').html(data[0].nm_guru);
+              $('#b').html(data[0].jabatan);
+              $('#c').html(data[0].kd_jurusan);
+              $('#d').html(data[0].nm_jurusan);
+              $('#e').html(data[0].bidang_keahlian);
+              $('#f').html(data[0].kptsi_umum);
+              $('#g').html(data[0].kptsi_khusus);
+              if (data[0].stts_jurusan == 'Active')
+                $('#h').html("<span class='span badge rounded badge-success'>Active</span>");
+              else
+                $('#h').html("<span class='span badge rounded badge-danger'>Non Active</span>");
+              $('#i').html(data[0].ket_jurusan);
+              $(".avatar").html("");
+              $('.avatar').append('<img class="img-100 b-r-8" alt="" src="' + data[0].foto + '">')
+              $('#detailJurusan').modal('show');
+            }
+          });
         });
       });
     </script>

@@ -83,6 +83,7 @@ Route::controller(JurusanController::class)->prefix('jurusan')->group(function (
     Route::get('', 'index')->name('jurusan');
     Route::get('add', 'add')->name('jurusan/add');
     Route::post('save', 'store')->name('jurusan/save');
+    Route::get('detail/{id}', 'detail')->name('jurusan/detail');
     Route::get('edit/{id}', 'edit')->name('jurusan/edit');
     Route::put('update/{id}', 'update')->name('jurusan/update');
     Route::delete('delete/{id}', 'destroy')->name('jurusan/delete');

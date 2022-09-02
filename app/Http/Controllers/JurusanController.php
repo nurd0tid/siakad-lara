@@ -60,6 +60,15 @@ class JurusanController extends Controller
         return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
 
+    public function detail($id)
+    {
+        $data = DB::table('jurusans')
+            ->join('gurus', 'jurusans.nip', '=', 'gurus.nip')
+            ->where('id_jurusan', '=', $id)
+            ->select('jurusans.*', 'gurus.nm_guru', 'gurus.foto')->get();
+        return response()->json($data);
+    }
+
     public function edit($id)
     {
         $data['item'] = DB::table('jurusans')
