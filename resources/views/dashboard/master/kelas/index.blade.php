@@ -191,41 +191,55 @@
         });
 
         $('.edit').on("click", function(e) {
+          $(".js-example-basic-single").select2();
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "ruangan/edit/" + id,
+            url: "kelas/edit/" + id,
             type: "GET",
             dataType: "json",
             success: function(data) {
-              $('#id_ruangan').val(data['item'][0].id_ruangan);
-              $('#kd_ruangan').val(data['item'][0].kd_ruangan);;
-              $.each(data['option'], function(key, value) {
-                $('#kd_gedung').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
+              $('#id_kelas').val(data['item'][0].id_kelas);
+              $('#kd_kelas').val(data['item'][0].kd_kelas);;
+              $('#nm_kelas').val(data['item'][0].nm_kelas);;
+              $.each(data['wali_kelas'], function(key, value) {
+                $('#nip').append('<option value=' + value.nip + '>' + value.nm_guru +
                   '</option>');
-                if (data['item'][0].kd_gedung == value.kd_gedung) {
-                  $('#kd_gedung').append('<option value="' + value.kd_gedung +
-                    '" selected>' + value.nm_gedung + '</option>').trigger('change');
+                if (data['item'][0].nip == value.nip) {
+                  $('#nip').append('<option value="' + value.nip +
+                    '" selected>' + value.nm_guru + '</option>').trigger('change');
                 }
               });
-              $('#nm_ruangan').val(data['item'][0].nm_ruangan);
-              $('#kps_belajar').val(data['item'][0].kps_belajar);
-              $('#kps_ujian').val(data['item'][0].kps_ujian);
-              $('#ket_ruangan').val(data['item'][0].ket_ruangan);
-              $('input[id="stts_ruangan"][value="' + data['item'][0].stts_ruangan + '"]').prop('checked',
+              $.each(data['nm_jurusan'], function(key, value) {
+                $('#kd_jurusan').append('<option value=' + value.kd_jurusan + '>' + value.nm_jurusan +
+                  '</option>');
+                if (data['item'][0].kd_jurusan == value.kd_jurusan) {
+                  $('#kd_jurusan').append('<option value="' + value.kd_jurusan +
+                    '" selected>' + value.nm_jurusan + '</option>').trigger('change');
+                }
+              });
+              $.each(data['nm_ruangan'], function(key, value) {
+                $('#kd_ruangan').append('<option value=' + value.kd_ruangan + '>' + value.nm_ruangan +
+                  '</option>');
+                if (data['item'][0].kd_ruangan == value.kd_ruangan) {
+                  $('#kd_ruangan').append('<option value="' + value.kd_ruangan +
+                    '" selected>' + value.nm_ruangan + '</option>').trigger('change');
+                }
+              });
+              $('input[id="stts_kelas"][value="' + data['item'][0].stts_kelas + '"]').prop('checked',
                 true);
-              $('#editRuangan').modal('show');
+              $('#editKelas').modal('show');
             }
           });
         });
 
         $('#update').on("click", function(e) {
           e.preventDefault()
-          var id_ruangan = $("#id_ruangan").val();
+          var id_kelas = $("#id_kelas").val();
           $.ajax({
             type: "PUT",
-            data: $('#dataRuangan').serialize(),
-            url: 'ruangan/update/' + id_ruangan,
+            data: $('#dataKelas').serialize(),
+            url: 'kelas/update/' + id_kelas,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
