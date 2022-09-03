@@ -87,7 +87,7 @@
   </div>
   @pushOnce('js')
     @include('dashboard.master.kepegawaian.add')
-    {{-- @include('dashboard.master.kurikulum.edit') --}}
+    @include('dashboard.master.kepegawaian.edit')
     <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
@@ -127,39 +127,39 @@
       @endif
     </script>
     <script>
-      // $(document).ready(function() {
-      //   $('.edit').on("click", function(e) {
-      //     e.preventDefault()
-      //     var id = $(this).attr('data-bs-id');
-      //     $.ajax({
-      //       url: "/kurikulum/edit/" + id,
-      //       type: "GET",
-      //       dataType: "JSON",
-      //       success: function(data) {
-      //         $('#id_kurikulum').val(data.id_kurikulum);
-      //         $('#nm_kurikulum').val(data.nm_kurikulum);
-      //         $('input[id="stts_kurikulum"][value="' + data.stts_kurikulum + '"]').prop('checked', true);
-      //         $('#editKurikulum').modal('show');
-      //         console.log(data.stts_kurikulum)
-      //       }
-      //     });
-      //   });
+      $(document).ready(function() {
+        $('.edit').on("click", function(e) {
+          e.preventDefault()
+          var id = $(this).attr('data-bs-id');
+          $.ajax({
+            url: "kepegawaian/edit/" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+              $('#id_kepegawaian').val(data.id_kepegawaian);
+              $('#nm_kepegawaian').val(data.nm_kepegawaian);
+              $('#ket_kepegawaian').val(data.ket_kepegawaian);
+              $('#editKepegawaian').modal('show');
+              console.log(data.stts_kurikulum)
+            }
+          });
+        });
 
-      //   $('#update').on("click", function(e) {
-      //     e.preventDefault()
-      //     var id_kurikulum = $("#id_kurikulum").val();
-      //     $.ajax({
-      //       type: "PUT",
-      //       data: $('#dataKurikulum').serialize(),
-      //       url: '/kurikulum/update/' + id_kurikulum,
-      //       dataType: "json",
-      //       headers: {
-      //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      //       },
-      //     });
-      //     window.location.reload();
-      //   });
-      // });
+        $('#update').on("click", function(e) {
+          e.preventDefault()
+          var id_kepegawaian = $("#id_kepegawaian").val();
+          $.ajax({
+            type: "PUT",
+            data: $('#dataKepegawaian').serialize(),
+            url: 'kepegawaian/update/' + id_kepegawaian,
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          });
+          window.location.reload();
+        });
+      });
     </script>
   @endPushOnce
 @endsection

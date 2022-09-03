@@ -35,4 +35,30 @@ class KepegawaianController extends Controller
         //redirect to index
         return redirect()->route('kepegawaian')->with(['success' => 'Data Berhasil Ditambahkan!']);
     }
+
+    public function edit($id)
+    {
+        $data = Kepegawaian::find($id);
+        return response()->json($data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $this->validate($request, [
+        //     'nm_kepegawaian'     => 'required',
+        //     'ket_kepegawaian'   => 'required'
+        // ]);
+
+        $data =  Kepegawaian::find($id);
+        $data->nm_kepegawaian = $request->nm_kepegawaian;
+        $data->ket_kepegawaian =  $request->ket_kepegawaian;
+        $data->update();
+        return redirect()->route('kepegawaian')->with(['success' => 'Data Berhasil Diupdate!']);
+    }
+
+    public function destroy($id)
+    {
+        Kepegawaian::find($id)->delete();
+        return redirect()->route('kepegawaian')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 }
