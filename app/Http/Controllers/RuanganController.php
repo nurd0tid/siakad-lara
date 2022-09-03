@@ -34,7 +34,7 @@ class RuanganController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kd_ruangan' => 'required|unique:ruangans',
+            'kd_ruangan' => 'required|unique:ruangans,kd_ruangan',
             'kd_gedung' => 'required',
             'nm_ruangan' => 'required',
             'kps_belajar' => 'required',
@@ -54,8 +54,7 @@ class RuanganController extends Controller
             'stts_ruangan'    => $request->stts_ruangan
         ]);
 
-        //redirect to index
-        return redirect()->route('ruangan')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return response()->json(['success' => 'Ruangan successfully added']);
     }
 
     public function edit($id)
@@ -74,15 +73,15 @@ class RuanganController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'kd_ruangan' => 'required|unique:ruangans',
-        //     'kd_gedung' => 'required',
-        //     'nm_ruangan' => 'required',
-        //     'kps_belajar' => 'required',
-        //     'kps_ujian' => 'required',
-        //     'ket_ruangan' => 'required',
-        //     'stts_ruangan' => 'required'
-        // ]);
+        $this->validate($request, [
+            'kd_ruangan' => 'required|unique:ruangans,kd_ruangan,' . $id . ',id_ruangan',
+            'kd_gedung' => 'required',
+            'nm_ruangan' => 'required',
+            'kps_belajar' => 'required',
+            'kps_ujian' => 'required',
+            'ket_ruangan' => 'required',
+            'stts_ruangan' => 'required'
+        ]);
 
         //create post
         $data = Ruangan::find($id);
@@ -94,7 +93,7 @@ class RuanganController extends Controller
         $data->ket_ruangan = $request->ket_ruangan;
         $data->stts_ruangan = $request->stts_ruangan;
         $data->update();
-        return redirect()->route('ruangan')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Ruangan successfully updated']);
     }
 
     public function destroy($id)

@@ -35,6 +35,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
   <link id="color" rel="stylesheet" href="{{ asset('assets/css/color-1.css') }}" media="screen">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/responsive.css') }}">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   @stack('css')
 </head>
 
@@ -339,6 +340,7 @@
   <script src="{{ asset('assets/js/bootstrap/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
   <script src="{{ asset('assets/js/script.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   @stack('js')
 </body>
 

@@ -139,6 +139,7 @@
       @if (session()->has('success'))
         toastr.success('{{ session('success') }}', 'Wohoooo!');
       @else
+        (session() - > has('error'))
         toastr.error('{{ session('error') }}', 'Whoops!');
       @endif
     </script>

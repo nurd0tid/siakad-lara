@@ -3,6 +3,7 @@
   @pushOnce('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
+    </head>
   @endPushOnce
   <div class="page-body">
     <div class="container-fluid">
@@ -142,13 +143,6 @@
       });
     </script>
     <script>
-      @if (session()->has('success'))
-        toastr.success('{{ session('success') }}', 'Wohoooo!');
-      @else
-        toastr.error('{{ session('error') }}', 'Whoops!');
-      @endif
-    </script>
-    <script>
       $(document).ready(function() {
         $('.add').on("click", function(e) {
           e.preventDefault()
@@ -176,8 +170,32 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Yohooo', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops');
+            }
           });
-          window.location.reload();
+
         });
 
         $('.edit').on("click", function(e) {
@@ -220,8 +238,31 @@
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Yohooo', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops');
+            }
           });
-          window.location.reload();
         });
       });
     </script>
