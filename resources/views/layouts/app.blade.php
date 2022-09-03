@@ -247,8 +247,7 @@
                     <li><a href="{{ route('ptk') }}">Jenis PTK</a></li>
                     <li><a href="{{ route('jurusan') }}">Jurusan</a></li>
                     <li><a href="{{ route('kelas') }}">Kelas</a></li>
-                    <li><a href="http://">Kepegawaian</a></li>
-                    <li><a href="{{ route('identitas') }}">Identitas Sekolah</a></li>
+                    <li><a href="{{ route('kepegawaian') }}">Kepegawaian</a></li>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i

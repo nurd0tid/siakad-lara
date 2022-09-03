@@ -5,6 +5,7 @@ use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\KurikulumController;
 use App\Http\Controllers\PtkController;
 use App\Http\Controllers\RuanganController;
@@ -98,6 +99,14 @@ Route::controller(KelasController::class)->prefix('kelas')->group(function () {
     Route::get('edit/{id}', 'edit')->name('kelas/edit');
     Route::put('update/{id}', 'update')->name('kelas/update');
     Route::delete('delete/{id}', 'destroy')->name('kelas/delete');
+});
+
+Route::controller(KepegawaianController::class)->prefix('kepegawaian')->group(function () {
+    Route::get('', 'index')->name('kepegawaian');
+    Route::post('save', 'store')->name('kepegawaian/save');
+    Route::get('edit/{id}', 'edit')->name('kepegawaian/edit');
+    Route::put('update/{id}', 'update')->name('kepegawaian/update');
+    Route::delete('delete/{id}', 'destroy')->name('kepegawaian/delete');
 });
 
 Route::controller(SiswaController::class)->prefix('siswa')->group(function () {
