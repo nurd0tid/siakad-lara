@@ -35,4 +35,49 @@ class KelasController extends Controller
             ->get();
         return response()->json($data);
     }
+
+    public function add()
+    {
+        $data['wali_kelas'] =  DB::table('gurus')
+            ->select([
+                'nip',
+                'nm_guru'
+            ])->get();
+        $data['nm_jurusan'] = DB::table('jurusans')
+            ->select([
+                'kd_jurusan',
+                'nm_jurusan'
+            ])->get();
+        $data['nm_ruangan'] = DB::table('ruangans')
+            ->select([
+                'kd_ruangan',
+                'nm_ruangan'
+            ])->get();
+        return response()->json($data);
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'kd_kelas' => 'required|unique:kelas',
+            'nm_kelas' => 'required',
+            'nip' => 'required',
+            'kd_jurusan' => 'required',
+            'kd_ruangan' => 'required',
+            'stts_kelas' => 'required'
+        ]);
+
+        //create post
+        Kelas::create([
+            'kd_kelas'     => $request->kd_kelas,
+            'nm_kelas'     => $request->nm_kelas,
+            'nip'    => $request->nip,
+            'kd_jurusan'      => $request->kd_jurusan,
+            'kd_ruangan'      => $request->kd_ruangan,
+            'stts_kelas'      => $request->stts_kelas
+        ]);
+
+        //redirect to index
+        return redirect()->route('kelas')->with(['success' => 'Data Berhasil Ditambahkan!']);
+    }
 }

@@ -3,6 +3,7 @@
   @pushOnce('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.css') }}">
   @endPushOnce
   <div class="page-body">
     <div class="container-fluid">
@@ -114,6 +115,7 @@
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/select2/select2.full.min.js') }}"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
@@ -150,17 +152,26 @@
     <script>
       $(document).ready(function() {
         $('.add').on("click", function(e) {
+          $(".js-example-basic-single").select2();
           e.preventDefault()
           $.ajax({
-            url: "ruangan/add",
+            url: "kelas/add",
             type: "GET",
             dataType: "json",
             success: function(data) {
-              $.each(data, function(i, value) {
-                $('#option').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
+              $.each(data['wali_kelas'], function(i, value) {
+                $('#wali_kelas').append('<option value=' + value.nip + '>' + value.nm_guru +
                   '</option>');
               });
-              $('#addRuangan').modal('show');
+              $.each(data['nm_jurusan'], function(i, value) {
+                $('#nm_jurusan').append('<option value=' + value.kd_jurusan + '>' + value.nm_jurusan +
+                  '</option>');
+              });
+              $.each(data['nm_ruangan'], function(i, value) {
+                $('#nm_ruangan').append('<option value=' + value.kd_ruangan + '>' + value.nm_ruangan +
+                  '</option>');
+              });
+              $('#addKelas').modal('show');
             }
           });
         });
@@ -169,8 +180,8 @@
           e.preventDefault()
           $.ajax({
             type: "POST",
-            data: $('#saveRuangan').serialize(),
-            url: '/ruangan/save',
+            data: $('#saveKelas').serialize(),
+            url: 'kelas/save',
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
