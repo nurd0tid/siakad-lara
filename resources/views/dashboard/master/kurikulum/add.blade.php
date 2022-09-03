@@ -11,15 +11,16 @@
           @csrf
           <div>
             <div class="col-md-12">
-              <label class="form-label" for="validationCustom01">Nama Kurikulum</label>
-              <input class="form-control" id="validationCustom01" type="text" name="nm_kurikulum" required>
+              <label class="form-label">Nama Kurikulum</label>
+              <input class="form-control @error('nm_kurikulum') is-invalid @enderror" type="text" name="nm_kurikulum"
+                required>
               @error('nm_kurikulum')
-                <div class="valid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
             <div class="col">
               <div class="form-group m-t-15 m-checkbox-inline mb-0">
-                <label class="form-label" for="validationCustom01">Status</label>
+                <label class="form-label">Status</label>
                 <label class="d-block" for="chk-ani1">
                   <input class="radio_animated" id="chk-ani1" type="radio" value="Active"
                     name="stts_kurikulum">Active

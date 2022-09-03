@@ -16,13 +16,13 @@ class KurikulumController extends Controller
     {
         $data = Kurikulum::all();
         return view('dashboard.master.kurikulum.index', compact('data'));
-        // dd($data);
     }
 
     public function store(Request $request)
     {
         //validate form
-        $this->validate($request, [
+
+        $message = $request->validate([
             'nm_kurikulum'     => 'required',
             'stts_kurikulum'   => 'required'
         ]);
@@ -34,7 +34,7 @@ class KurikulumController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully added!']);
     }
 
     public function edit($id)
@@ -45,23 +45,22 @@ class KurikulumController extends Controller
 
     public function update(Request $request, $id)
     {
-        //validate form
-        // $this->validate($request, [
-        //     'nm_kurikulum'     => 'required',
-        //     'stts_kurikulum'   => 'required'
-        // ]);
+        $this->validate($request, [
+            'nm_kurikulum'     => 'required',
+            'stts_kurikulum'   => 'required'
+        ]);
 
         $data = Kurikulum::find($id);
         $data->nm_kurikulum = $request->nm_kurikulum;
         $data->stts_kurikulum = $request->stts_kurikulum;
         $data->update();
-        return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Kurikulum successfully updated']);
     }
 
     public function destroy($id)
     {
         Kurikulum::find($id)->delete();
 
-        return redirect()->route('kurikulum')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully deleted']);
     }
 }
