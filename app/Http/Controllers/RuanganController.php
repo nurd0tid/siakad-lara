@@ -99,6 +99,6 @@ class RuanganController extends Controller
     public function destroy($id)
     {
         Ruangan::find($id)->delete();
-        return redirect()->route('ruangan')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('ruangan')->with(['success' => 'Ruangan successfully deleted']);
     }
 }

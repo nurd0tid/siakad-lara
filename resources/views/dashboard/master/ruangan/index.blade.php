@@ -143,6 +143,24 @@
       });
     </script>
     <script>
+      @if (session()->has('success'))
+        toastr.success(
+          '{{ session('success') }}',
+          'Wohoooo!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+            onHidden: function() {
+              window.location.reload();
+            }
+          }
+        );
+      @endif
+    </script>
+    <script>
       $(document).ready(function() {
         $('.add').on("click", function(e) {
           e.preventDefault()
@@ -173,7 +191,7 @@
             success: function(data) {
               toastr.success(
                 data.success,
-                'Yohooo', {
+                'Wohoooo!', {
                   showDuration: 300,
                   hideDuration: 900,
                   timeOut: 900,
@@ -192,7 +210,7 @@
               $.each(errors, function(key, value) {
                 errorsHtml += '<li>' + value[0] + '</li>';
               });
-              toastr.error(errorsHtml, 'Whoops');
+              toastr.error(errorsHtml, 'Whoops!');
             }
           });
 
@@ -241,7 +259,7 @@
             success: function(data) {
               toastr.success(
                 data.success,
-                'Yohooo', {
+                'Wohoooo!', {
                   showDuration: 300,
                   hideDuration: 900,
                   timeOut: 900,
@@ -260,7 +278,7 @@
               $.each(errors, function(key, value) {
                 errorsHtml += '<li>' + value[0] + '</li>';
               });
-              toastr.error(errorsHtml, 'Whoops');
+              toastr.error(errorsHtml, 'Whoops!');
             }
           });
         });
