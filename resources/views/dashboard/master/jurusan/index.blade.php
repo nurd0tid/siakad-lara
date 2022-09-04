@@ -131,9 +131,17 @@
     </script>
     <script>
       @if (session()->has('success'))
-        toastr.success('{{ session('success') }}', 'Wohoooo!');
-      @else
-        toastr.error('{{ session('error') }}', 'Whoops!');
+        toastr.success(
+          '{{ session('success') }}',
+          'Wohoooo!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+          }
+        );
       @endif
     </script>
     <script>
@@ -143,7 +151,7 @@
         $('.add').on("click", function(e) {
           e.preventDefault()
           $.ajax({
-            url: "jurusan/add",
+            url: "{{ route('jurusan/add') }}",
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -161,20 +169,43 @@
           $.ajax({
             type: "POST",
             data: $('#saveJurusan').serialize(),
-            url: 'jurusan/save',
+            url: "{{ route('jurusan/save') }}",
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
           });
-          window.location.reload();
         });
 
         $('.edit').on("click", function(e) {
           e.preventDefault();
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "jurusan/edit/" + id,
+            url: "/master/jurusan/edit/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
@@ -207,20 +238,43 @@
           $.ajax({
             type: "PUT",
             data: $('#dataJurusan').serialize(),
-            url: 'jurusan/update/' + id_jurusan,
+            url: '/master/jurusan/update/' + id_jurusan,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
           });
-          window.location.reload();
         });
 
         $('.detail').on("click", function(e) {
           e.preventDefault();
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "jurusan/detail/" + id,
+            url: "/master/jurusan/detail/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {

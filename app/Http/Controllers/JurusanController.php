@@ -32,7 +32,7 @@ class JurusanController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'kd_jurusan'     => 'required|unique:jurusans',
+            'kd_jurusan'     => 'required|unique:jurusans,kd_jurusan',
             'nm_jurusan'   => 'required',
             'bidang_keahlian'   => 'required',
             'kptsi_umum'   => 'required',
@@ -57,7 +57,7 @@ class JurusanController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return response()->json(['success' => 'Jurusan successfully added!']);
     }
 
     public function detail($id)
@@ -85,17 +85,18 @@ class JurusanController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'kd_jurusan'     => 'required|unique:jurusans',
-        //     'nm_jurusan'   => 'required',
-        //     'bidang_keahlian'   => 'required',
-        //     'kptsi_umum'   => 'required',
-        //     'kptsi_khusus'   => 'required',
-        //     'nip'   => 'required',
-        //     'jabatan'   => 'required',
-        //     'ket_jurusan'   => 'required',
-        //     'stts_jurusan'   => 'required',
-        // ]);
+        $this->validate($request, [
+            'kd_jurusan'     =>
+            'required|unique:jurusans,kd_jurusan,' . $id . ',id_jurusan',
+            'nm_jurusan'   => 'required',
+            'bidang_keahlian'   => 'required',
+            'kptsi_umum'   => 'required',
+            'kptsi_khusus'   => 'required',
+            'nip'   => 'required',
+            'jabatan'   => 'required',
+            'ket_jurusan'   => 'required',
+            'stts_jurusan'   => 'required',
+        ]);
 
         $data = Jurusan::find($id);
         $data->kd_jurusan       = $request->kd_jurusan;
@@ -108,12 +109,12 @@ class JurusanController extends Controller
         $data->ket_jurusan      = $request->ket_jurusan;
         $data->stts_jurusan     = $request->stts_jurusan;
         $data->update();
-        return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Jurusan successfully updated!']);
     }
 
     public function destroy($id)
     {
         Jurusan::find($id)->delete();
-        return redirect()->route('jurusan')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('jurusan')->with(['success' => 'Jurusan successfully deleted!']);
     }
 }
