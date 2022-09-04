@@ -144,9 +144,17 @@
     </script>
     <script>
       @if (session()->has('success'))
-        toastr.success('{{ session('success') }}', 'Wohoooo!');
-      @else
-        toastr.error('{{ session('error') }}', 'Whoops!');
+        toastr.success(
+          '{{ session('success') }}',
+          'Wohoooo!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+          }
+        );
       @endif
     </script>
     <script>
@@ -155,7 +163,7 @@
           $(".js-example-basic-single").select2();
           e.preventDefault()
           $.ajax({
-            url: "kelas/add",
+            url: "{{ route('kelas/add') }}",
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -181,13 +189,36 @@
           $.ajax({
             type: "POST",
             data: $('#saveKelas').serialize(),
-            url: 'kelas/save',
+            url: "{{ route('kelas/save') }}",
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
           });
-          window.location.reload();
         });
 
         $('.edit').on("click", function(e) {
@@ -195,7 +226,7 @@
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "kelas/edit/" + id,
+            url: "/master/kelas/edit/" + id,
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -239,13 +270,36 @@
           $.ajax({
             type: "PUT",
             data: $('#dataKelas').serialize(),
-            url: 'kelas/update/' + id_kelas,
+            url: '/master/kelas/update/' + id_kelas,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
           });
-          window.location.reload();
         });
 
         $('.detail').on("click", function(e) {

@@ -59,7 +59,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kd_kelas' => 'required|unique:kelas',
+            'kd_kelas' => 'required|unique:kelas,kd_kelas',
             'nm_kelas' => 'required',
             'nip' => 'required',
             'kd_jurusan' => 'required',
@@ -78,7 +78,7 @@ class KelasController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('kelas')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return response()->json(['success' => 'Kelas successfully added!']);
     }
 
     public function edit($id)
@@ -111,14 +111,15 @@ class KelasController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'kd_kelas' => 'required|unique:kelas',
-        //     'nm_kelas' => 'required',
-        //     'nip' => 'required',
-        //     'kd_jurusan' => 'required',
-        //     'kd_ruangan' => 'required',
-        //     'stts_kelas' => 'required'
-        // ]);
+        $this->validate($request, [
+            'kd_kelas' =>
+            'required|unique:kelas,kd_kelas,' . $id . ',id_kelas',
+            'nm_kelas' => 'required',
+            'nip' => 'required',
+            'kd_jurusan' => 'required',
+            'kd_ruangan' => 'required',
+            'stts_kelas' => 'required'
+        ]);
 
         $data = Kelas::find($id);
         $data->kd_kelas = $request->kd_kelas;
@@ -128,12 +129,12 @@ class KelasController extends Controller
         $data->kd_ruangan = $request->kd_ruangan;
         $data->stts_kelas = $request->stts_kelas;
         $data->update();
-        return redirect()->route('kelas')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Kelas successfully updated!']);
     }
 
     public function destroy($id)
     {
         Kelas::find($id)->delete();
-        return redirect()->route('kelas')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('kelas')->with(['success' => 'Kelas successfully deleted!']);
     }
 }
