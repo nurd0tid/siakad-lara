@@ -183,7 +183,7 @@
           $.ajax({
             type: "POST",
             data: $('#saveRuangan').serialize(),
-            url: '/ruangan/save',
+            url: '{{ route('ruangan/save') }}',
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

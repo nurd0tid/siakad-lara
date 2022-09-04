@@ -6,16 +6,13 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="saveRuangan" class="needs-validation" novalidate="" method="POST">
+        <form id="saveRuangan" class="needs-validation" novalidate=""method="POST">
           @csrf
           <div>
             <div class="row g-2">
               <div class="col-md-6">
                 <label class="form-label">Kode Ruangan</label>
                 <input class="form-control" type="text" name="kd_ruangan" required>
-                @error('kd_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Nama Gedung</label>
@@ -27,10 +24,8 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="nm_ruangan">Nama Ruangan</label>
-                <input class="form-control" type="text" name="nm_ruangan" required>
-                @error('nm_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
+                <input class="form-control @error('nm_ruangan') is-invalid @enderror" type="text" name="nm_ruangan"
+                  required>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="kps_belajar">Kapasitas Belajar</label>
