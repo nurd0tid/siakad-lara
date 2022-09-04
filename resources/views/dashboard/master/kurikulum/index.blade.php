@@ -142,9 +142,18 @@
             closeButton: true,
             newestOnTop: true,
             progressBar: true,
-            onHidden: function() {
-              window.location.reload();
-            }
+          }
+        );
+      @elseif (session()->has('error'))
+        toastr.error(
+          '{{ session('error') }}',
+          'Whoops!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
           }
         );
       @endif
@@ -155,7 +164,7 @@
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "/kurikulum/edit/" + id,
+            url: "/master/kurikulum/edit/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
@@ -174,7 +183,7 @@
           $.ajax({
             type: "PUT",
             data: $('#dataKurikulum').serialize(),
-            url: '/kurikulum/update/' + id_kurikulum,
+            url: '/master/kurikulum/update/' + id_kurikulum,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -20,9 +20,9 @@ class KurikulumController extends Controller
 
     public function store(Request $request)
     {
-        //validate form
+        // dd($request->all());
 
-        $message = $request->validate([
+        $this->validate($request, [
             'nm_kurikulum'     => 'required',
             'stts_kurikulum'   => 'required'
         ]);
@@ -33,7 +33,10 @@ class KurikulumController extends Controller
             'stts_kurikulum'   => $request->stts_kurikulum
         ]);
 
-        //redirect to index
+        // dd($request->all());
+
+
+        // //redirect to index
         return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully added!']);
     }
 
@@ -54,13 +57,13 @@ class KurikulumController extends Controller
         $data->nm_kurikulum = $request->nm_kurikulum;
         $data->stts_kurikulum = $request->stts_kurikulum;
         $data->update();
-        return response()->json(['success' => 'Kurikulum successfully updated']);
+        return response()->json(['success' => 'Kurikulum successfully updated!']);
     }
 
     public function destroy($id)
     {
         Kurikulum::find($id)->delete();
 
-        return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully deleted']);
+        return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully deleted!']);
     }
 }

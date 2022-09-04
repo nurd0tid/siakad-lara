@@ -74,7 +74,7 @@ class RuanganController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kd_ruangan' => 'required|unique:ruangans,kd_ruangan,' . $id . ',id_ruangan',
+            'kd_ruangan' => 'required|unique:ruangans,kd_ruangan,' . $id . ',id_ruangan|min:4',
             'kd_gedung' => 'required',
             'nm_ruangan' => 'required',
             'kps_belajar' => 'required',
@@ -93,12 +93,12 @@ class RuanganController extends Controller
         $data->ket_ruangan = $request->ket_ruangan;
         $data->stts_ruangan = $request->stts_ruangan;
         $data->update();
-        return response()->json(['success' => 'Ruangan successfully updated']);
+        return response()->json(['success' => 'Ruangan successfully updated!']);
     }
 
     public function destroy($id)
     {
         Ruangan::find($id)->delete();
-        return redirect()->route('ruangan')->with(['success' => 'Ruangan successfully deleted']);
+        return redirect()->route('ruangan')->with(['success' => 'Ruangan successfully deleted!']);
     }
 }

@@ -45,7 +45,7 @@ class GedungController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('gedung')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('gedung')->with(['success' => 'Gedung successfully added!']);
     }
 
     public function edit($id)
@@ -56,16 +56,16 @@ class GedungController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $this->validate($request, [
-        //     'kd_gedung'     => 'required|unique:gedungs',
-        //     'nm_gedung'     => 'required',
-        //     'jml_lantai'    => 'required',
-        //     'p_gedung'      => 'required',
-        //     't_gedung'      => 'required',
-        //     'l_gedung'      => 'required',
-        //     'ket_gedung'    => 'required',
-        //     'stts_gedung'   => 'required'
-        // ]);
+        $this->validate($request, [
+            'kd_gedung'     => 'required|unique:gedungs,kd_gedung,' . $id . ',id_gedung|min:4',
+            'nm_gedung'     => 'required',
+            'jml_lantai'    => 'required',
+            'p_gedung'      => 'required',
+            't_gedung'      => 'required',
+            'l_gedung'      => 'required',
+            'ket_gedung'    => 'required',
+            'stts_gedung'   => 'required'
+        ]);
 
         //create post
         $data = Gedung::find($id);
@@ -78,12 +78,12 @@ class GedungController extends Controller
         $data->ket_gedung    = $request->ket_gedung;
         $data->stts_gedung   = $request->stts_gedung;
         $data->update();
-        return redirect()->route('gedung')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Gedung successfully updated!']);
     }
 
     public function destroy($id)
     {
         Gedung::find($id)->delete();
-        return redirect()->route('gedung')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('gedung')->with(['success' => 'Gedung successfully deleted!']);
     }
 }

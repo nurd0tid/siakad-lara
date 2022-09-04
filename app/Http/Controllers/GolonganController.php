@@ -31,7 +31,7 @@ class GolonganController extends Controller
             'ket_golongan' => $request->ket_golongan,
         ]);
 
-        return redirect()->route('golongan')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('golongan')->with(['success' => 'Golongan successfully added!']);
     }
 
     public function edit($id)
@@ -43,21 +43,21 @@ class GolonganController extends Controller
     public function update(Request $request, $id)
     {
         // //validate form
-        // $this->validate($request, [
-        //     'nm_golongan'     => 'required',
-        //     'ket_golongan'     => 'required'
-        // ]);
+        $this->validate($request, [
+            'nm_golongan'     => 'required',
+            'ket_golongan'     => 'required'
+        ]);
 
         $data = Golongan::find($id);
         $data->nm_golongan = $request->nm_golongan;
         $data->ket_golongan = $request->ket_golongan;
         $data->update();
-        return redirect()->route('golongan')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Golongan successfully updated!']);
     }
 
     public function destroy($id)
     {
         Golongan::find($id)->delete();
-        return redirect()->route('golongan')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('golongan')->with(['success' => 'Golongan successfully deleted!']);
     }
 }

@@ -37,7 +37,7 @@ class ThnAkademikController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('thnakademik')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('thnakademik')->with(['success' => 'Tahun Akademik successfully added!']);
     }
 
     public function edit($id)
@@ -48,13 +48,13 @@ class ThnAkademikController extends Controller
 
     public function update(Request $request, $id)
     {
-        //validate form
-        // $this->validate($request, [
-        //     'kd_tahun'     => 'required|unique:thn_akademiks|min:4',
-        //     'nm_tahun'     => 'required',
-        //     'ket_tahun'    => 'required|max:9',
-        //     'stts_tahun'   => 'required'
-        // ]);
+        $this->validate($request, [
+            'kd_tahun'     =>
+            'required|unique:thn_akademiks,kd_tahun,' . $id . ',id_tahun|min:5',
+            'nm_tahun'     => 'required',
+            'ket_tahun'    => 'required',
+            'stts_tahun'   => 'required'
+        ]);
 
         $data = ThnAkademik::find($id);
         $data->kd_tahun = $request->kd_tahun;
@@ -62,13 +62,13 @@ class ThnAkademikController extends Controller
         $data->ket_tahun = $request->ket_tahun;
         $data->stts_tahun = $request->stts_tahun;
         $data->update();
-        return redirect()->route('thnakademik')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Tahun Akademik successfully updated!']);
     }
 
     public function destroy($id)
     {
         ThnAkademik::find($id)->delete();
 
-        return redirect()->route('thnakademik')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('thnakademik')->with(['success' => 'Tahun Akademik successfully deleted!']);
     }
 }

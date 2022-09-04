@@ -15,7 +15,7 @@
               <input class="form-control @error('nm_kurikulum') is-invalid @enderror" type="text" name="nm_kurikulum"
                 required>
               @error('nm_kurikulum')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <strong>{{ $message }}</strong>
               @enderror
             </div>
             <div class="col">

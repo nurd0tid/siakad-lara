@@ -153,9 +153,6 @@
             closeButton: true,
             newestOnTop: true,
             progressBar: true,
-            onHidden: function() {
-              window.location.reload();
-            }
           }
         );
       @endif
@@ -165,7 +162,7 @@
         $('.add').on("click", function(e) {
           e.preventDefault()
           $.ajax({
-            url: "ruangan/add",
+            url: "{{ route('ruangan/add') }}",
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -220,7 +217,7 @@
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "ruangan/edit/" + id,
+            url: "/master/ruangan/edit/" + id,
             type: "GET",
             dataType: "json",
             success: function(data) {
@@ -251,7 +248,7 @@
           $.ajax({
             type: "PUT",
             data: $('#dataRuangan').serialize(),
-            url: 'ruangan/update/' + id_ruangan,
+            url: '/master/ruangan/update/' + id_ruangan,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
