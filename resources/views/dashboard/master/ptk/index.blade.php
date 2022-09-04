@@ -121,9 +121,29 @@
     </script>
     <script>
       @if (session()->has('success'))
-        toastr.success('{{ session('success') }}', 'Wohoooo!');
-      @else
-        toastr.error('{{ session('error') }}', 'Whoops!');
+        toastr.success(
+          '{{ session('success') }}',
+          'Wohoooo!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+          }
+        );
+      @elseif (session()->has('error'))
+        toastr.error(
+          '{{ session('error') }}',
+          'Whoops!', {
+            showDuration: 300,
+            hideDuration: 900,
+            timeOut: 900,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+          }
+        );
       @endif
     </script>
     <script>
@@ -132,7 +152,7 @@
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "ptk/edit/" + id,
+            url: "/master/ptk/edit/" + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
@@ -150,13 +170,36 @@
           $.ajax({
             type: "PUT",
             data: $('#dataPtk').serialize(),
-            url: 'ptk/update/' + id_ptk,
+            url: '/master/ptk/update/' + id_ptk,
             dataType: "json",
             headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '<li>' + value[0] + '</li>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
           });
-          window.location.reload();
         });
       });
     </script>

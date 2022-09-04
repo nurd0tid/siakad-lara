@@ -30,7 +30,7 @@ class PtkController extends Controller
             'nm_ptk' => $request->nm_ptk,
             'ket_ptk' => $request->ket_ptk
         ]);
-        return redirect()->route('ptk')->with(['success' => 'Data Berhasil Ditambahkan!']);
+        return redirect()->route('ptk')->with(['success' => 'Jenis PTK successfully added!']);
     }
 
     public function edit($id)
@@ -41,16 +41,22 @@ class PtkController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'nm_ptk'     => 'required',
+            'ket_ptk'     => 'required'
+        ]);
+
+
         $data = Ptk::find($id);
         $data->nm_ptk = $request->nm_ptk;
         $data->ket_ptk = $request->ket_ptk;
         $data->update();
-        return redirect()->route('ptk')->with(['success' => 'Data Berhasil Diupdate!']);
+        return response()->json(['success' => 'Jenis PTK successfully updated!']);
     }
 
     public function destroy($id)
     {
         Ptk::find($id)->delete();
-        return redirect()->route('ptk')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('ptk')->with(['success' => 'Jenis PTK successfully deleted!']);
     }
 }
