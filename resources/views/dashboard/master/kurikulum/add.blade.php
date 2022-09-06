@@ -12,10 +12,9 @@
           <div>
             <div class="col-md-12">
               <label class="form-label">Nama Kurikulum</label>
-              <input class="form-control @error('nm_kurikulum') is-invalid @enderror" type="text" name="nm_kurikulum"
-                required>
+              <input class="form-control @error('nm_kurikulum') is-invalid @enderror" type="text" name="nm_kurikulum">
               @error('nm_kurikulum')
-                <strong>{{ $message }}</strong>
+                <p class="text-danger">{{ $message }}</p>
               @enderror
             </div>
             <div class="col">

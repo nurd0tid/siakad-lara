@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kurikulum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KurikulumController extends Controller
 {
@@ -20,21 +21,34 @@ class KurikulumController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        $messages = [
+            'nm_kurikulum.required' => 'Nama kurikulum tidak boleh kosong.',
+            'stts_kurikulum.required' => 'Status tidak boleh kosong.',
+        ];
 
-        $this->validate($request, [
-            'nm_kurikulum'     => 'required',
-            'stts_kurikulum'   => 'required'
-        ]);
+        $rule = [
+            'nm_kurikulum' => 'required',
+            'stts_kurikulum' => 'required',
+        ];
+
+        $validator = Validator::make(
+            $request->all(),
+            $rule,
+            $messages
+        );
+ 
+        if ($validator->fails()) {
+            return redirect()
+                ->route('kurikulum', ['modal-add-is-open' => 'true'])
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         //create post
         Kurikulum::create([
             'nm_kurikulum'     => $request->nm_kurikulum,
             'stts_kurikulum'   => $request->stts_kurikulum
         ]);
-
-        // dd($request->all());
-
 
         // //redirect to index
         return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully added!']);
