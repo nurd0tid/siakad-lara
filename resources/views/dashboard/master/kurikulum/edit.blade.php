@@ -13,11 +13,10 @@
             <input class="form-control" id="id_kurikulum" type="hidden" name="id_kurikulum">
             <div class="col-md-12">
               <label class="form-label" for="nm_kurikulum">Nama Kurikulum</label>
-              <input class="form-control @error('nm_kurikulum') is-invalid @enderror" id="nm_kurikulum" type="text"
-                name="nm_kurikulum" required>
+              <input class="form-control" id="nm_kurikulum" type="text" name="nm_kurikulum" required>
             </div>
             <div class="col">
-              <div class="form-group m-t-15 m-checkbox-inline mb-0">
+              <div class="form-group m-t-15 m-checkbox-inline mb-0" id="error">
                 <label class="form-label">Status</label>
                 <label class="d-block">
                   <input class="radio_animated" id="stts_kurikulum" type="radio" value="Active"

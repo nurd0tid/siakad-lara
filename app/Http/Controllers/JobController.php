@@ -34,12 +34,14 @@ class JobController extends Controller
     $page = $client->request('GET', $url);
 
     $myArr = [];
-    $page->filter('.dLzoMG')->each(function ($item) use (&$myArr) {
+    $page->filter('.compact_job_card')->each(function ($item) use (&$myArr) {
       $filtered = [
         'img' => $item->filter('img')->attr('src'),
         'link' => $item->filter('.hvpJwO a')->attr('href'),
         'title' => $item->filter('.bVuGlP')->text(),
         'perusahaan' => $item->filter('.iOneCq')->text(),
+        'status' => $item->filter('span')->eq(1)->text(),
+        // 'update' => $item->filter('span')->eq(2)->text(),
         'lokasi' => $item->filter('.ikxvyY')->eq(0)->text(),
         'gaji' => $item->filter('.ikxvyY')->eq(1)->text(),
         'pengalaman' => $item->filter('.ikxvyY')->eq(2)->text(),
@@ -48,7 +50,7 @@ class JobController extends Controller
     });
 
     $data['data'] = array_slice($myArr, 0, 20);
-    // return $data;
-    return view('dashboard.jobSearch.index', $data);
+    return $data;
+    // return view('dashboard.jobSearch.index', $data);
   }
 }

@@ -83,11 +83,12 @@
               <div class="card">
                 <div class="job-search">
                   <div class="card-body">
-                    {{-- @if ($key['status'] == null)
-                  @else
-                  @endif --}}
-                    <div class="ribbon ribbon-bookmark ribbon-right ribbon-secondary">HOT JOB <i class="fa fa-leaf"></i>
-                    </div>
+                    @if ($key['status'] == 'Hot Job')
+                      <div class="ribbon ribbon-bookmark ribbon-right ribbon-secondary">{{ $key['status'] }} <i
+                          class="fa fa-leaf"></i>
+                      </div>
+                    @elseif($key['status'] != 'Hot Job')
+                    @endif
                     <div class="media mt-3"><img class="img-40 img-fluid m-r-20" src="{{ $key['img'] }}" alt="">
                       <div class="media-body">
                         <div class="row">

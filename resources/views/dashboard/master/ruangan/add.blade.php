@@ -12,7 +12,8 @@
             <div class="row g-2">
               <div class="col-md-6">
                 <label class="form-label">Kode Ruangan</label>
-                <input class="form-control" type="text" name="kd_ruangan" required>
+                <input class="form-control @error('kd_ruangan') is-invalid @enderror" type="text" name="kd_ruangan"
+                  required>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Nama Gedung</label>
@@ -24,8 +25,7 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="nm_ruangan">Nama Ruangan</label>
-                <input class="form-control @error('nm_ruangan') is-invalid @enderror" type="text" name="nm_ruangan"
-                  required>
+                <input class="form-control" type="text" name="nm_ruangan" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="kps_belajar">Kapasitas Belajar</label>

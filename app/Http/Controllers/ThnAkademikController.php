@@ -54,6 +54,12 @@ class ThnAkademikController extends Controller
             'nm_tahun'     => 'required',
             'ket_tahun'    => 'required',
             'stts_tahun'   => 'required'
+        ], [
+            'kd_tahun.required' => 'Silahkan isi kode tahun terlebih dahulu!',
+            'kd_tahun.unique' => 'Kode tahun sudah digunakan!',
+            'nm_tahun.required' => 'Silahkan isi nama tahun akademik terlebih dahulu!',
+            'ket_tahun.required' => 'Silahkan isi keterangan tahun akademik terlebih dahulu!',
+            'stts_tahun.required' => 'Silahkan pilih status terlebih dahulu!'
         ]);
 
         $data = ThnAkademik::find($id);

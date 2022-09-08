@@ -130,7 +130,7 @@
             }
           })
       });
-    
+
       @if (session()->has('success'))
         toastr.success(
           '{{ session('success') }}',
@@ -156,7 +156,7 @@
           }
         );
       @endif
-    
+
       $(document).ready(function() {
         $('.edit').on("click", function(e) {
           e.preventDefault()
@@ -214,8 +214,8 @@
         });
       });
 
-      $(function () {
-        function processAjaxData(urlPath){
+      $(function() {
+        function processAjaxData(urlPath) {
           window.history.pushState(null, null, urlPath);
         }
 
@@ -226,7 +226,7 @@
             console.log(typeof isOpen); // true
             let addKurikulum = $('#addKurikulum');
             addKurikulum.modal('show');
-            addKurikulum.on('hidden.bs.modal', function (event) {
+            addKurikulum.on('hidden.bs.modal', function(event) {
               processAjaxData('/master/kurikulum');
             });
           }
@@ -235,7 +235,6 @@
 
         addModal();
       });
-
     </script>
   @endPushOnce
 @endsection

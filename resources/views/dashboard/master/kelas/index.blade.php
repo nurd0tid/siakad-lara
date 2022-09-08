@@ -214,7 +214,7 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }
@@ -295,7 +295,7 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }

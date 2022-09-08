@@ -65,6 +65,14 @@ class KelasController extends Controller
             'kd_jurusan' => 'required',
             'kd_ruangan' => 'required',
             'stts_kelas' => 'required'
+        ], [
+            'kd_kelas.required' => 'Silahkan isi kode kelas terlebih dahulu!',
+            'kd_kelas.unique'   => 'Kode kelas telah digunakan!',
+            'nm_kelas.required'   => 'Silahkan isi nama kelas terlebih dahulu!',
+            'nip.required'   => 'Silahkan isi nama wali kelas terlebih dahulu!',
+            'kd_jurusan.required'   => 'Silahkan pilih nama jurusan terlebih dahulu!',
+            'kd_ruangan.required'   => 'Silahkan pilih nama ruangan terlebih dahulu!',
+            'stts_kelas.required'   => 'Silahkan pilih status terlebih dahulu!',
         ]);
 
         //create post
@@ -119,6 +127,14 @@ class KelasController extends Controller
             'kd_jurusan' => 'required',
             'kd_ruangan' => 'required',
             'stts_kelas' => 'required'
+        ], [
+            'kd_kelas.required' => 'Silahkan isi kode kelas terlebih dahulu!',
+            'kd_kelas.unique'   => 'Kode kelas telah digunakan!',
+            'nm_kelas.required'   => 'Silahkan isi nama kelas terlebih dahulu!',
+            'nip.required'   => 'Silahkan isi nama wali kelas terlebih dahulu!',
+            'kd_jurusan.required'   => 'Silahkan pilih nama jurusan terlebih dahulu!',
+            'kd_ruangan.required'   => 'Silahkan pilih nama ruangan terlebih dahulu!',
+            'stts_kelas.required'   => 'Silahkan pilih status terlebih dahulu!',
         ]);
 
         $data = Kelas::find($id);

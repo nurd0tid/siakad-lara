@@ -77,8 +77,7 @@
                   </label>
                   <label class="d-block">
                     <input class="radio_animated" id="stts_jurusan" type="radio" value="Non Active"
-                      name="stts_jurusan">Non
-                    Active
+                      name="stts_jurusan">Non Active
                   </label>
                 </div>
               </div>
