@@ -116,6 +116,7 @@
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
     <script type="text/javascript">
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
@@ -176,7 +177,16 @@
         });
 
         $('#save').on("click", function(e) {
-          e.preventDefault()
+          const validation = new JustValidate('#saveRuangan', {
+            errorFieldCssClass: 'is-invalid',
+            errorLabelStyle: {
+              fontSize: '14px',
+              color: '#dc3545',
+            },
+            focusInvalidField: true,
+            lockForm: true,
+          });
+          validation.addRequiredGroup('#stts_ruangan')
           $.ajax({
             type: "POST",
             data: $('#saveRuangan').serialize(),
@@ -205,12 +215,11 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }
           });
-
         });
 
         $('.edit').on("click", function(e) {

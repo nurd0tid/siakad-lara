@@ -41,7 +41,7 @@ class JobController extends Controller
         'title' => $item->filter('.bVuGlP')->text(),
         'perusahaan' => $item->filter('.iOneCq')->text(),
         'status' => $item->filter('span')->eq(1)->text(),
-        // 'update' => $item->filter('span')->eq(2)->text(),
+        // 'update' => $item->filter('.jgBEKn')->text(),
         'lokasi' => $item->filter('.ikxvyY')->eq(0)->text(),
         'gaji' => $item->filter('.ikxvyY')->eq(1)->text(),
         'pengalaman' => $item->filter('.ikxvyY')->eq(2)->text(),

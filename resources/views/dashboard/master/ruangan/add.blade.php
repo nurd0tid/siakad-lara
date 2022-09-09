@@ -12,16 +12,12 @@
             <div class="row g-2">
               <div class="col-md-6">
                 <label class="form-label">Kode Ruangan</label>
-                <input class="form-control @error('kd_ruangan') is-invalid @enderror" type="text" name="kd_ruangan"
-                  required>
+                <input class="form-control" type="text" name="kd_ruangan" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label">Nama Gedung</label>
                 <select class="form-select" id="option" name="kd_gedung" required="">
                 </select>
-                @error('kd_gedung')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="nm_ruangan">Nama Ruangan</label>
@@ -30,33 +26,24 @@
               <div class="col-md-6">
                 <label class="form-label" for="kps_belajar">Kapasitas Belajar</label>
                 <input class="form-control" type="text" name="kps_belajar" required>
-                @error('kps_belajar')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="kps_ujian">Kapasitas Ujian</label>
                 <input class="form-control" type="text" name="kps_ujian" required>
-                @error('kps_ujian')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="ket_ruangan">Keterangan</label>
                 <input class="form-control" type="text" name="ket_ruangan" required>
-                @error('ket_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
-                <div class="form-group m-t-15 m-checkbox-inline mb-0">
-                  <label class="form-label" for="validationCustom01">Status</label>
-                  <label class="d-block" for="chk-ani1">
-                    <input class="radio_animated" id="chk-ani1" type="radio" value="Active"
+                <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_ruangan">
+                  <label class="form-label">Status</label>
+                  <label class="d-block">
+                    <input class="radio_animated" id="stts_ruangan_1" type="radio" value="Active"
                       name="stts_ruangan">Active
                   </label>
-                  <label class="d-block" for="chk-ani2">
-                    <input class="radio_animated" id="chk-ani2" type="radio" value="Non Active"
+                  <label class="d-block">
+                    <input class="radio_animated" id="stts_ruangan_2" type="radio" value="Non Active"
                       name="stts_ruangan">Non
                     Active
                   </label>
