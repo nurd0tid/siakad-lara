@@ -94,6 +94,7 @@
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
+      // Sweetalert Delete Confirmation
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
         e.preventDefault();
@@ -118,8 +119,8 @@
             }
           })
       });
-    </script>
-    <script>
+
+      // Alert Toastr for delete
       @if (session()->has('success'))
         toastr.success(
           '{{ session('success') }}',
@@ -132,22 +133,61 @@
             progressBar: true,
           }
         );
-      @elseif (session()->has('error'))
-        toastr.error(
-          '{{ session('error') }}',
-          'Whoops!', {
-            showDuration: 300,
-            hideDuration: 900,
-            timeOut: 900,
-            closeButton: true,
-            newestOnTop: true,
-            progressBar: true,
-          }
-        );
       @endif
-    </script>
-    <script>
+
+      // Function CRUD with Ajax
       $(document).ready(function() {
+        $('.add').on("click", function(e) {
+          e.preventDefault()
+          $.ajax({
+            url: "{{ route('golongan/add') }}",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+              $('#addGolongan').modal('show');
+            }
+          });
+        });
+
+        $('#save').on("click", function(e) {
+          const validation = new JustValidate('#saveGolongan', {
+            errorFieldCssClass: 'is-invalid',
+          });
+          $.ajax({
+            type: "POST",
+            data: $('#saveGolongan').serialize(),
+            url: "{{ route('golongan/save') }}",
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '- ' + value[0] + '<br>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
+          });
+        });
+
         $('.edit').on("click", function(e) {
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
@@ -165,7 +205,9 @@
         });
 
         $('#update').on("click", function(e) {
-          e.preventDefault()
+          const validation = new JustValidate('#dataGolongan', {
+            errorFieldCssClass: 'is-invalid',
+          });
           var id_golongan = $("#id_golongan").val();
           $.ajax({
             type: "PUT",
@@ -195,7 +237,7 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }

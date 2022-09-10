@@ -71,6 +71,7 @@ Route::prefix('master')->group(function () {
 
     Route::controller(GolonganController::class)->prefix('golongan')->group(function () {
         Route::get('', 'index')->name('golongan');
+        Route::get('add', 'add')->name('golongan/add');
         Route::post('save', 'store')->name('golongan/save');
         Route::get('edit/{id}', 'edit')->name('golongan/edit');
         Route::put('update/{id}', 'update')->name('golongan/update');

@@ -20,10 +20,12 @@ class GolonganController extends Controller
 
     public function store(Request $request)
     {
-        //validate form
         $this->validate($request, [
-            'nm_golongan'     => 'required',
+            'nm_golongan' => 'required',
             'ket_golongan'     => 'required'
+        ], [
+            'nm_golongan.required'   => 'Silahkan isi nama golongan terlebih dahulu!',
+            'ket_golongan.required'   => 'Silahkan isi keterangan golongan terlebih dahulu!'
         ]);
 
         Golongan::create([
@@ -31,7 +33,7 @@ class GolonganController extends Controller
             'ket_golongan' => $request->ket_golongan,
         ]);
 
-        return redirect()->route('golongan')->with(['success' => 'Golongan successfully added!']);
+        return response()->json(['success' => 'Golongan successfully added']);
     }
 
     public function edit($id)
@@ -42,10 +44,12 @@ class GolonganController extends Controller
 
     public function update(Request $request, $id)
     {
-        // //validate form
         $this->validate($request, [
-            'nm_golongan'     => 'required',
+            'nm_golongan' => 'required',
             'ket_golongan'     => 'required'
+        ], [
+            'nm_golongan.required'   => 'Silahkan isi nama golongan terlebih dahulu!',
+            'ket_golongan.required'   => 'Silahkan isi keterangan golongan terlebih dahulu!'
         ]);
 
         $data = Golongan::find($id);
