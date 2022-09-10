@@ -1,13 +1,12 @@
-<div class="modal fade" id="editGedung" tabindex="-1" role="dialog" aria-labelledby="editGedungLabel" aria-hidden="true">
+<div class="modal fade" id="editGedung" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editGedungLabel">Edit Kurikulum</h5>
+        <h5 class="modal-title">Edit Kurikulum</h5>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="dataGedung" class="needs-validation" novalidate="" method="POST">
-          @csrf
+        <form id="dataGedung" class="needs-validation" novalidate="">
           <div>
             <input class="form-control" id="id_gedung" type="hidden" name="id_gedung">
             <div class="row g-2">
@@ -44,35 +43,26 @@
               <div class="col-md-6">
                 <label class="form-label">Tinggi Gedung</label>
                 <input class="form-control" id="t_gedung" type="text" name="t_gedung" required>
-                @error('t_gedung')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Lebar Gedung</label>
                 <input class="form-control" id="l_gedung" type="text" name="l_gedung" required>
-                @error('l_gedung')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Keterangan</label>
                 <input class="form-control" id="ket_gedung" type="text" name="ket_gedung" required>
-                @error('ket_gedung')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
-                <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_gedung">
                   <label class="form-label">Status</label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_gedung" type="radio" value="Active"
-                      name="stts_gedung">Active
+                    <input class="form-check-input" id="stts_gedung" type="radio" value="Active" name="stts_gedung">
+                    Active
                   </label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_gedung" type="radio" value="Non Active"
-                      name="stts_gedung">Non
-                    Active
+                    <input class="form-check-input" id="stts_gedung" type="radio" value="Non Active"
+                      name="stts_gedung">
+                    Non Active
                   </label>
                 </div>
               </div>

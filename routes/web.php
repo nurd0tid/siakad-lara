@@ -53,6 +53,7 @@ Route::prefix('master')->group(function () {
 
     Route::controller(GedungController::class)->prefix('gedung')->group(function () {
         Route::get('', 'index')->name('gedung');
+        Route::get('add', 'add')->name('gedung/add');
         Route::post('save', 'store')->name('gedung/save');
         Route::get('edit/{id}', 'edit')->name('gedung/edit');
         Route::put('update/{id}', 'update')->name('gedung/update');

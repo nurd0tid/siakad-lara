@@ -22,14 +22,22 @@ class GedungController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'kd_gedung'     => 'required|unique:gedungs',
+            'kd_gedung'     => 'required|unique:gedungs,kd_gedung',
             'nm_gedung'     => 'required',
             'jml_lantai'    => 'required',
             'p_gedung'      => 'required',
             't_gedung'      => 'required',
             'l_gedung'      => 'required',
-            'ket_gedung'    => 'required',
-            'stts_gedung'   => 'required'
+            'ket_gedung'    => 'required'
+        ], [
+            'kd_gedung.required'    => 'Silahkan isi kode gedung terlebih dahulu!',
+            'kd_gedung.unique'      => 'Kode gedung sudah digunakan!',
+            'nm_gedung.required'    => 'Silahkan isi nama gedung terlebih dahulu!',
+            'jml_lantai.required'   => 'Silahkan isi jumlah lantia terlebih dahulu!',
+            'p_gedung.required'     => 'Silahkan isi panjang gedung terlebih dahulu!',
+            't_gedung.required'     => 'Silahkan isi tinggi gedung terlebih dahulu!',
+            'l_gedung.required'     => 'Silahkan isi lebar gedung terlebih dahulu!',
+            'ket_gedung.required'   => 'Silahkan isi keterangan gedung terlebih dahulu!',
         ]);
 
         //create post
@@ -44,8 +52,7 @@ class GedungController extends Controller
             'stts_gedung'   => $request->stts_gedung
         ]);
 
-        //redirect to index
-        return redirect()->route('gedung')->with(['success' => 'Gedung successfully added!']);
+        return response()->json(['success' => 'Gedung successfully added']);
     }
 
     public function edit($id)
@@ -57,14 +64,22 @@ class GedungController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kd_gedung'     => 'required|unique:gedungs,kd_gedung,' . $id . ',id_gedung|min:4',
+            'kd_gedung'     => 'required|unique:gedungs,kd_gedung,' . $id . ',id_gedung',
             'nm_gedung'     => 'required',
             'jml_lantai'    => 'required',
             'p_gedung'      => 'required',
             't_gedung'      => 'required',
             'l_gedung'      => 'required',
-            'ket_gedung'    => 'required',
-            'stts_gedung'   => 'required'
+            'ket_gedung'    => 'required'
+        ], [
+            'kd_gedung.required'    => 'Silahkan isi kode gedung terlebih dahulu!',
+            'kd_gedung.unique'      => 'Kode gedung sudah digunakan!',
+            'nm_gedung.required'    => 'Silahkan isi nama gedung terlebih dahulu!',
+            'jml_lantai.required'   => 'Silahkan isi jumlah lantia terlebih dahulu!',
+            'p_gedung.required'     => 'Silahkan isi panjang gedung terlebih dahulu!',
+            't_gedung.required'     => 'Silahkan isi tinggi gedung terlebih dahulu!',
+            'l_gedung.required'     => 'Silahkan isi lebar gedung terlebih dahulu!',
+            'ket_gedung.required'   => 'Silahkan isi keterangan gedung terlebih dahulu!',
         ]);
 
         //create post
