@@ -33,14 +33,24 @@ class RuanganController extends Controller
 
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'kd_ruangan' => 'required|unique:ruangans,kd_ruangan',
-            'kd_gedung' => 'required',
-            'nm_ruangan' => 'required',
-            'kps_belajar' => 'required',
-            'kps_ujian' => 'required',
-            'ket_ruangan' => 'required',
-            'stts_ruangan' => 'required'
+            'kd_gedung'     => 'required',
+            'nm_ruangan'    => 'required',
+            'kps_belajar'   => 'required',
+            'kps_ujian'     => 'required',
+            'ket_ruangan'   => 'required',
+            // 'stts_ruangan'  => 'required'
+        ], [
+            'kd_ruangan.required'   => 'Silahkan isi kode ruangan terlebih dahulu!',
+            'kd_ruangan.unique'     => 'Kode ruangan sudah digunakan!',
+            'kd_gedung.required'    => 'Silahkan pilih nama gedung terlebih dahulu!',
+            'nm_ruangan.required'   => 'Silahkan isi nama nama ruangan terlebih dahulu!',
+            'kps_belajar.required'  => 'Silahkan isi jumlah kapasitas belajar terlebih dahulu!',
+            'kps_ujian.required'    => 'Silahkan isi jumlah kapasitas ujian terlebih dahulu!',
+            'ket_ruangan.required'  => 'Silahkan isi keterangan ruangan terlebih dahulu!',
+            // 'stts_ruangan.required' => 'Silahkan pilih status ruangan terlebih dahulu!'
         ]);
 
         //create post
@@ -51,7 +61,7 @@ class RuanganController extends Controller
             'kps_belajar'      => $request->kps_belajar,
             'kps_ujian'      => $request->kps_ujian,
             'ket_ruangan'      => $request->ket_ruangan,
-            'stts_ruangan'    => $request->stts_ruangan
+            'stts_ruangan'      => $request->stts_ruangan,
         ]);
 
         return response()->json(['success' => 'Ruangan successfully added']);
@@ -74,13 +84,23 @@ class RuanganController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'kd_ruangan' => 'required|unique:ruangans,kd_ruangan,' . $id . ',id_ruangan|min:4',
-            'kd_gedung' => 'required',
-            'nm_ruangan' => 'required',
-            'kps_belajar' => 'required',
-            'kps_ujian' => 'required',
-            'ket_ruangan' => 'required',
-            'stts_ruangan' => 'required'
+            'kd_ruangan'    =>
+            'required|unique:ruangans,kd_ruangan,' . $id . ',id_ruangan|min:4',
+            'kd_gedung'     => 'required',
+            'nm_ruangan'    => 'required',
+            'kps_belajar'   => 'required',
+            'kps_ujian'     => 'required',
+            'ket_ruangan'   => 'required',
+            'stts_ruangan'  => 'required'
+        ], [
+            'kd_ruangan.required'   => 'Silahkan isi kode ruangan terlebih dahulu!',
+            'kd_ruangan.unique'     => 'Kode ruangan sudah digunakan!',
+            'kd_gedung.required'    => 'Silahkan pilih nama gedung terlebih dahulu!',
+            'nm_ruangan.required'   => 'Silahkan isi nama nama ruangan terlebih dahulu!',
+            'kps_belajar.required'  => 'Silahkan isi jumlah kapasitas belajar terlebih dahulu!',
+            'kps_ujian.required'    => 'Silahkan isi jumlah kapasitas ujian terlebih dahulu!',
+            'ket_ruangan.required'  => 'Silahkan isi keterangan ruangan terlebih dahulu!',
+            'stts_ruangan.required' => 'Silahkan pilih status ruangan terlebih dahulu!'
         ]);
 
         //create post

@@ -39,12 +39,12 @@
                 <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_ruangan">
                   <label class="form-label">Status</label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_ruangan_1" type="radio" value="Active"
-                      name="stts_ruangan">Active
+                    <input class="form-check-input" id="stts_ruangan_1" type="radio" value="Active"
+                      name="stts_ruangan"> Active
                   </label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_ruangan_2" type="radio" value="Non Active"
-                      name="stts_ruangan">Non
+                    <input class="form-check-input" id="stts_ruangan_2" type="radio" value="Non Active"
+                      name="stts_ruangan"> Non
                     Active
                   </label>
                 </div>

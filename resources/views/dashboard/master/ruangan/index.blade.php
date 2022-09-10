@@ -179,14 +179,11 @@
         $('#save').on("click", function(e) {
           const validation = new JustValidate('#saveRuangan', {
             errorFieldCssClass: 'is-invalid',
-            errorLabelStyle: {
-              fontSize: '14px',
-              color: '#dc3545',
-            },
-            focusInvalidField: true,
-            lockForm: true,
           });
-          validation.addRequiredGroup('#stts_ruangan')
+          validation.addRequiredGroup(
+            '#stts_ruangan',
+            'Silahkan pilih status terlebih dahulu!',
+          );
           $.ajax({
             type: "POST",
             data: $('#saveRuangan').serialize(),
@@ -231,7 +228,7 @@
             dataType: "json",
             success: function(data) {
               $('#id_ruangan').val(data['item'][0].id_ruangan);
-              $('#kd_ruangan').val(data['item'][0].kd_ruangan);;
+              $('#kd_ruangan').val(data['item'][0].kd_ruangan);
               $.each(data['option'], function(key, value) {
                 $('#kd_gedung').append('<option value=' + value.kd_gedung + '>' + value.nm_gedung +
                   '</option>');
@@ -252,7 +249,13 @@
         });
 
         $('#update').on("click", function(e) {
-          e.preventDefault()
+          const validation = new JustValidate('#dataRuangan', {
+            errorFieldCssClass: 'is-invalid',
+          });
+          validation.addRequiredGroup(
+            '#stts_ruangan',
+            'Silahkan pilih status terlebih dahulu!',
+          );
           var id_ruangan = $("#id_ruangan").val();
           $.ajax({
             type: "PUT",
@@ -282,7 +285,7 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }

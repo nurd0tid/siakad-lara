@@ -14,56 +14,38 @@
               <div class="col-md-6">
                 <label class="form-label">Kode Ruangan</label>
                 <input class="form-control" id="kd_ruangan" type="text" name="kd_ruangan" required>
-                @error('kd_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Nama Gedung</label>
-                <select class="form-select" id="kd_gedung" type="text" name="kd_gedung" required="">
+                <select class="form-select" id="kd_gedung" type="text" name="kd_gedung" required>
                 </select>
-                @error('kd_gedung')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Nama Ruangan</label>
                 <input class="form-control" id="nm_ruangan" type="text" name="nm_ruangan" required>
-                @error('nm_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Kapasitas Belajar</label>
                 <input class="form-control" id="kps_belajar" type="text" name="kps_belajar" required>
-                @error('kps_belajar')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Kapasitas Ujian</label>
                 <input class="form-control" id="kps_ujian" type="text" name="kps_ujian" required>
-                @error('kps_ujian')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
                 <label class="form-label">Keterangan</label>
                 <input class="form-control" id="ket_ruangan" type="text" name="ket_ruangan" required>
-                @error('ket_ruangan')
-                  <div class="valid-feedback">{{ $message }}</div>
-                @enderror
               </div>
               <div class="col-md-6">
-                <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_ruangan">
                   <label class="form-label">Status</label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_ruangan" type="radio" value="Active"
-                      name="stts_ruangan">Active
+                    <input class="form-check-input" id="stts_ruangan" type="radio" value="Active" name="stts_ruangan">
+                    Active
                   </label>
                   <label class="d-block">
-                    <input class="radio_animated" id="stts_ruangan" type="radio" value="Non Active"
-                      name="stts_ruangan">Non
+                    <input class="form-check-input" id="stts_ruangan" type="radio" value="Non Active"
+                      name="stts_ruangan"> Non
                     Active
                   </label>
                 </div>
