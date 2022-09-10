@@ -35,6 +35,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('master')->group(function () {
     Route::controller(KurikulumController::class)->prefix('kurikulum')->group(function () {
         Route::get('', 'index')->name('kurikulum');
+        Route::get('add', 'add')->name('kurikulum/add');
         Route::post('save', 'store')->name('kurikulum/save');
         Route::get('edit/{id}', 'edit')->name('kurikulum/edit');
         Route::put('update/{id}', 'update')->name('kurikulum/update');

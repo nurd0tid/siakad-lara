@@ -36,7 +36,7 @@ class KurikulumController extends Controller
             $rule,
             $messages
         );
- 
+
         if ($validator->fails()) {
             return redirect()
                 ->route('kurikulum', ['modal-add-is-open' => 'true'])

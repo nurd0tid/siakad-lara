@@ -106,6 +106,7 @@
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
     <script type="text/javascript">
+      // Sweetalert Delete Confirmation
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
         e.preventDefault();
@@ -131,6 +132,7 @@
           })
       });
 
+      // Alert Toastr for delete
       @if (session()->has('success'))
         toastr.success(
           '{{ session('success') }}',
@@ -143,21 +145,65 @@
             progressBar: true,
           }
         );
-      @elseif (session()->has('error'))
-        toastr.error(
-          '{{ session('error') }}',
-          'Whoops!', {
-            showDuration: 300,
-            hideDuration: 900,
-            timeOut: 900,
-            closeButton: true,
-            newestOnTop: true,
-            progressBar: true,
-          }
-        );
       @endif
 
+      // Function CRUD with Ajax
       $(document).ready(function() {
+        $('.add').on("click", function(e) {
+          e.preventDefault()
+          $.ajax({
+            url: "{{ route('kurikulum/add') }}",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+              $('#addKurikulum').modal('show');
+            }
+          });
+        });
+
+        $('#save').on("click", function(e) {
+          const validation = new JustValidate('#saveKurikulum', {
+            errorFieldCssClass: 'is-invalid',
+          });
+          validation.addRequiredGroup(
+            '#stts_kurikuum',
+            'Silahkan pilih status terlebih dahulu!',
+          );
+          $.ajax({
+            type: "POST",
+            data: $('#saveKurikulum').serialize(),
+            url: "{{ route('kurikulum/save') }}",
+            dataType: "json",
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+              toastr.success(
+                data.success,
+                'Wohoooo!', {
+                  showDuration: 300,
+                  hideDuration: 900,
+                  timeOut: 900,
+                  closeButton: true,
+                  newestOnTop: true,
+                  progressBar: true,
+                  onHidden: function() {
+                    window.location.reload();
+                  }
+                }
+              );
+            },
+            error: function(data) {
+              var errors = data.responseJSON.errors;
+              var errorsHtml = '';
+              $.each(errors, function(key, value) {
+                errorsHtml += '- ' + value[0] + '<br>';
+              });
+              toastr.error(errorsHtml, 'Whoops!');
+            }
+          });
+        });
+
         $('.edit').on("click", function(e) {
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
@@ -206,34 +252,12 @@
               var errors = data.responseJSON.errors;
               var errorsHtml = '';
               $.each(errors, function(key, value) {
-                errorsHtml += '<li>' + value[0] + '</li>';
+                errorsHtml += '- ' + value[0] + '<br>';
               });
               toastr.error(errorsHtml, 'Whoops!');
             }
           });
         });
-      });
-
-      $(function() {
-        function processAjaxData(urlPath) {
-          window.history.pushState(null, null, urlPath);
-        }
-
-        function addModal() {
-          let urlParams = new URLSearchParams(window.location.search);
-          let isOpen = urlParams.has('modal-add-is-open');
-          if (typeof isOpen === 'boolean' && isOpen === true) {
-            console.log(typeof isOpen); // true
-            let addKurikulum = $('#addKurikulum');
-            addKurikulum.modal('show');
-            addKurikulum.on('hidden.bs.modal', function(event) {
-              processAjaxData('/master/kurikulum');
-            });
-          }
-
-        }
-
-        addModal();
       });
     </script>
   @endPushOnce

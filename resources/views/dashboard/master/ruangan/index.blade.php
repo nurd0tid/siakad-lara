@@ -116,8 +116,8 @@
     <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
-    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
-    <script type="text/javascript">
+    <script>
+      // Sweetalert Delete Confirmation
       $('.show_confirm').click(function(e) {
         var form = $(this).closest("form");
         e.preventDefault();
@@ -142,8 +142,8 @@
             }
           })
       });
-    </script>
-    <script>
+
+      // Alert Toastr for delete
       @if (session()->has('success'))
         toastr.success(
           '{{ session('success') }}',
@@ -157,8 +157,8 @@
           }
         );
       @endif
-    </script>
-    <script>
+
+      // Function CRUD with Ajax
       $(document).ready(function() {
         $('.add').on("click", function(e) {
           e.preventDefault()
