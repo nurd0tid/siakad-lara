@@ -166,7 +166,7 @@
             errorFieldCssClass: 'is-invalid',
           });
           validation.addRequiredGroup(
-            '#stts_kurikuum',
+            '#stts_kurikulum',
             'Silahkan pilih status terlebih dahulu!',
           );
           $.ajax({
@@ -208,7 +208,7 @@
           e.preventDefault()
           var id = $(this).attr('data-bs-id');
           $.ajax({
-            url: "/master/kurikulum/edit/" + id,
+            url: "{{ url('master/kurikulum/edit') }}" + '/' + id,
             type: "GET",
             dataType: "JSON",
             success: function(data) {
@@ -216,13 +216,18 @@
               $('#nm_kurikulum').val(data.nm_kurikulum);
               $('input[id="stts_kurikulum"][value="' + data.stts_kurikulum + '"]').prop('checked', true);
               $('#editKurikulum').modal('show');
-              console.log(data.stts_kurikulum)
             }
           });
         });
 
         $('#update').on("click", function(e) {
-          e.preventDefault()
+          const validation = new JustValidate('#dataKurikulum', {
+            errorFieldCssClass: 'is-invalid',
+          });
+          validation.addRequiredGroup(
+            '#stts_kurikulum',
+            'Silahkan pilih status terlebih dahulu!',
+          );
           var id_kurikulum = $("#id_kurikulum").val();
           $.ajax({
             type: "PUT",

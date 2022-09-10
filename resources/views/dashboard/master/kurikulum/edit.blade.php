@@ -1,14 +1,12 @@
-<div class="modal fade" id="editKurikulum" tabindex="-1" role="dialog" aria-labelledby="editKurikulumLabel"
-  aria-hidden="true">
+<div class="modal fade" id="editKurikulum" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editKurikulumLabel">Edit Kurikulum</h5>
+        <h5 class="modal-title">Edit Kurikulum</h5>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="dataKurikulum" class="needs-validation" novalidate="" method="POST">
-          @csrf
+        <form id="dataKurikulum" class="needs-validation" novalidate="">
           <div>
             <input class="form-control" id="id_kurikulum" type="hidden" name="id_kurikulum">
             <div class="col-md-12">

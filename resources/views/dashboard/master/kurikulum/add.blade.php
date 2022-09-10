@@ -6,11 +6,11 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="saveKurikulum">
+        <form id="saveKurikulum" class="needs-validation" novalidate="">
           <div>
             <div class="col-md-12">
               <label class="form-label">Nama Kurikulum</label>
-              <input class="form-control" type="text" name="nm_kurikulum">
+              <input class="form-control" type="text" name="nm_kurikulum" required>
             </div>
             <div class="col-md-6">
               <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_kurikulum">

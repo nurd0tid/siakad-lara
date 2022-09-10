@@ -21,28 +21,34 @@ class KurikulumController extends Controller
 
     public function store(Request $request)
     {
-        $messages = [
-            'nm_kurikulum.required' => 'Nama kurikulum tidak boleh kosong.',
-            'stts_kurikulum.required' => 'Status tidak boleh kosong.',
-        ];
+        // $messages = [
+        //     'nm_kurikulum.required' => 'Nama kurikulum tidak boleh kosong.',
+        //     'stts_kurikulum.required' => 'Status tidak boleh kosong.',
+        // ];
 
-        $rule = [
-            'nm_kurikulum' => 'required',
-            'stts_kurikulum' => 'required',
-        ];
+        // $rule = [
+        //     'nm_kurikulum' => 'required',
+        //     'stts_kurikulum' => 'required',
+        // ];
 
-        $validator = Validator::make(
-            $request->all(),
-            $rule,
-            $messages
-        );
+        // $validator = Validator::make(
+        //     $request->all(),
+        //     $rule,
+        //     $messages
+        // );
 
-        if ($validator->fails()) {
-            return redirect()
-                ->route('kurikulum', ['modal-add-is-open' => 'true'])
-                ->withErrors($validator)
-                ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()
+        //         ->route('kurikulum', ['modal-add-is-open' => 'true'])
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+
+        $this->validate($request, [
+            'nm_kurikulum' => 'required'
+        ], [
+            'nm_kurikulum.required'   => 'Silahkan isi nama kurikulum terlebih dahulu!'
+        ]);
 
         //create post
         Kurikulum::create([
@@ -50,8 +56,7 @@ class KurikulumController extends Controller
             'stts_kurikulum'   => $request->stts_kurikulum
         ]);
 
-        // //redirect to index
-        return redirect()->route('kurikulum')->with(['success' => 'Kurikulum successfully added!']);
+        return response()->json(['success' => 'Kurikulum successfully added']);
     }
 
     public function edit($id)
@@ -63,8 +68,9 @@ class KurikulumController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nm_kurikulum'     => 'required',
-            'stts_kurikulum'   => 'required'
+            'nm_kurikulum' => 'required'
+        ], [
+            'nm_kurikulum.required'   => 'Silahkan isi nama kurikulum terlebih dahulu!'
         ]);
 
         $data = Kurikulum::find($id);
