@@ -44,6 +44,7 @@ Route::prefix('master')->group(function () {
 
     Route::controller(ThnAkademikController::class)->prefix('thnakademik')->group(function () {
         Route::get('', 'index')->name('thnakademik');
+        Route::get('add', 'add')->name('thnakademik/add');
         Route::post('save', 'store')->name('thnakademik/save');
         Route::get('edit/{id}', 'edit')->name('thnakademik/edit');
         Route::put('update/{id}', 'update')->name('thnakademik/update');

@@ -13,16 +13,19 @@
               <label class="form-label" for="nm_kurikulum">Nama Kurikulum</label>
               <input class="form-control" id="nm_kurikulum" type="text" name="nm_kurikulum" required>
             </div>
-            <div class="col">
-              <div class="form-group m-t-15 m-checkbox-inline mb-0" id="error">
+            <div class="col-md-6">
+              <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_kurikulum">
                 <label class="form-label">Status</label>
                 <label class="d-block">
-                  <input class="radio_animated" id="stts_kurikulum" type="radio" value="Active"
-                    name="stts_kurikulum">Active
+                  <input class="form-check-input" id="stts_kurikulum" type="radio" value="Active"
+                    name="stts_kurikulum">
+                  Active
                 </label>
                 <label class="d-block">
-                  <input class="radio_animated" id="stts_kurikulum" type="radio" value="Non Active"
-                    name="stts_kurikulum">Non Active
+                  <input class="form-check-input" id="stts_kurikulum" type="radio" value="Non Active"
+                    name="stts_kurikulum">
+                  Non
+                  Active
                 </label>
               </div>
             </div>

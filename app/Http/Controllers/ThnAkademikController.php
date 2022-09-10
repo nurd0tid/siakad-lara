@@ -20,12 +20,14 @@ class ThnAkademikController extends Controller
 
     public function store(Request $request)
     {
-        //validate form
         $this->validate($request, [
-            'kd_tahun'     => 'required|unique:thn_akademiks|min:4',
+            'kd_tahun' => 'required|unique:thn_akademiks,kd_tahun',
             'nm_tahun'     => 'required',
-            'ket_tahun'    => 'required|max:9',
-            'stts_tahun'   => 'required'
+            'ket_tahun'    => 'required'
+        ], [
+            'kd_tahun.required'   => 'Silahkan isi kode tahun akademik terlebih dahulu!',
+            'kd_tahun.unique'     => 'Kode tahun akademik sudah digunakan!',
+            'nm_tahun.required'    => 'Silahkan pilih nama tahun akademik terlebih dahulu!'
         ]);
 
         //create post
@@ -36,8 +38,7 @@ class ThnAkademikController extends Controller
             'stts_tahun'   => $request->stts_tahun
         ]);
 
-        //redirect to index
-        return redirect()->route('thnakademik')->with(['success' => 'Tahun Akademik successfully added!']);
+        return response()->json(['success' => 'Tahun Akademik successfully added']);
     }
 
     public function edit($id)
@@ -52,14 +53,12 @@ class ThnAkademikController extends Controller
             'kd_tahun'     =>
             'required|unique:thn_akademiks,kd_tahun,' . $id . ',id_tahun|min:5',
             'nm_tahun'     => 'required',
-            'ket_tahun'    => 'required',
-            'stts_tahun'   => 'required'
+            'ket_tahun'    => 'required'
         ], [
             'kd_tahun.required' => 'Silahkan isi kode tahun terlebih dahulu!',
             'kd_tahun.unique' => 'Kode tahun sudah digunakan!',
             'nm_tahun.required' => 'Silahkan isi nama tahun akademik terlebih dahulu!',
-            'ket_tahun.required' => 'Silahkan isi keterangan tahun akademik terlebih dahulu!',
-            'stts_tahun.required' => 'Silahkan pilih status terlebih dahulu!'
+            'ket_tahun.required' => 'Silahkan isi keterangan tahun akademik terlebih dahulu!'
         ]);
 
         $data = ThnAkademik::find($id);

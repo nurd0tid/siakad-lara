@@ -1,45 +1,36 @@
-<div class="modal fade" id="editThnAkademik" tabindex="-1" role="dialog" aria-labelledby="editThnAkademikLabel"
-  aria-hidden="true">
+<div class="modal fade" id="editThnAkademik" id aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editThnAkademikLabel">Edit Tahun Akademik</h5>
+        <h5 class="modal-title">Edit Tahun Akademik</h5>
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="dataThnAkademik" class="needs-validation" novalidate="" method="POST">
-          @csrf
+        <form id="dataThnAkademik" class="needs-validation" novalidate="">
           <div>
             <input class="form-control" id="id_tahun" type="hidden" name="id_tahun">
             <div class="col-md-12">
               <label class="form-label" for="kd_tahun">Kode Tahun</label>
               <input class="form-control" id="kd_tahun" type="text" name="kd_tahun" required>
-              @error('kd_tahun')
-                <div class="valid-feedback">{{ $message }}</div>
-              @enderror
             </div>
             <div class="col-md-12">
               <label class="form-label" for="nm_tahun">Nama Tahun</label>
               <input class="form-control" id="nm_tahun" type="text" name="nm_tahun" required>
-              @error('nm_tahun')
-                <div class="valid-feedback">{{ $message }}</div>
-              @enderror
             </div>
             <div class="col-md-12">
               <label class="form-label" for="ket_tahun">Keterangan</label>
               <input class="form-control" id="ket_tahun" type="text" name="ket_tahun" required>
-              @error('ket_tahun')
-                <div class="valid-feedback">{{ $message }}</div>
-              @enderror
             </div>
-            <div class="col">
-              <div class="form-group m-t-15 m-checkbox-inline mb-0">
+            <div class="col-md-6">
+              <div class="form-group m-t-15 m-checkbox-inline mb-0" id="stts_tahun">
                 <label class="form-label">Status</label>
                 <label class="d-block">
-                  <input class="radio_animated" id="stts_tahun" type="radio" value="Active" name="stts_tahun">Active
+                  <input class="form-check-input" id="stts_tahun" type="radio" value="Active" name="stts_tahun">
+                  Active
                 </label>
                 <label class="d-block">
-                  <input class="radio_animated" id="stts_tahun" type="radio" value="Non Active" name="stts_tahun">Non
+                  <input class="form-check-input" id="stts_tahun" type="radio" value="Non Active" name="stts_tahun">
+                  Non
                   Active
                 </label>
               </div>
