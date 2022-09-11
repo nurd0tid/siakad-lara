@@ -6,7 +6,7 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="dataGolongan" class="needs-validation" novalidate="">
+        <form id="dataGolongan" method="put" action="{{ url('/master/golongan/update') }}" class="needs-validation" novalidate="">
           <div>
             <input class="form-control" id="id_golongan" type="hidden" name="id_golongan">
             <div class="col-md-12">
