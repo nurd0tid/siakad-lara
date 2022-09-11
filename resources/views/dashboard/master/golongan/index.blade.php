@@ -1,9 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.vite')
+
 @section('content')
-  @pushOnce('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
-  @endPushOnce
   <div class="page-body">
     <div class="container-fluid">
       <div class="page-header">
@@ -11,24 +8,40 @@
           <div class="col-sm-6">
             <h3>Golongan</h3>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Applications</a></li>
+              <li class="breadcrumb-item">
+                <a href="index.html">Applications</a>
+              </li>
               <li class="breadcrumb-item">Data Master</li>
               <li class="breadcrumb-item active">Golongan</li>
             </ol>
           </div>
           <div class="col-sm-6">
-            <!-- Bookmark Start-->
             <div class="bookmark">
               <ul>
-                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top"
-                    title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
-                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top"
-                    title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top"
-                    title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top"
-                    title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                <li><a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
+                <li>
+                  <a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables">
+                    <i data-feather="inbox"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat">
+                    <i data-feather="message-square"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons">
+                    <i data-feather="command"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning">
+                    <i data-feather="layers"></i>
+                  </a>
+                  </li>
+                <li>
+                  <a href="javascript:void(0)">
+                    <i class="bookmark-search" data-feather="star"></i>
+                  </a>
                   <form class="form-inline search-form">
                     <div class="form-group form-control-search">
                       <input type="text" placeholder="Search..">
@@ -37,7 +50,6 @@
                 </li>
               </ul>
             </div>
-            <!-- Bookmark Ends-->
           </div>
         </div>
       </div>
@@ -46,8 +58,9 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test"
-              data-bs-target="#addGolongan">Add Golongan</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#addGolongan">
+              Add Golongan
+            </button>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -67,12 +80,15 @@
                       <td>{{ $a['nm_golongan'] }}</td>
                       <td>{{ $a['ket_golongan'] }}</td>
                       <td>
-                        <form method="POST" action="golongan/delete/{{ $a['id_golongan'] }}">
+                        <form id="actionDelete" method="POST" action="{{ url('master/golongan/delete', $a->id_golongan) }}">
                           @csrf
-                          <a type="button" class="btn btn-primary btn-xs edit" data-bs-id="{{ $a->id_golongan }}"><i
-                              class="fa fa-edit"></i></a>
+                          <a id="edit" class="btn btn-primary btn-xs ml-4" href="{{ url('master/golongan/edit', $a->id_golongan) }}">
+                            <i class="fa fa-edit"></i>
+                          </a>
                           <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
-                          <a type="submit" class="btn btn-danger btn-xs show_confirm"><i class="fa fa-trash"></i></a>
+                          <a href="{{ url('master/golongan/delete', $a->id_golongan) }}" id="delete" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i>
+                          </button>
                         </form>
                       </td>
                     </tr>
@@ -85,165 +101,23 @@
       </div>
     </div>
   </div>
-  @pushOnce('js')
-    @include('dashboard.master.golongan.add')
-    @include('dashboard.master.golongan.edit')
-    <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
-    <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
-    <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
-    <script type="text/javascript">
-      // Sweetalert Delete Confirmation
-      $('.show_confirm').click(function(e) {
-        var form = $(this).closest("form");
-        e.preventDefault();
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-                // timer: 3000
-              });
-              form.submit();
-            } else {
-              swal("Your imaginary file is safe!", {
-                icon: "info"
-              });
-            }
-          })
-      });
-
-      // Alert Toastr for delete
-      @if (session()->has('success'))
-        toastr.success(
-          '{{ session('success') }}',
-          'Wohoooo!', {
-            showDuration: 300,
-            hideDuration: 900,
-            timeOut: 900,
-            closeButton: true,
-            newestOnTop: true,
-            progressBar: true,
-          }
-        );
-      @endif
-
-      // Function CRUD with Ajax
-      $(document).ready(function() {
-        $('.add').on("click", function(e) {
-          e.preventDefault()
-          $.ajax({
-            url: "{{ route('golongan/add') }}",
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
-              $('#addGolongan').modal('show');
-            }
-          });
-        });
-
-        $('#save').on("click", function(e) {
-          const validation = new JustValidate('#saveGolongan', {
-            errorFieldCssClass: 'is-invalid',
-          });
-          $.ajax({
-            type: "POST",
-            data: $('#saveGolongan').serialize(),
-            url: "{{ route('golongan/save') }}",
-            dataType: "json",
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-              toastr.success(
-                data.success,
-                'Wohoooo!', {
-                  showDuration: 300,
-                  hideDuration: 900,
-                  timeOut: 900,
-                  closeButton: true,
-                  newestOnTop: true,
-                  progressBar: true,
-                  onHidden: function() {
-                    window.location.reload();
-                  }
-                }
-              );
-            },
-            error: function(data) {
-              var errors = data.responseJSON.errors;
-              var errorsHtml = '';
-              $.each(errors, function(key, value) {
-                errorsHtml += '- ' + value[0] + '<br>';
-              });
-              toastr.error(errorsHtml, 'Whoops!');
-            }
-          });
-        });
-
-        $('.edit').on("click", function(e) {
-          e.preventDefault()
-          var id = $(this).attr('data-bs-id');
-          $.ajax({
-            url: "/master/golongan/edit/" + id,
-            type: "GET",
-            dataType: "JSON",
-            success: function(data) {
-              $('#id_golongan').val(data.id_golongan);
-              $('#nm_golongan').val(data.nm_golongan);
-              $('#ket_golongan').val(data.ket_golongan);
-              $('#editGolongan').modal('show');
-            }
-          });
-        });
-
-        $('#update').on("click", function(e) {
-          const validation = new JustValidate('#dataGolongan', {
-            errorFieldCssClass: 'is-invalid',
-          });
-          var id_golongan = $("#id_golongan").val();
-          $.ajax({
-            type: "PUT",
-            data: $('#dataGolongan').serialize(),
-            url: '/master/golongan/update/' + id_golongan,
-            dataType: "json",
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(data) {
-              toastr.success(
-                data.success,
-                'Wohoooo!', {
-                  showDuration: 300,
-                  hideDuration: 900,
-                  timeOut: 900,
-                  closeButton: true,
-                  newestOnTop: true,
-                  progressBar: true,
-                  onHidden: function() {
-                    window.location.reload();
-                  }
-                }
-              );
-            },
-            error: function(data) {
-              var errors = data.responseJSON.errors;
-              var errorsHtml = '';
-              $.each(errors, function(key, value) {
-                errorsHtml += '- ' + value[0] + '<br>';
-              });
-              toastr.error(errorsHtml, 'Whoops!');
-            }
-          });
-        });
-      });
-    </script>
-  @endPushOnce
 @endsection
+
+@pushOnce('my-modal')
+  @include('dashboard.master.golongan.add')
+  @include('dashboard.master.golongan.edit')
+@endPushOnce
+
+@pushOnce('css')
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert2.css') }}">
+@endPushOnce
+
+@pushOnce('js')
+  <script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+  <script src="{{ asset('assets/js/sweet-alert/sweetalert.min.js') }}"></script>
+  <script src="{{ asset('assets/js/form-validation-custom.js') }}"></script>
+  <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+  @vite('resources/js/golongan.js')
+@endPushOnce

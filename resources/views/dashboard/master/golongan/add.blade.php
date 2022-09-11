@@ -6,7 +6,7 @@
         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="saveGolongan" class="needs-validation" novalidate="">
+        <form id="saveGolongan" action="{{ route('golongan/save') }}" method="POST" class="needs-validation" novalidate="">
           <div>
             <div class="col-md-12">
               <label class="form-label">Nama Golongan</label>
