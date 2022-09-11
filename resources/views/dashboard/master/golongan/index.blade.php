@@ -80,13 +80,13 @@
                       <td>{{ $a['nm_golongan'] }}</td>
                       <td>{{ $a['ket_golongan'] }}</td>
                       <td>
-                        <form id="actionDelete" method="POST" action="{{ url('master/golongan/delete', $a['id_golongan']) }}">
+                        <form id="actionDelete" method="POST" action="{{ url('master/golongan/delete', $a->id_golongan) }}">
                           @csrf
                           <a id="edit" class="btn btn-primary btn-xs ml-4" href="{{ url('master/golongan/edit', $a->id_golongan) }}">
                             <i class="fa fa-edit"></i>
                           </a>
-                          <input name="id" type="hidden" class="btn-primary btn-xs" value="{{ $a['id_golongan'] }}">
-                          <button type="submit" id="delete" class="btn btn-danger btn-xs">
+                          <input name="_method" type="hidden" class="btn-primary btn-xs" value="DELETE">
+                          <a href="{{ url('master/golongan/delete', $a->id_golongan) }}" id="delete" class="btn btn-danger btn-xs">
                             <i class="fa fa-trash"></i>
                           </button>
                         </form>

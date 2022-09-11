@@ -61,10 +61,10 @@
     }
 
     /**
-     * show data edsit
+     * Action handler
      */
-    function onEditHandler() {
-        const formAction = $('form[id="actionDelete"]');
+    function actionHandler() {
+        const actionDelete = $('form[id="actionDelete"]');
 
         /**
          * Modal show edit golongan
@@ -76,6 +76,17 @@
             editGolongan.find('#ket_golongan').val(data.ket_golongan);
             editGolongan.modal('show');
         }
+
+        /**
+         * Delete action submit
+         */
+        $(actionDelete)
+            .find('a#delete')
+            .on('click', function (event) {
+                event.preventDefault();
+                const currentForm = $(this).parent().get(0);
+                currentForm.submit();
+            });
 
         /**
          * handler post update
@@ -112,23 +123,30 @@
             });
         }
 
-        $(formAction.find('a#edit'))
-            .on('click', function(event) {
-                event.preventDefault();
-                const _this = $(this);
-                $.ajax({
-                    url: _this.attr('href'),
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        updateHandler(data);
-                        modalShowEditGolongan(data);
-                    },
-                    error: function () {
-                        alert('Something error');
-                    },
+        /**
+         * Show edit data
+         */
+        function editHandler() {
+            $(actionDelete.find('a#edit'))
+                .on('click', function(event) {
+                    event.preventDefault();
+                    const _this = $(this);
+                    $.ajax({
+                        url: _this.attr('href'),
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            updateHandler(data);
+                            modalShowEditGolongan(data);
+                        },
+                        error: function () {
+                            alert('Something error');
+                        },
+                    });
                 });
-            });
+        }
+
+        editHandler();
     }
 
     /**
@@ -136,6 +154,6 @@
      */
     $(document).ready(function() {
         golonganOnSavehandler();
-        onEditHandler();
+        actionHandler();
     });
 })();
