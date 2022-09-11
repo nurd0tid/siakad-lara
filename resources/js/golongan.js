@@ -1,5 +1,5 @@
 (function () {
-    console.log('[GOLONGAN.JS IS RENDER COK]');
+    console.log('[GOLONGAN.JS IS RENDER]');
 
     /**
      * for handle function toast

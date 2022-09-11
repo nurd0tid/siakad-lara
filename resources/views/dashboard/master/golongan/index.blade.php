@@ -86,9 +86,9 @@
                             <i class="fa fa-edit"></i>
                           </a>
                           <input name="id" type="hidden" class="btn-primary btn-xs" value="{{ $a['id_golongan'] }}">
-                          <a type="submit" id="delete" class="btn btn-danger btn-xs">
+                          <button type="submit" id="delete" class="btn btn-danger btn-xs">
                             <i class="fa fa-trash"></i>
-                          </a>
+                          </button>
                         </form>
                       </td>
                     </tr>
